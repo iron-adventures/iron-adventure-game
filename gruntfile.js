@@ -1,13 +1,45 @@
+'use strict';
+
 module.exports = function configureGrunt(gruntConfig) {
+
   gruntConfig.initConfig({
+
     clean: ['build/'],
+
     copy: {
-      copyHtml: {
+      html: {
         files: [
-          {
-            cwd: 'client/src',
-            src: ['*.html'],
+          { cwd: 'client/src/',
+            src: 'index.html',
             dest: 'build/',
+            expand: true
+          },
+          { cwd: 'client/src/views/',
+            src: '*.template.html',
+            dest: 'build/views/',
+            expand: true
+          }
+        ]
+      },
+      image: {
+        files: [
+          { cwd: 'client/src/',
+            src: 'images/*.*',
+            dest: 'build/images/',
+            expand: true
+          }
+        ]
+      },
+      node_modules: {
+        files: [
+          { cwd: 'node_modules/angular/',
+            src: 'angular.js',
+            dest: 'build/js/',
+            expand: true
+          },
+          { cwd: 'node_modules/angular-ui-router/release/',
+            src: 'angular-ui-router.js',
+            dest: 'build/js/',
             expand: true
           }
         ]
@@ -40,6 +72,7 @@ module.exports = function configureGrunt(gruntConfig) {
           files: [
             'node_modules/angular/angular.js',
             'node_modules/angular-mocks/angular-mocks.js',
+            'node_modules/angular-ui-router/release/angular-ui-router.js',
             'client/src/js/adventure.module.js',
             'client/src/**/*.js',
             'test/**/*.spec.js'
@@ -81,6 +114,6 @@ module.exports = function configureGrunt(gruntConfig) {
   require('load-grunt-tasks')(gruntConfig);
 
   // task aliases for build tasks
-  gruntConfig.registerTask('build', [ 'jshint', 'karma', 'clean', 'concat',
+  gruntConfig.registerTask('default', [ 'jshint', 'karma', 'clean', 'concat',
     'babel', 'sass', 'copy' ]);
 };
