@@ -59,7 +59,7 @@ module.exports = function configureGrunt(gruntConfig) {
           jshintrc: '.jshintrc'
         },
         files: {
-          src: ['client/src/js/**/*.js']
+          src: ['client/src/**/*.js']
         }
       }
     },
@@ -104,7 +104,7 @@ module.exports = function configureGrunt(gruntConfig) {
         },
         files: {
           // destination      source
-          'build/js/apps.js': 'build/js/app.js'
+          'build/js/app.js': 'build/js/app.js'
         }
       }
     }
@@ -115,5 +115,5 @@ module.exports = function configureGrunt(gruntConfig) {
 
   // task aliases for build tasks
   gruntConfig.registerTask('default', [ 'jshint', 'karma', 'clean', 'concat',
-    'babel', 'sass', 'copy' ]);
+    'babel', 'copy', 'sass' ]);
 };
