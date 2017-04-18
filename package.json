@@ -2,7 +2,7 @@
   "name": "iron-adventure-game",
   "version": "1.0.0",
   "description": "Adventure game \"capstone project\" for The Iron Yard Feb 2017 cohort",
-  "main": "",
+  "main": "server/app.js",
   "dependencies": {
     "angular": "^1.6.4",
     "body": "^5.1.0",
