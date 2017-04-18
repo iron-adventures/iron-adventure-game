@@ -4,9 +4,12 @@
   "description": "Adventure game \"capstone project\" for The Iron Yard Feb 2017 cohort",
   "main": "",
   "dependencies": {
+    "angular": "^1.6.4",
+    "body": "^5.1.0",
     "bootstrap": "^3.3.7",
     "express": "^4.15.2",
-    "mongoose": "^4.9.5"
+    "mongoose": "^4.9.5",
+    "parser": "^0.1.4"
   },
   "devDependencies": {},
   "scripts": {
