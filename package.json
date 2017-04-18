@@ -1,0 +1,23 @@
+{
+  "name": "iron-adventure-game",
+  "version": "1.0.0",
+  "description": "Adventure game \"capstone project\" for The Iron Yard Feb 2017 cohort",
+  "main": "",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "grunt karma"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iron-adventures/iron-adventure-game.git"
+  },
+  "author": "Nadia Mughal, David Steed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iron-adventures/iron-adventure-game/issues"
+  },
+  "homepage": "https://github.com/iron-adventures/iron-adventure-game#readme"
+}
