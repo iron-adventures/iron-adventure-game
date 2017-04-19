@@ -5,8 +5,6 @@ require('./database-setup.js');
 
 let app = express();
 
-console.log('Database location', process.env.MY_DB_LOCATION);
-
 app.use(express.static(__dirname + '/../client/src'));
 
 app.use(bodyParser.json());
