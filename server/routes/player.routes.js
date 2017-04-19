@@ -4,7 +4,7 @@ const Player = require('../models/Player.model.js');
 function addAPlayer(request, response, next) {
   console.log('Incoming', request.body);
 
-  if(!request.body) {
+  if(Object.keys(request.body).length === 0 ) {
     let err = new Error('You must provide a player');
     err.status = 400;
     next(err);
