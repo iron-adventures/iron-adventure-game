@@ -4,8 +4,29 @@ const Player = require('../models/Player.model.js');
 function addAPlayer(request, response, next) {
   console.log('Incoming', request.body);
 
-  if(Object.keys(request.body).length === 0 ) {
+  if(!request.body || Object.keys(request.body).length === 0) {
     let err = new Error('You must provide a player');
+    err.status = 400;
+    next(err);
+    return;
+  }
+  if(!request.body.playerName || request.body.playerName.length === 0 ||
+    typeof(request.body.playerName) !== 'string') {
+    let err = new Error('You must provide a name');
+    err.status = 400;
+    next(err);
+    return;
+  }
+  if(!request.body.playerEmail || request.body.playerEmail.length === 0 ||
+    typeof(request.body.playerEmail) !== 'string') {
+    let err = new Error('You must provide an email');
+    err.status = 400;
+    next(err);
+    return;
+  }
+  if(!request.body.playerScore || Number.isNaN(Number(request.body.playerScore)) ||
+    typeof(request.body.playerScore) !== 'number') {
+    let err = new Error('You must provide a number');
     err.status = 400;
     next(err);
     return;
