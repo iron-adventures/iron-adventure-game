@@ -6,43 +6,46 @@
     .controller('SceneController', SceneController);
 
   // inject the angular service that handles data calls for scene data
-  SceneController.$inject = ['SceneService'];
+  SceneController.$inject = ['$state', '$stateParams', 'SceneService'];
 
-  function SceneController(SceneService) {
+  /**
+   * [SceneController creates a new scene Controller]
+   * @param {Object} SceneService [Service singleton]
+   */
+  function SceneController($state, $stateParams, SceneService) {
     let vm = this;
 
-    /**
-     * [addAScene description]
-     * @param {} newScene [description]
-     */
-    vm.addAScene = function addAScene(newScene) {
-      // basic validation of the new scene object
-      if (!newScene || Object.keys(newScene).length === 0 ||
-        Array.isArray(newScene) || typeof(newScene) !== 'object') {
-          console.log('Invalid scene Object provided');
-          return;
-        }
-    };
+    vm.currentScene = {};  // store the scene to be displayed in the View
 
-    SceneService.addAScene(newScene)
-      .then(function handleSceneData(sceneData) {
-        console.log('The scene added was: ', sceneData);
-      })
-      .catch(function handleError(error) {
-        if (error.status === 401) {
-          vm.hasError = true;
-          vm.errorMessage =
-              'Please log in and try again';
-        } else if (error.status === 404) {
-          vm.hasError = true;
-          vm.errorMessage =
-              'Could not find that guest by the id provided';
-        } else {
-          vm.hasError = true;
-          vm.errorMessage = 'Unknown error from server';
+    function getScene(id) {
+      // basic validation of argument
+      if (typeof(id) !== 'string' || id.length === 0) {
+        console.error('Valid id required to get a scene');
+        return;
       }
-    });
-  }
 
+      SceneService.getScene(id)
+        .then(function handleResponse(responseObj) {
+          vm.currentScene = responseObj;
+        })
+        .catch(function handleError(error) {
+          if (error.status === 401) {
+            vm.hasError = true;
+            vm.errorMessage =
+              'Please log in and try again';
+          } else if (error.status === 404) {
+            vm.hasError = true;
+            vm.errorMessage =
+              'Could not find that guest by the id provided';
+          } else {
+            vm.hasError = true;
+            vm.errorMessage = 'Unknown error from server';
+          }
+        });
+
+        
+
+      }
+  }
 
 }());
