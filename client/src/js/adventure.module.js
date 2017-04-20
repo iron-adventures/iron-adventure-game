@@ -13,7 +13,9 @@
         .state({
           name: 'gameplay',
           url: '/',
-          templateUrl: 'templates/gameplay.html'
+          templateUrl: '../templates/gameplay.template.html',
+          controller: 'SceneController',
+          controllerAs: 'sceneCtrl'
         });
 
     }

@@ -15,8 +15,11 @@
         <h3 class="panel-title">Narrative/Event pane</h3>
       </section>
       <section class="panel-body">
-        You begin your adventure in a small room.
-        There is a door to the north.
+        <p>{{sceneCtrl.currentScene.sceneText}}</p>
+
+        <p>{{sceneCtrl.currentScene.sceneChoice}}</p>
+
+        <button ng-click='sceneCtrl.changeScene()' type="button" class="btn btn-primary btn-sm">Next Scene</button>
       </section>
     </section>
   </article>

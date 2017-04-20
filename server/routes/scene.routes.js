@@ -1,6 +1,12 @@
 const sceneRouter = require('express').Router();
 const Scene = require('../models/Scene.model.js');
 
+/**
+ * [addAScene adds a new Scene]
+ * @param {Object}   request  [request Object]
+ * @param {Object}   response [response Object]
+ * @param {Function} next     [advances to next middleware component]
+ */
 function addAScene(request, response, next) {
   console.log('Incoming', request.body);
 
@@ -68,5 +74,42 @@ function addAScene(request, response, next) {
 }
 
 sceneRouter.post('/', addAScene);
+
+/**
+ * [getAScene returns a single Scene by id]
+ * @param  {Object}   request  [request Object]
+ * @param  {Object}   response [response Object]
+ * @param  {Function} next     [advances to next middleware component]
+ * @return {Object}            [scene Object]
+ */
+function getAScene(request, response, next) {
+  console.log('Incoming', request.body);
+
+  if(!request.body || Object.keys(request.body).length === 0) {
+    let err = new Error('You must provide a scene');
+    err.status = 400;
+    next(err);
+    return;
+    }
+}
+
+/**
+ * [getAllScenes returns Array of all scene Objects]
+ * @param  {Object}   request  [request Object]
+ * @param  {Object}   response [response Object]
+ * @param  {Function} next     [advances to next middleware component]
+ * @return {Return}            [Array of scene Objects]
+ */
+sceneRouter.get('/', function getAllScenes(request, response, next) {
+  Scene.find()
+  .then(function sendAllScenes(allScenes) {
+    return response.json(allScenes);
+  })
+  .catch(function handleErrors(err) {
+    let ourError = new Error('Cannot retrieve scenes');
+    ourError.status = 500;
+    next(ourError);
+  });
+});
 
 module.exports = sceneRouter;
