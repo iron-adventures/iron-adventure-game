@@ -45,45 +45,54 @@
       }
 
       // NOTE; testing for gameplay-branch
-      vm.sceneCounter = 1;  // track current scene to display in template
+      // should be deleted prior to commit to master
+      // vm.sceneCounter = 0;  // track current scene to display in template
+      // vm.changeScene = function changeScene() {
+      //   // );
+      //   // console.log('vm.allscenes has', vm.allScenes);
+      //   if (vm.sceneCounter === 0) {
+      //     vm.currentScene = vm.allScenes[vm.sceneCounter];
+      //     vm.sceneCounter++;
+      //   }
+      //   else if (vm.sceneCounter === 1){
+      //     vm.currentScene = vm.allScenes[vm.sceneCounter];
+      //     vm.sceneCounter--;
+      //   }
 
-
-
-      vm.changeScene = function changeScene() {
-        if (vm.sceneCounter === 1) {
-          vm.currentScene = {sceneText: 'Scene one shows here',
-                             sceneChoice: 'option 1'};
-          vm.sceneCounter++; // set to advance to the next scene
-        }
-        else if (vm.sceneCounter === 2) {
-          vm.currentScene = {sceneText: 'Scene two shows here',
-                             sceneChoice: 'option 2'};
-          vm.sceneCounter--; // return to scene one the next time
-        }
-      };
-
-      vm.getAllScenes = function getAllScenes() {
-        SceneService.getAllScenes()
-          .then(function handleResponse(responseObj) {
-            vm.allScenes = responseObj;
-            console.log('vm.allScenes is:', vm.allScenes);
-          })
-          .catch(function handleError(error) {
-            if (error.status === 401) {
-              vm.hasError = true;
-              vm.errorMessage =
-                'Please log in and try again';
-            } else if (error.status === 404) {
-              vm.hasError = true;
-              vm.errorMessage =
-                'Could not find that guest by the id provided';
-            } else {
-              vm.hasError = true;
-              vm.errorMessage = 'Unknown error from server';
-            }
-          });
-      };
-
-      vm.getAllScenes();
+        // if (vm.sceneCounter === 1) {
+        //   vm.currentScene = {sceneText: 'Scene one shows here',
+        //                      sceneChoice: 'option 1'};
+        //   vm.sceneCounter++; // set to advance to the next scene
+        // }
+        // else if (vm.sceneCounter === 2) {
+        //   vm.currentScene = {sceneText: 'Scene two shows here',
+        //                      sceneChoice: 'option 2'};
+        //   vm.sceneCounter--; // return to scene one the next time
+        // }
+      // };
+      //
+      // vm.getAllScenes = function getAllScenes() {
+      //   SceneService.getAllScenes()
+      //     .then(function handleResponse(responseObj) {
+      //       vm.allScenes = responseObj;
+      //       console.log('vm.allScenes is:', vm.allScenes);
+      //     })
+      //     .catch(function handleError(error) {
+      //       if (error.status === 401) {
+      //         vm.hasError = true;
+      //         vm.errorMessage =
+      //           'Please log in and try again';
+      //       } else if (error.status === 404) {
+      //         vm.hasError = true;
+      //         vm.errorMessage =
+      //           'Could not find that guest by the id provided';
+      //       } else {
+      //         vm.hasError = true;
+      //         vm.errorMessage = 'Unknown error from server';
+      //       }
+      //     });
+      // };
+      //
+      // vm.allScenes = vm.getAllScenes();
   }
 }());

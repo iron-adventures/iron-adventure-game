@@ -15,9 +15,9 @@
         <h3 class="panel-title">Narrative/Event pane</h3>
       </section>
       <section class="panel-body">
-        <p>{{sceneCtrl.currentScene.sceneText}}</p>
+        <p>{{sceneCtrl.currentScene.sceneChoice.choiceText}}</p>
 
-        <p>{{sceneCtrl.currentScene.sceneChoice}}</p>
+        <p>{{sceneCtrl.currentScene.sceneChoice.choiceScore}}</p>
 
         <button ng-click='sceneCtrl.changeScene()' type="button" class="btn btn-primary btn-sm">Next Scene</button>
       </section>

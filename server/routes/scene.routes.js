@@ -82,17 +82,17 @@ sceneRouter.post('/', addAScene);
  * @param  {Function} next     [advances to next middleware component]
  * @return {Object}            [scene Object]
  */
-function getAScene(request, response, next) {
-  console.log('Incoming', request.body);
-
-  if(!request.body || Object.keys(request.body).length === 0) {
+sceneRouter.get('/:id', function getAScene(request, response, next) {
+  if (!request.body) {
     let err = new Error('You must provide a scene');
-    err.status = 400;
-    next(err);
-    return;
-    }
-}
+  }
+  // NOTE:  in progress, not done!!!!
+  // Scene.findById({ _id: request.params.id})
+  //
+});
 
+
+// NOTE: test code!! getAllScenes must be deleted prior to push to master branch
 /**
  * [getAllScenes returns Array of all scene Objects]
  * @param  {Object}   request  [request Object]
@@ -100,16 +100,16 @@ function getAScene(request, response, next) {
  * @param  {Function} next     [advances to next middleware component]
  * @return {Return}            [Array of scene Objects]
  */
-sceneRouter.get('/', function getAllScenes(request, response, next) {
-  Scene.find()
-  .then(function sendAllScenes(allScenes) {
-    return response.json(allScenes);
-  })
-  .catch(function handleErrors(err) {
-    let ourError = new Error('Cannot retrieve scenes');
-    ourError.status = 500;
-    next(ourError);
-  });
-});
+// sceneRouter.get('/', function getAllScenes(request, response, next) {
+//   Scene.find()
+//   .then(function sendAllScenes(allScenes) {
+//     return response.json(allScenes);
+//   })
+//   .catch(function handleErrors(err) {
+//     let ourError = new Error('Cannot retrieve scenes');
+//     ourError.status = 500;
+//     next(ourError);
+//   });
+// });
 
 module.exports = sceneRouter;
