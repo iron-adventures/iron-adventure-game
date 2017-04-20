@@ -2,10 +2,9 @@ const sceneRouter = require('express').Router();
 const Scene = require('../models/Scene.model.js');
 
 /**
- * [addAScene adds a new Scene]
- * @param {Object}   request  [request Object]
- * @param {Object}   response [response Object]
- * @param {Function} next     [advances to next middleware component]
+ * Adds a scene to the database
+ * @param {Object}   request    Must have a body like: { sceneImage: String}
+ * @param {Object}   response   Getting back an object with the added scene
  */
 function addAScene(request, response, next) {
   console.log('Incoming', request.body);
@@ -76,22 +75,32 @@ function addAScene(request, response, next) {
 sceneRouter.post('/', addAScene);
 
 /**
- * [getAScene returns a single Scene by id]
- * @param  {Object}   request  [request Object]
- * @param  {Object}   response [response Object]
- * @param  {Function} next     [advances to next middleware component]
- * @return {Object}            [scene Object]
+ * Retrieves a single scene from the database
+ * @param   {Object}    request     Request provided with id
+ * @param   {Object}    response    Responds with the new object for the client
+ * @param   {Function}  next
+ * @return  {Void}
  */
-function getAScene(request, response, next) {
-  console.log('Incoming', request.body);
+sceneRouter.get('/:id', function getAScene(request, response, next) {
+  console.log('Request params', request.params); //prints out whole object
 
-  if(!request.body || Object.keys(request.body).length === 0) {
-    let err = new Error('You must provide a scene');
-    err.status = 400;
-    next(err);
-    return;
-    }
-}
+  Scene.findById(request.params.id)
+    .then(function sendBackSingleScene(theSceneData) {
+      if(!theSceneData) {
+        let err = new Error('No scene with that id');
+        err.status = 404;
+        return next(err);
+      }
+      response.json(theSceneData);
+      console.log(theSceneData);
+    })
+    .catch(function handleIssues(err) {
+      console.error(err);
+      let ourError = new Error('There was an error finding the scene with that ID');
+      ourError.status = err.status;
+      next(err);
+    });
+});
 
 /**
  * [getAllScenes returns Array of all scene Objects]
