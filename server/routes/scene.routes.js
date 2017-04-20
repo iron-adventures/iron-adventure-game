@@ -92,7 +92,7 @@ sceneRouter.get('/:id', function getAScene(request, response, next) {
 });
 
 
-// NOTE: test code!! getAllScenes must be deleted prior to push to master branch
+// NOTE: test code!! getAllScenes must be deleted prior to push to master
 /**
  * [getAllScenes returns Array of all scene Objects]
  * @param  {Object}   request  [request Object]
