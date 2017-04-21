@@ -1,7 +1,21 @@
 (function() {
   'use strict';
 
-    angular.module('adventure', []);
+    angular.module('adventure', ['ui.router'])
+      .config(routerConfig);
 
+    routerConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-}());
+    function routerConfig($stateProvider, $urlRouterProvider) {
+      $urlRouterProvider.when('', '/');
+
+      $stateProvider
+        .state({
+          name: 'start',
+          url: '/start',
+          templateUrl: '../templates/start.template.html',
+          controller: 'StartController',
+          controllerAs: 'startCtrl'
+        });
+    }
+  }());
