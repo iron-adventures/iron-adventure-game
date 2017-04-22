@@ -10,7 +10,11 @@ Install using:
 
 ## Technologies
 
-JavaScript, MongoDB, Express, Angular, Node.js, Mongoose, HTML5, CSS3, Sass, Grunt, Karma, Chai, Mocha, Babel
+JavaScript, MongoDB, Express, Angular, Node.js, Mongoose, HTML5, CSS3, Sass, Grunt, Karma, Chai, Mocha
+
+## Programming Concepts
+
+Responsive Web Design, Single Page Application
 
 ## Authors
 
