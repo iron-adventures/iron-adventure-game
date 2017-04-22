@@ -4,11 +4,11 @@ let sceneSchema = mongoose.Schema({
   sceneImage: String,
   sceneText: String,
   sceneChoices: [
-  {
-    choiceText: String,
-    choiceScore: Number
-  }
-]
+    {
+      choiceText: String,
+      choiceScore: Number
+    }
+  ]
 });
 
 module.exports = mongoose.model('Scene', sceneSchema);
