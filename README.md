@@ -1,3 +1,17 @@
-# Project: iron-adventure-game
+# Iron Adventure
 
-# Authors:  Nadia Mughal, David Steed
+Iron Adventure is an interactive short story application that scores a player on their choices. We present scenes that depict important themes in preparing for, and succeeding in, a coding bootcamp. We score the player on a "win/loss" page on how they performed.
+
+## Getting Started
+
+Install using:
+
+`npm install`
+
+## Technologies
+
+JavaScript, MongoDB, ExpressJS, AngularJS, NodeJS, HTML5, CSS3, Sass
+
+## Authors
+
+Nadia Mughal, David Steed
