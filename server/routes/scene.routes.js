@@ -85,12 +85,25 @@ sceneRouter.post('/', addAScene);
 sceneRouter.get('/:id', function getAScene(request, response, next) {
   if (!request.body) {
     let err = new Error('You must provide a scene');
+    err.status = 400;
+    return next(err);
   }
   // NOTE:  in progress, not done!!!!
-  // Scene.findById({ _id: request.params.id})
-  //
+  Scene.findById({ _id: request.params.id})
+  .then(function sendBackScene(data) {
+    if (!data) {
+      let err = new Error('That scene does not exist!');
+      err.status = 404;
+      return next(err);
+    }
+    response.json(data);
+  })
+  .catch(function handleIssues(err) {
+    let ourError = new Error ('Unable to search for Job');
+    ourError.status = 500;
+    next(err);
+  });
 });
-
 
 // NOTE: test code!! getAllScenes must be deleted prior to push to master
 /**

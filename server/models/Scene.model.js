@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 let sceneSchema = mongoose.Schema({
   sceneImage: String,
   sceneText: String,
-  sceneChoice: [
+  sceneChoices: [
   {
     choiceText: String,
     choiceScore: Number
