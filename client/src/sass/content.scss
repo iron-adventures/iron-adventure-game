@@ -1,4 +1,18 @@
-.gameplay {
+.sceneImage {
+  background-image: url('images/bedroom-1082262_960_720.jpg');
+  background-size: 100% auto;
+  background-size: 100% auto;
+  height: 75vh;
   display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+}
 
+.option_icon:hover {
+  color: #84BBEA;
+}
+
+.choiceDisplay {
+  display: none;
+  color: #84BBEA;
 }

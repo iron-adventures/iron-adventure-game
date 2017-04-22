@@ -44,6 +44,48 @@
         });
       }
 
+      vm.toggle = true;    // used toggle a CSS class based on a click event
+      vm.testScenes = [
+        {
+          sceneImage: 'images/bedroom-1082262_960_720.jpg',
+          sceneText: 'It is the morning of the first day of the coding bootcamp.',
+          sceneChoices: [
+            {
+              choiceText: 'Get to the campus early since I\'ve never been there before.',
+              choiceScore: 10
+            },
+            {
+              choiceText: 'Hit that snooze button and get the most sleep possible.  Could be a long day.',
+              choiceScore: 5
+            },
+            {
+              choiceText: 'Let\'s keep our same routine, no sweat.',
+              choiceScore: 5
+            }
+          ]
+        },
+        {
+          sceneImage: 'images/3078856253_aa1e08579c_z.jpg',
+          sceneText:
+          'You\'ve been stuck on a homework problem for several hours',
+          sceneChoices: [
+            {
+              choiceText: 'I own this problem.  Take whatever time is needed.',
+              choiceScore: 5
+            },
+            {
+              choiceText:
+              'Take a break, then work on the problem for a final, set period of time.',
+              choiceScore: 5
+            },
+            {
+              choiceText:
+              'Ask a fellow student or instructor for assistance.  Spend no more time on the problem.',
+              choiceScore: 10
+            }
+          ]
+        }
+      ];
       // NOTE; testing for gameplay-branch
       // should be deleted prior to commit to master
       // vm.sceneCounter = 0;  // track current scene to display in template

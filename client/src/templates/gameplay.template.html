@@ -1,4 +1,32 @@
-<section class='gameplayTemplate'>
+<article class='sceneImage'>
+
+  <p class='choiceDisplay' ng-class='{"choiceDisplay": sceneCtrl.toggle}'>
+    <a class='glyphicon glyphicon-flash'></a>
+    Get to the campus early, never been there before.
+  </p>
+
+  <p class='choiceDisplay' ng-class='{"choiceDisplay": sceneCtrl.toggle}'>
+    <a class='glyphicon glyphicon-bed'></a>
+    Sleep in as much as possible, could be a long day.
+  </p>
+
+  <p
+    class='choiceDisplay'
+    ng-class='{"choiceDisplay": sceneCtrl.toggle}'
+    ng-click='sceneCtrl.toggle = !sceneCtrl.toggle'>
+    <a class='glyphicon glyphicon-thumbs-down'></a>
+    Let's keep our same routine, no sweat.
+  </p>
+
+</article>
+
+<article>
+  <p>1.  It is the morning of the first day of the coding bootcamp.</p>
+  <p>Click the icon below and select an option in the above scene:</p>
+  <a ng-click='sceneCtrl.toggle = !sceneCtrl.toggle' class='option_icon glyphicon glyphicon-menu-hamburger'></a>
+</article>
+
+<!-- <article>
   <article>
     <section class="panel panel-default">
       <section class="panel-heading">
@@ -23,4 +51,4 @@
       </section>
     </section>
   </article>
-</section>
+</article> -->
