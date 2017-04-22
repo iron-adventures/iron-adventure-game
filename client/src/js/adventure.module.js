@@ -13,9 +13,9 @@
         .state({
           name: 'start',
           url: '/start',
-          templateUrl: '../templates/start.template.html',
-          controller: 'StartController',
-          controllerAs: 'startCtrl'
+          templateUrl: 'views/start.template.html',
+          controller: 'PlayerController',
+          controllerAs: 'playerCtrl'
         });
     }
   }());
