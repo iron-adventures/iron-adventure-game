@@ -10,7 +10,7 @@ Install using:
 
 ## Technologies
 
-JavaScript, MongoDB, ExpressJS, AngularJS, NodeJS, HTML5, CSS3, Sass
+JavaScript, MongoDB, Express, Angular, Node.js, Mongoose, HTML5, CSS3, Sass, Grunt, Karma, Chai, Mocha, Babel
 
 ## Authors
 
