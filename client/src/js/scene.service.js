@@ -23,7 +23,7 @@
       }
 
       return $http({
-        url: 'https://localhost:3000/api/scenes/' + id,
+        url: 'http://127.0.0.1:3000/api/scenes/' + id,
         method: 'get',
         header: {
           'Content-Type': 'application/json',
@@ -31,6 +31,7 @@
       })
       .then(function handleResponse(responseObj) {
         return responseObj.data;
+
       });
     }
 

@@ -17,13 +17,12 @@
 
     vm.currentScene = {};  // store the scene to be displayed in the View
 
-    function getScene(id) {
+      vm.getScene = function getScene(id) {
       // basic validation of argument
       if (typeof(id) !== 'string' || id.length === 0) {
         console.error('Valid id required to get a scene');
         return;
       }
-
       SceneService.getScene(id)
         .then(function handleResponse(responseObj) {
           vm.currentScene = responseObj;
@@ -42,7 +41,7 @@
             vm.errorMessage = 'Unknown error from server';
           }
         });
-      }
+      };
 
       // NOTE; testing for gameplay-branch
       vm.sceneCounter = 1;  // track current scene to display in template
@@ -83,7 +82,5 @@
             }
           });
       };
-
-      vm.getAllScenes();
   }
 }());
