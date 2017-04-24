@@ -104,14 +104,56 @@ sceneRouter.get('/:id', function getAScene(request, response, next) {
     });
   })
   .catch(function handleIssues(err) {
-    let ourError = new Error ('Unable to search for Job');
+    let ourError = new Error ('Unable to search for Scene');
     ourError.status = 500;
     next(err);
   });
 });
 
-function loadScene(choiceText) {
+sceneRouter.patch('/', function loadScene(request, response, next) {
+  if (!request.body) {
+    let err = new Error('You must provide scene and choice info');
+    err.status = 400;
+    return next(err);
+  }
+  Scene.findById({ _id: request.body.id})
+  .then(function sendBackScene(data) {
+    if (!data) {
+      let err = new Error('That scene does not exist!');
+      err.status = 404;
+      return next(err);
+    }
+    // return the next scene
+    Scene.findById({ _id: data.sceneNext})
+    .then(function sendBackNextScene(data) {
+      if (!data) {
+        let err = new Error('That scene does not exist!');
+        err.status = 404;
+        return next(err);
+      }
+      response.json({
+        id: data._id,
+        sceneImage: data.sceneImage,
+        sceneText: data.sceneText,
+        sceneChoices: data.sceneChoices
+      });
+    })
+    .catch(function handleIssues(err) {
+      let ourError = new Error ('Unable to search for Scene');
+      ourError.status = 500;
+      next(err);
+    });
 
-}
+
+    // Add the score for that scene to the player score.
+
+    console.log('response object on node is', data);
+  })
+  .catch(function handleIssues(err) {
+    let ourError = new Error ('Unable to search for Scene');
+    ourError.status = 500;
+    next(err);
+  });
+});
 
 module.exports = sceneRouter;

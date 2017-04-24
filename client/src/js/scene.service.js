@@ -34,13 +34,17 @@
       });
     }
 
-    function loadScene(id, choiceText) {
+    function loadScene(inputId, inputText) {
       return $http({
         url: 'http://127.0.0.1:3000/api/scenes/',
-        method: 'get',
+        method: 'patch',
         header: {
           'Content-Type': 'application/json'
-        }
+        },
+        data: angular.toJson({
+          id: inputId,
+          choiceText: inputText
+        })
       })
       .then(function handleResponse(responseObj) {
         return responseObj.data;

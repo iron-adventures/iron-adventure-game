@@ -1,9 +1,9 @@
 require('../database-setup.js');
 const Scene = require('../models/Scene.model.js');
-const Player = require('../models/Player.model.js');
 
 new Scene(
   {
+    sceneNext: '',
     sceneImage: 'images/bedroom-1082262_960_720.jpg',
     sceneText: 'It is the morning of the first day of the coding bootcamp.',
     sceneChoices: [
@@ -26,6 +26,7 @@ new Scene(
   }).save().then(function done() {
     new Scene(
       {
+        sceneNext: '',
         sceneImage: 'images/3078856253_aa1e08579c_z.jpg',
         sceneText:
         'You\'ve been stuck on a homework problem for several hours',

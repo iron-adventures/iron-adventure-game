@@ -15,11 +15,11 @@
   function SceneController($state, $stateParams, SceneService) {
     let vm = this;
 
-    // vm.gClass = 'glyphicon glyphicon-flash';
+    vm.playerEmail = 'davidS@world.com';  // store the current player's email
 
     vm.currentScene = {};  // store the scene to be displayed in the View
 
-    vm.toggle = true;    // used toggle a CSS class based on a click event
+    vm.toggle = true;      // used toggle a CSS class based on a click event
 
     vm.getScene = function getScene(id) {
 
@@ -48,19 +48,19 @@
       });
     };
 
-    vm.loadScene = function loadScene(id, choiceText) {
-      if (!id || id.length === 0 || typeof(id) !== 'string') {
+    vm.loadScene = function loadScene(inputId, inputText) {
+      if (!inputId || inputId.length === 0 || typeof(inputId) !== 'string') {
         console.error('Valid id required to load a scene');
         return;
       }
 
-      if (!choiceText || choiceText.length === 0 ||
-        typeof(choiceText) !== 'string') {
+      if (!inputText || inputText.length === 0 ||
+        typeof(inputText) !== 'string') {
         console.error('Valid choice text required to load a scene');
         return;
       }
 
-      SceneService.loadScene(id, choiceText)
+      SceneService.loadScene(inputId, inputText)
       .then(function handleResponse(responseObj) {
         vm.currentScene = responseObj;
         console.log('vm.currentScene loaded from database:', vm.currentScene);
@@ -81,7 +81,8 @@
       });
     };
 
-    vm.getScene('58fe16b7f6fa81e61d6d4a7a');
+    vm.loadScene('58fe16b7f6fa81e61d6d4a7a',
+      'I own this problem.  Take whatever time is needed.');
 
   }
 }());
