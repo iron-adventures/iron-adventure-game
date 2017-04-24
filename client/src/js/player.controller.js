@@ -15,7 +15,7 @@
     vm.playerInfo = {};
     vm.hasError = false;
     vm.message = null;
-    vm.storedPlayer = false; // initialize as falsey
+    vm.storedPlayer = null;
 
     /**
      * Player input (from client side)
