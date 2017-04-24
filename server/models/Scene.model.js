@@ -5,6 +5,7 @@ let sceneSchema = mongoose.Schema({
   sceneText: String,
   sceneChoices: [
     {
+      choiceIcon: String,
       choiceText: String,
       choiceScore: Number
     }

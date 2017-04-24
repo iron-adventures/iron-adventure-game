@@ -8,14 +8,17 @@ new Scene(
     sceneText: 'It is the morning of the first day of the coding bootcamp.',
     sceneChoices: [
       {
-        choiceText: 'Get to the campus early since I\'ve never been there before.',
+        choiceIcon: 'glyphicon glyphicon\-flash',
+        choiceText: 'Get to the campus early, never been there before.',
         choiceScore: 10
       },
       {
-        choiceText: 'Hit that snooze button and get the most sleep possible.  Could be a long day.',
+        choiceIcon: 'glyphicon glyphicon\-bed',
+        choiceText: 'Sleep in as much as possible, could be a long day.',
         choiceScore: 5
       },
       {
+        choiceIcon: 'glyphicon glyphicon\-thumbs\-down',
         choiceText: 'Let\'s keep our same routine, no sweat.',
         choiceScore: 5
       }
@@ -28,15 +31,18 @@ new Scene(
         'You\'ve been stuck on a homework problem for several hours',
         sceneChoices: [
           {
+            choiceIcon: 'glyphicon glyphicon\-flash',
             choiceText: 'I own this problem.  Take whatever time is needed.',
             choiceScore: 5
           },
           {
+            choiceIcon: 'glyphicon glyphicon\-flash',
             choiceText:
             'Take a break, then work on the problem for a final, set period of time.',
             choiceScore: 5
           },
           {
+            choiceIcon: 'glyphicon glyphicon\-flash',
             choiceText:
             'Ask a fellow student or instructor for assistance.  Spend no more time on the problem.',
             choiceScore: 10

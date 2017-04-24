@@ -88,7 +88,6 @@ sceneRouter.get('/:id', function getAScene(request, response, next) {
     err.status = 400;
     return next(err);
   }
-  // NOTE:  in progress, not done!!!!
   Scene.findById({ _id: request.params.id})
   .then(function sendBackScene(data) {
     if (!data) {
@@ -96,7 +95,11 @@ sceneRouter.get('/:id', function getAScene(request, response, next) {
       err.status = 404;
       return next(err);
     }
-    response.json(data);
+    response.json({
+      sceneImage: data.sceneImage,
+      sceneText: data.sceneText,
+      sceneChoices: data.sceneChoices
+    });
   })
   .catch(function handleIssues(err) {
     let ourError = new Error ('Unable to search for Job');
@@ -104,25 +107,5 @@ sceneRouter.get('/:id', function getAScene(request, response, next) {
     next(err);
   });
 });
-
-// NOTE: test code!! getAllScenes must be deleted prior to push to master
-/**
- * [getAllScenes returns Array of all scene Objects]
- * @param  {Object}   request  [request Object]
- * @param  {Object}   response [response Object]
- * @param  {Function} next     [advances to next middleware component]
- * @return {Return}            [Array of scene Objects]
- */
-// sceneRouter.get('/', function getAllScenes(request, response, next) {
-//   Scene.find()
-//   .then(function sendAllScenes(allScenes) {
-//     return response.json(allScenes);
-//   })
-//   .catch(function handleErrors(err) {
-//     let ourError = new Error('Cannot retrieve scenes');
-//     ourError.status = 500;
-//     next(ourError);
-//   });
-// });
 
 module.exports = sceneRouter;

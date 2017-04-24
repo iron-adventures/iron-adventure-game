@@ -1,12 +1,22 @@
+<article class='sceneImage' ng-style='{ "background-image": "url(" + sceneCtrl.currentScene.sceneImage + ")" }' >
 
-<!-- note:  this is test code that validates basic nav operation on the game page
-it must be deleted prior to commit to master -->
-<article class='sceneImage'>
+  <!-- <p class='choiceDisplay' ng-class='{"choiceDisplay": sceneCtrl.toggle}'> -->
+    <!-- <a class='glyphicon glyphicon-flash'></a> -->
+    <!-- <a ng-class='sceneCtrl.currentScene.sceneChoices[0].choiceIcon'> -->
+    <!-- <a ng-class='sceneCtrl.gClass'></a> -->
+    <!-- Get to the campus early, never been there before. -->
+  <!-- </p> -->
 
-  <p class='choiceDisplay' ng-class='{"choiceDisplay": sceneCtrl.toggle}'>
-    <a class='glyphicon glyphicon-flash'></a>
-    Get to the campus early, never been there before.
-  </p>
+  <section
+    class='choiceDisplay'
+    ng-class='{"choiceDisplay": sceneCtrl.toggle}'
+    ng-repeat='sceneChoices in sceneCtrl.currentScene'>
+
+    <p >
+
+    </p>
+  </section>
+
 
   <p class='choiceDisplay' ng-class='{"choiceDisplay": sceneCtrl.toggle}'>
     <a class='glyphicon glyphicon-bed'></a>
@@ -25,36 +35,6 @@ it must be deleted prior to commit to master -->
 
 <article>
   <p>1.  It is the morning of the first day of the coding bootcamp.</p>
-  <p>Click the icon below and select an option in the above scene:</p>
+  <p>Tap the icon below, then tap an option in the above scene:</p>
   <a ng-click='sceneCtrl.toggle = !sceneCtrl.toggle' class='option_icon glyphicon glyphicon-menu-hamburger'></a>
 </article>
-
-
-<!-- NOTE:  the test code below validated basic scene switching -->
-<!-- and must be deleted before commit to master -->
-<!-- <article>
-  <article>
-    <section class="panel panel-default">
-      <section class="panel-heading">
-        <h3 class="panel-title">Scene pane</h3>
-      </section>
-      <section class="panel-body">
-        Panel content
-      </section>
-    </section>
-  </article>
-  <article>
-    <section class="panel panel-default">
-      <section class="panel-heading">
-        <h3 class="panel-title">Narrative/Event pane</h3>
-      </section>
-      <section class="panel-body">
-        <p>{{sceneCtrl.currentScene.sceneChoice.choiceText}}</p>
-
-        <p>{{sceneCtrl.currentScene.sceneChoice.choiceScore}}</p>
-
-        <button ng-click='sceneCtrl.changeScene()' type="button" class="btn btn-primary btn-sm">Next Scene</button>
-      </section>
-    </section>
-  </article>
-</article> -->

@@ -34,33 +34,6 @@
       });
     }
 
-    function getScene(id) {
-      return $http({
-        url: 'http://127.0.0.1:3000/api/scenes/58faafa5c3ec00c0d543c12a',
-        method: 'get',
-        header: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(function handleResponse(responseObj) {
-        return responseObj.data;
-      });
-    }
-
-    // NOTE: test code:  will be deleted prior to commit to master
-    // function getAllScenes() {
-    //   return $http({
-    //     url: 'http://127.0.0.1:3000/api/scenes',
-    //     method: 'get',
-    //     header: {
-    //       'Content-Type': 'application/json'
-    //     }
-    //   })
-    //   .then(function handleResponse(responseObj) {
-    //     return responseObj.data;
-    //   });
-    // }
-
     return {
       getScene: getScene,
     };
