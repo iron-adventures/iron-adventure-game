@@ -1,10 +1,7 @@
 .sceneImage {
   background-size: 100% auto;
-  background-size: 100% auto;
-  height: 75vh;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-around; }
+  background-size: cover;
+  height: 75vh; }
 
 .option_icon:hover {
   color: #84BBEA; }

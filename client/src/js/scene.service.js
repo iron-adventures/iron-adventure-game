@@ -26,7 +26,20 @@
         url: 'http://127.0.0.1:3000/api/scenes/' + id,
         method: 'get',
         header: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(function handleResponse(responseObj) {
+        return responseObj.data;
+      });
+    }
+
+    function loadScene(id, choiceText) {
+      return $http({
+        url: 'http://127.0.0.1:3000/api/scenes/',
+        method: 'get',
+        header: {
+          'Content-Type': 'application/json'
         }
       })
       .then(function handleResponse(responseObj) {
@@ -36,6 +49,7 @@
 
     return {
       getScene: getScene,
+      loadScene: loadScene
     };
   }
 

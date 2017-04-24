@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 let sceneSchema = mongoose.Schema({
+  sceneNext: String,
   sceneImage: String,
   sceneText: String,
   sceneChoices: [

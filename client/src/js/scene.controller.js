@@ -47,6 +47,41 @@
         }
       });
     };
-    vm.getScene('58fd6c090a5d98dbe816cb4e');
+
+    vm.loadScene = function loadScene(id, choiceText) {
+      if (!id || id.length === 0 || typeof(id) !== 'string') {
+        console.error('Valid id required to load a scene');
+        return;
+      }
+
+      if (!choiceText || choiceText.length === 0 ||
+        typeof(choiceText) !== 'string') {
+        console.error('Valid choice text required to load a scene');
+        return;
+      }
+
+      SceneService.loadScene(id, choiceText)
+      .then(function handleResponse(responseObj) {
+        vm.currentScene = responseObj;
+        console.log('vm.currentScene loaded from database:', vm.currentScene);
+      })
+      .catch(function handleError(error) {
+        if (error.status === 401) {
+          vm.hasError = true;
+          vm.errorMessage =
+            'Scene not found';
+        } else if (error.status === 404) {
+          vm.hasError = true;
+          vm.errorMessage =
+            'Could not find that scene by the id provided';
+        } else {
+          vm.hasError = true;
+          vm.errorMessage = 'Unknown error from server';
+        }
+      });
+    };
+
+    vm.getScene('58fe16b7f6fa81e61d6d4a7a');
+
   }
 }());

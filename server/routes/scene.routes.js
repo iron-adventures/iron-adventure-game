@@ -1,5 +1,6 @@
 const sceneRouter = require('express').Router();
 const Scene = require('../models/Scene.model.js');
+const Player = require('../models/Player.model.js');
 
 /**
  * [addAScene adds a new Scene]
@@ -96,6 +97,7 @@ sceneRouter.get('/:id', function getAScene(request, response, next) {
       return next(err);
     }
     response.json({
+      id: data._id,
       sceneImage: data.sceneImage,
       sceneText: data.sceneText,
       sceneChoices: data.sceneChoices
@@ -107,5 +109,9 @@ sceneRouter.get('/:id', function getAScene(request, response, next) {
     next(err);
   });
 });
+
+function loadScene(choiceText) {
+
+}
 
 module.exports = sceneRouter;

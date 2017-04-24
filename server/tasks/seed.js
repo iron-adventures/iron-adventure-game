@@ -31,20 +31,20 @@ new Scene(
         'You\'ve been stuck on a homework problem for several hours',
         sceneChoices: [
           {
-            choiceIcon: 'glyphicon glyphicon\-flash',
+            choiceIcon: 'glyphicon glyphicon\-thumbs\-up',
             choiceText: 'I own this problem.  Take whatever time is needed.',
             choiceScore: 5
           },
           {
             choiceIcon: 'glyphicon glyphicon\-flash',
             choiceText:
-            'Take a break, then work on the problem for a final, set period of time.',
+            'Work on the problem for a final, set period of time.',
             choiceScore: 5
           },
           {
-            choiceIcon: 'glyphicon glyphicon\-flash',
+            choiceIcon: 'glyphicon glyphicon\-question\-sign',
             choiceText:
-            'Ask a fellow student or instructor for assistance.  Spend no more time on the problem.',
+            'Ask a fellow student or instructor for assistance.',
             choiceScore: 10
           }
         ]

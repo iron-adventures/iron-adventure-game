@@ -4,7 +4,7 @@ let playerSchema = mongoose.Schema({
   playerName: String,
   playerEmail: String,
   playerScore: Number,
-  currentScene: String
+  playerScene: String
 });
 
 module.exports = mongoose.model('Player', playerSchema);

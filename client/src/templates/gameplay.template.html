@@ -1,40 +1,23 @@
-<article class='sceneImage' ng-style='{ "background-image": "url(" + sceneCtrl.currentScene.sceneImage + ")" }' >
+<article>
+  <p>{{sceneCtrl.currentScene.sceneText}}</p>
+  <p>Tap the icon below and select an option in the scene:</p>
+  <a ng-click='sceneCtrl.toggle = !sceneCtrl.toggle' class='option_icon glyphicon glyphicon-menu-hamburger'></a>
+</article>
 
-  <!-- <p class='choiceDisplay' ng-class='{"choiceDisplay": sceneCtrl.toggle}'> -->
-    <!-- <a class='glyphicon glyphicon-flash'></a> -->
-    <!-- <a ng-class='sceneCtrl.currentScene.sceneChoices[0].choiceIcon'> -->
-    <!-- <a ng-class='sceneCtrl.gClass'></a> -->
-    <!-- Get to the campus early, never been there before. -->
-  <!-- </p> -->
-
+<article
+  class='sceneImage'
+  ng-style='{ "background-image":
+  "url(" + sceneCtrl.currentScene.sceneImage + ")" }'>
   <section
     class='choiceDisplay'
     ng-class='{"choiceDisplay": sceneCtrl.toggle}'
     ng-repeat='sceneChoices in sceneCtrl.currentScene'>
-
-    <p >
-
+    <p
+      class='clickText'
+      ng-repeat='sceneChoice in sceneChoices track by $index'
+      ng-click = sceneCtrl.loadScene(sceneChoice.choiceText)>
+      <a class = 'clickText' ng-class='sceneChoice.choiceIcon'></a>
+      {{sceneChoice.choiceText}}
     </p>
   </section>
-
-
-  <p class='choiceDisplay' ng-class='{"choiceDisplay": sceneCtrl.toggle}'>
-    <a class='glyphicon glyphicon-bed'></a>
-    Sleep in as much as possible, could be a long day.
-  </p>
-
-  <p
-    class='choiceDisplay'
-    ng-class='{"choiceDisplay": sceneCtrl.toggle}'
-    ng-click='sceneCtrl.toggle = !sceneCtrl.toggle'>
-    <a class='glyphicon glyphicon-thumbs-down'></a>
-    Let's keep our same routine, no sweat.
-  </p>
-
-</article>
-
-<article>
-  <p>1.  It is the morning of the first day of the coding bootcamp.</p>
-  <p>Tap the icon below, then tap an option in the above scene:</p>
-  <a ng-click='sceneCtrl.toggle = !sceneCtrl.toggle' class='option_icon glyphicon glyphicon-menu-hamburger'></a>
 </article>
