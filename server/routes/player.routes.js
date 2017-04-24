@@ -1,6 +1,7 @@
 const playerRouter = require('express').Router();
 const Player = require('../models/Player.model.js');
 
+
 function addAPlayer(request, response, next) {
   console.log('Incoming', request.body);
 
@@ -24,13 +25,7 @@ function addAPlayer(request, response, next) {
     next(err);
     return;
   }
-  if(!request.body.playerScore || Number.isNaN(Number(request.body.playerScore)) ||
-    typeof(request.body.playerScore) !== 'number') {
-    let err = new Error('You must provide a number');
-    err.status = 400;
-    next(err);
-    return;
-  }
+
 
   let thePlayerCreated = new Player({
     playerName: request.body.playerName,
@@ -52,5 +47,21 @@ function addAPlayer(request, response, next) {
 }
 
 playerRouter.post('/', addAPlayer);
+
+playerRouter.get('/', function showAllPlayers(request, response) {
+
+  Player.find()
+    .then(function sendBackAllPlayers(allPlayers) {
+      response.json(allPlayers);
+      console.log(allPlayers);
+    })
+    .catch(function handleIssues(err) {
+      console.error(err);
+      let ourError = new Error('Unable to retrieve players');
+      ourError.status = 500;
+      next(ourError);
+    });
+});
+
 
 module.exports = playerRouter;
