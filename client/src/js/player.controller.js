@@ -2,16 +2,15 @@
   'use strict';
 
   angular.module('adventure')
-  .controller('PlayerController', PlayerController);
+    .controller('PlayerController', PlayerController);
 
-  PlayerController.$inject = [];
-
+  PlayerController.$inject = ['PlayerService'];
 
   /**
    * Handles the player info
    * @return {void}
    */
-  function PlayerController() {
+  function PlayerController(PlayerService) {
     let vm = this;
     vm.playerInfo = {};
     vm.hasError = false;
@@ -26,14 +25,8 @@
      */
     vm.input = function input(playerInfo) {
       console.log('makin a player', playerInfo);
-      // PlayerService.input(playerInfo.name, playerInfo.email)
-      // .then(function sendUserToGameplay() {
-      //
-      // })
-      // .catch(function handleErrors(errResponse) {
-      //   vm.hasError = true;
-      //   vm.message = 'Sorry but that is not correct';
-      // });
     };
+
   }
+
 }());
