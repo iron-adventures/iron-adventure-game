@@ -3,7 +3,6 @@ const Player = require('../models/Player.model.js');
 
 
 function addAPlayer(request, response, next) {
-  console.log('Incoming', request.body);
 
   if(!request.body || Object.keys(request.body).length === 0) {
     let err = new Error('You must provide a player');
@@ -32,7 +31,6 @@ function addAPlayer(request, response, next) {
     playerEmail: request.body.playerEmail,
     playerScore: request.body.playerScore
   });
-  console.log(thePlayerCreated);
 
   thePlayerCreated.save()
     .then(function sendBackTheResponse(data) {

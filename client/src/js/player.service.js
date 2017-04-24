@@ -12,8 +12,6 @@
    * @return {Object}         The service's API methods
    */
   function PlayerService($http) {
-    console.log('Creating a PlayerService');
-
 
     /**
      * Player inputs data
@@ -22,13 +20,9 @@
      * @return {Promise}
      */
     function loginPlayer(loginDetails) {
-      console.log(name, email);
-      console.log(loginDetails);
       if (typeof(loginDetails.playerName) !== 'string' || typeof(loginDetails.playerEmail) !== 'string') {
         return Promise.reject('Invalid information');
       }
-
-      console.log(loginDetails);
 
       return $http({
         url: '/api/players',
@@ -42,7 +36,7 @@
         })
       })
         .then(function handleResponse(responseObj) {
-          console.log(responseObj.data);
+          console.log('Response object', responseObj.data);
           return(responseObj.data);
         });
 
