@@ -17,28 +17,32 @@
 
     /**
      * Player inputs data
-     * @param {String} name
-     * @param {String} email
+     * @param {String} playerName
+     * @param {String} playerEmail
      * @return {Promise}
      */
     function loginPlayer(loginDetails) {
-
-      if (typeof(name) !== 'string' || typeof(email) !== 'string') {
+      console.log(name, email);
+      console.log(loginDetails);
+      if (typeof(loginDetails.playerName) !== 'string' || typeof(loginDetails.playerEmail) !== 'string') {
         return Promise.reject('Invalid information');
       }
+
+      console.log(loginDetails);
 
       return $http({
         url: '/api/players',
         method: 'post',
         headers: {
-          'Content-Type': application/json
+          'Content-Type': 'application/json'
         },
-        data: angular.toJson({
-          name: loginDetails.name,
-          email:  loginDetails.email
+        data: angular.toJson({ //request body
+          playerName: loginDetails.playerName,
+          playerEmail: loginDetails.playerEmail
         })
       })
         .then(function handleResponse(responseObj) {
+          console.log(responseObj.data);
           return(responseObj.data);
         });
 
