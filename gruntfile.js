@@ -83,6 +83,15 @@ module.exports = function configureGrunt(gruntConfig) {
           'build/js/app.js': 'build/js/app.js'
         }
       }
+    },
+    watch: {
+      scripts: {
+        files: ['client/src/js/**/*.js', 'client/src/**/*.html', 'client/src/views/**/*.html', 'client/src/sass/**/*.scss', 'client/src/images/*/*'],
+        tasks: ['jshint', 'clean', 'concat', 'babel', 'copy', 'sass'],
+        options: {
+          spawn: false,
+        }
+      }
     }
   });
 
