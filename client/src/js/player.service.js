@@ -49,7 +49,7 @@
     * @return {String} The unique email for a player
     */
     function getEmail() {
-      return email;
+      return playerEmail;
     }
 
     /**
