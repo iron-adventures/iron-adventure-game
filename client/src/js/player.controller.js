@@ -22,7 +22,7 @@
      * @param  {Object}   playerInfo  Object containing the player's info
      * @return {Promise}
      */
-    vm.input = function input(playerInfo) {
+    vm.login = function login(playerInfo) {
 
       PlayerService.loginPlayer(playerInfo)
         .then(function handleResponseData(responseData) {
@@ -32,7 +32,6 @@
           console.warn(errResponse);
           vm.hasError = true;
         });
-
 
     };
 
