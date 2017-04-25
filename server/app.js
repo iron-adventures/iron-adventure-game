@@ -5,7 +5,7 @@ require('./database-setup.js');
 
 let app = express();
 
-app.use(express.static(__dirname + '/../client/src'));
+app.use(express.static(__dirname + '/../build'));
 
 app.use(bodyParser.json());
 

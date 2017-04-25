@@ -1,0 +1,49 @@
+<section>
+  <p class='text-center'>The Journey Begins Here</p>
+  <p class='text-center ready'>How Ready Are You?</p>
+</section>
+
+
+<img class='img-responsive center-block startImage' src='/images/images/hipster-workplace.jpg' alt='Background image for start page'>
+
+<fieldset>
+  <legend>Login</legend>
+  <form
+    name='loginPlayer'
+    ng-submit='loginPlayer.$valid && playerCtrl.login(playerCtrl.playerInfo)'
+    novalidate>
+
+    <aside class='form-group'>
+
+      <p class='bg-warning' ng-show='loginPlayer.name.$touched && !loginPlayer.name.$valid'>
+        Please enter a name</p>
+
+      <label for='name'>Name</label>
+
+      <input
+        type='text'
+        ng-model='playerCtrl.playerInfo.playerName'
+        class='form-control'
+        name='name'
+        placeholder='Name'
+        id='name-input'
+        required>
+    </aside>
+
+    <aside class='form-group'>
+      <p class='bg-warning' ng-show='loginPlayer.email.$touched && !loginPlayer.email.$valid'>
+        Please enter an email</p>
+      <label for='email'>Email Address</label>
+      <input
+        type='email'
+        ng-model='playerCtrl.playerInfo.playerEmail'
+        class='form-control'
+        name='email'
+        placeholder='Email'
+        id='email-input'
+        required>
+    </aside>
+
+    <input type='submit' class='btn btn-default' value='Submit'>
+  </form>
+</fieldset>

@@ -49,7 +49,7 @@ module.exports = function configureGrunt(gruntConfig) {
       runSass: {
         files: {
           // destination        : source
-          'build/css/style.css' : 'client/src/sass/main.scss'
+          'build/style.css' : 'client/src/sass/main.scss'
         }
       }
     },
@@ -60,30 +60,6 @@ module.exports = function configureGrunt(gruntConfig) {
         },
         files: {
           src: ['client/src/**/*.js']
-        }
-      }
-    },
-    karma: {
-      all: {
-        options: {
-          frameworks: ['mocha', 'chai'],
-          browsers: ['Chrome'],
-          singleRun: true,
-          files: [
-            'node_modules/angular/angular.js',
-            'node_modules/angular-mocks/angular-mocks.js',
-            'node_modules/angular-ui-router/release/angular-ui-router.js',
-            'client/src/js/adventure.module.js',
-            'client/src/**/*.js',
-            'client/src/test/**/*.spec.js'
-          ],
-          preprocessors: {
-            'client/src/js/**/*.js': ['coverage']
-          },
-          reporters: ['dots', 'coverage'],
-          coverageReporter: {
-            type: 'text-summary'
-          }
         }
       }
     },
@@ -107,6 +83,15 @@ module.exports = function configureGrunt(gruntConfig) {
           'build/js/app.js': 'build/js/app.js'
         }
       }
+    },
+    watch: {
+      scripts: {
+        files: ['client/src/js/**/*.js', 'client/src/**/*.html', 'client/src/views/**/*.html', 'client/src/sass/**/*.scss', 'client/src/images/*/*'],
+        tasks: ['jshint', 'clean', 'concat', 'babel', 'copy', 'sass'],
+        options: {
+          spawn: false,
+        }
+      }
     }
   });
 
@@ -114,6 +99,5 @@ module.exports = function configureGrunt(gruntConfig) {
   require('load-grunt-tasks')(gruntConfig);
 
   // task aliases for build tasks
-  gruntConfig.registerTask('default', [ 'jshint', 'karma', 'clean', 'concat',
-    'babel', 'copy', 'sass' ]);
+  gruntConfig.registerTask('default', [ 'jshint', 'clean', 'concat', 'babel', 'copy', 'sass' ]);
 };
