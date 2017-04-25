@@ -34,7 +34,8 @@
       });
     }
 
-    function loadScene(inputId, inputText) {
+    function loadScene(inputId, inputText, inputEmail) {
+
       return $http({
         url: 'http://127.0.0.1:3000/api/scenes/',
         method: 'patch',
@@ -42,8 +43,9 @@
           'Content-Type': 'application/json'
         },
         data: angular.toJson({
-          id: inputId,
-          choiceText: inputText
+          inputId: inputId,
+          inputText: inputText,
+          inputEmail: inputEmail
         })
       })
       .then(function handleResponse(responseObj) {

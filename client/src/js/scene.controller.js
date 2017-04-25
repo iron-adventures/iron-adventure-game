@@ -48,7 +48,7 @@
       });
     };
 
-    vm.loadScene = function loadScene(inputId, inputText) {
+    vm.loadScene = function loadScene(inputId, inputText, inputEmail) {
       if (!inputId || inputId.length === 0 || typeof(inputId) !== 'string') {
         console.error('Valid id required to load a scene');
         return;
@@ -60,7 +60,13 @@
         return;
       }
 
-      SceneService.loadScene(inputId, inputText)
+      if (!inputEmail || inputEmail.length === 0 ||
+        typeof(inputEmail) !== 'string') {
+        console.error('Valid email required to load a scene');
+        return;
+      }
+
+      SceneService.loadScene(inputId, inputText, inputEmail)
       .then(function handleResponse(responseObj) {
         vm.currentScene = responseObj;
         console.log('vm.currentScene loaded from database:', vm.currentScene);
@@ -81,8 +87,9 @@
       });
     };
 
-    vm.loadScene('58fe16b7f6fa81e61d6d4a7a',
-      'I own this problem.  Take whatever time is needed.');
-
+    vm.loadScene(
+      '58fe16b7f6fa81e61d6d4a7a',
+      'I own this problem.  Take whatever time is needed.',
+      vm.playerEmail);
   }
 }());
