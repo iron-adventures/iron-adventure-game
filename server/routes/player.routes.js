@@ -56,18 +56,4 @@ function addAPlayer(request, response, next) {
 
 playerRouter.post('/', addAPlayer);
 
-playerRouter.get('/', function showAllPlayers(request, response) {
-
-  Player.find()
-    .then(function sendBackAllPlayers(allPlayers) {
-      response.json(allPlayers);
-    })
-    .catch(function handleIssues(err) {
-      console.error(err);
-      let ourError = new Error('Unable to retrieve players');
-      ourError.status = 500;
-      next(ourError);
-    });
-});
-
 module.exports = playerRouter;
