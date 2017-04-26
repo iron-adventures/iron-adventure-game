@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-if (!process.env.IRON_ADVENTURE_MONGO_DB_URL) {
+if (!process.env.MONGODB_URI) {
   console.log('No database detected');
   process.exit();
 }
 
-console.log('Database location', process.env.IRON_ADVENTURE_MONGO_DB_URL);
-mongoose.connect(process.env.IRON_ADVENTURE_MONGO_DB_URL);
+console.log('Database location', process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on('error', function handleDBErrors(err) {
   console.log('DB Error', err);
