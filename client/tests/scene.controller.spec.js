@@ -61,12 +61,11 @@
 
       // attempt to pass inputID value of undefined
       let undefinedID;
-      let testEmail = 'davidS@dude.com';
 
       SceneController.loadScene(
         undefinedID,
         'I own this problem.  Take whatever time is needed.',
-        testEmail);
+        'davidS@dude.com');
 
       expect(mockSceneService.loadScene.numTimesCalled).to.equal(0);
     });
