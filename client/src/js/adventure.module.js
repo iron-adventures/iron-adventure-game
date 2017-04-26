@@ -11,12 +11,18 @@
 
       $stateProvider
         .state({
-          name: 'gameplay',
-          url: '/',
-          templateUrl: '../templates/gameplay.template.html',
+          name: 'game',
+          url: '/game',
+          templateUrl: '../templates/game.template.html',
           controller: 'SceneController',
           controllerAs: 'sceneCtrl'
+        })
+        .state({
+          name: 'start',
+          url: '/start',
+          templateUrl: 'views/start.template.html',
+          controller: 'PlayerController',
+          controllerAs: 'playerCtrl'
         });
-
     }
 }());
