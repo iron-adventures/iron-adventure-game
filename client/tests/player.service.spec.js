@@ -51,8 +51,7 @@
 
       it('should add a player name given a string of text', function() {
 
-        let returnValue = PlayerService.loginPlayer
-
+        let returnValue = PlayerService.loginPlayer;
 
       });
 
