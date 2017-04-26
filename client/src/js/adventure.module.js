@@ -12,7 +12,7 @@
       $stateProvider
         .state({
           name: 'start',
-          url: '/start',
+          url: '/',
           templateUrl: 'views/start.template.html',
           controller: 'PlayerController',
           controllerAs: 'playerCtrl'
