@@ -96,7 +96,7 @@ module.exports = function configureGrunt(gruntConfig) {
             'node_modules/angular-ui-router/release/angular-ui-router.js',
             'client/src/js/adventure.module.js',
             'client/src/**/*.js',
-            'client/src/tests/**/*.spec.js'
+            'client/tests/**/*.spec.js'
           ],
           preprocessors: {
             'client/src/js/**/*.js': ['coverage']
