@@ -25,7 +25,7 @@ module.exports = function configureGrunt(gruntConfig) {
         files: [
           { cwd: 'client/src/',
             src: 'images/*.*',
-            dest: 'build/images/',
+            dest: 'build/',
             expand: true
           }
         ]
