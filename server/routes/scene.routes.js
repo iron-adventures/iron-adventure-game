@@ -128,6 +128,9 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
   let thisScene;
   let returnThisScene;
 
+  // data about the scene we returned
+  let sceneReturned;
+
   console.log('inputText is', request.body.inputText);
 
   // find the scene that contains the choiceText that the player selected
@@ -158,6 +161,65 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
           matchingScore = choice.choiceScore;
         }
       });
+
+      // create the scene to be returned
+      sceneReturned = {
+        id: data[0]._id,
+        sceneImage: data[0].sceneImage,
+        sceneText: data[0].sceneText,
+        sceneChoices: data[0].sceneChoices
+      };
+      console.log('sceneReturned will be: ', sceneReturned);
+
+      // update the playerScene and playerScore
+      Player.find({ playerEmail: request.body.inputEmail})
+      .then(function readPlayerScore(player) {
+        if (!player) {
+          let err = new Error(
+            'That player does not exist, cannot advance to next scene!');
+          err.status = 404;
+          return next(err);
+        }
+
+        console.log('before modification, the player object is: ', player);
+
+        // store the current scene in the player Object.
+        // If player is trying to leave the last scene
+        // (which is identified by scoreSceneId, then
+        // set the next scene return to start of the game.
+        // Also, reset the score zero
+        if (thisScene === scoreSceneId) {
+          returnThisScene = startSceneId;
+          matchingScore = 0;
+        }
+
+        // create the new player Object
+        let updatedPlayer = player[0];
+
+        // Write the next scene ID and new score.
+        // Note that the new score may
+        // be zero if the player is leaving the last scene.
+        updatedPlayer.playerScore += matchingScore;
+        updatedPlayer.playerScene = returnThisScene;
+
+        console.log('updatesPlayer contains: ', updatedPlayer);
+
+        updatedPlayer.save(function saveproperty(err, revisedPlayer) {
+          if (err) {
+            let ourError = new Error ('Unable to update player!');
+            ourError.status = 500;
+            next(err);
+          }
+        });
+
+        console.log('sceneReturned is', sceneReturned);
+        response.json(sceneReturned);
+      })
+      .catch(function handleIssues(err) {
+        let ourError = new Error ('Unable to search for Scene');
+        ourError.status = 500;
+        next(err);
+      });
     })
     .catch(function handleIssues(err) {
       let ourError = new Error (
@@ -166,76 +228,7 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
       next(err);
     });
 
-  // update the playerScene and playerScore
-  Player.find({ playerEmail: request.body.inputEmail})
-  .then(function readPlayerScore(player) {
-    if (!player) {
-      let err = new Error(
-        'That player does not exist, cannot advance to next scene!');
-      err.status = 404;
-      return next(err);
-    }
 
-    console.log('before modification, the player object is: ', player);
-
-    // store the current scene in the player Object.
-    // If player is trying to leave the last scene
-    // (which is identified by scoreSceneId, then
-    // set the next scene return to start of the game.
-    // Also, reset the score zero
-    if (thisScene === scoreSceneId) {
-      returnThisScene = thisScene;
-      matchingScore = 0;
-    }
-
-    // create the new player Object
-    let updatedPlayer = player[0];
-
-    // Write the next scene ID and new score.
-    // Note that the new score may
-    // be zero if the player is leaving the last scene.
-    updatedPlayer.playerScore += matchingScore;
-    updatedPlayer.playerScene = returnThisScene;
-
-    console.log('updatesPlayer contains: ', updatedPlayer);
-
-    updatedPlayer.save(function saveproperty(err, revisedPlayer) {
-      if (err) {
-        let ourError = new Error ('Unable to update player!');
-        ourError.status = 500;
-        next(err);
-      }
-    });
-
-    // console.log('playerScene is now', player[0].playerScene);
-    // manipulate the data
-    //       and SAVE the model
-
-    /*
-        db.Employee.update(
-        {"Employeeid" : 1},
-        {$set: { "EmployeeName" : "NewMartin"}});
-     */
-
-
-   // NOTE:  don't bother trying to advance to next screen (or return error)
-   // if the player is not found?
-   // go to 404 page (or just post console error via error middleware)
-
-
-    // NOTE:  we need to also increment the player score
-    // NOTE:  ** after ** we obtain the numeric value of the matching choiceText
-    //        using:  $inc
-    // so now we can attempt to update player's current scene id
-
-
-
-  })
-  .catch(function handleIssues(err) {
-    let ourError = new Error ('Unable to search for Scene');
-    ourError.status = 500;
-    next(err);
-  });
   //
   // Scene.findById({ _id: request.body.id})
   // .then(function sendBackScene(data) {

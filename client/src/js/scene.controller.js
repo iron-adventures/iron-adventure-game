@@ -21,48 +21,22 @@
 
     vm.toggle = true;      // used toggle a CSS class based on a click event
 
-    vm.getScene = function getScene(id) {
-
-      if (!id || id.length === 0 || typeof(id) !== 'string') {
-        console.error('Valid id required to get a scene');
-        return;
-      }
-      SceneService.getScene(id)
-      .then(function handleResponse(responseObj) {
-        vm.currentScene = responseObj;
-        console.log('vm.currentScene = ', vm.currentScene);
-      })
-      .catch(function handleError(error) {
-        if (error.status === 401) {
-          vm.hasError = true;
-          vm.errorMessage =
-            'Scene not found';
-        } else if (error.status === 404) {
-          vm.hasError = true;
-          vm.errorMessage =
-            'Could not find that scene by the id provided';
-        } else {
-          vm.hasError = true;
-          vm.errorMessage = 'Unknown error from server';
-        }
-      });
-    };
-
     vm.loadScene = function loadScene(inputId, inputText, inputEmail) {
       if (!inputId || inputId.length === 0 || typeof(inputId) !== 'string') {
-        console.error('Valid id required to load a scene');
+        console.info('Valid id required to load a scene');
         return;
       }
+      console.info('did we get here?', inputId);
 
       if (!inputText || inputText.length === 0 ||
         typeof(inputText) !== 'string') {
-        console.error('Valid choice text required to load a scene');
+        console.info('Valid choice text required to load a scene');
         return;
       }
 
       if (!inputEmail || inputEmail.length === 0 ||
         typeof(inputEmail) !== 'string') {
-        console.error('Valid email required to load a scene');
+        console.info('Valid email required to load a scene');
         return;
       }
 
@@ -87,9 +61,5 @@
       });
     };
 
-    vm.loadScene(
-      '58fe16b7f6fa81e61d6d4a7a',
-      'I own this problem.  Take whatever time is needed.',
-      vm.playerEmail);
   }
 }());

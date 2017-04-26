@@ -15,7 +15,12 @@
     <p
       class='clickText'
       ng-repeat='sceneChoice in sceneChoices track by $index'
-      ng-click = sceneCtrl.loadScene(sceneChoice.choiceText)>
+      <!-- ng-click = sceneCtrl.loadScene(
+        sceneCtrl.
+        sceneChoice.choiceText,
+        sceneCtrl.playerEmail) -->
+
+        >
       <a class = 'clickText' ng-class='sceneChoice.choiceIcon'></a>
       {{sceneChoice.choiceText}}
     </p>

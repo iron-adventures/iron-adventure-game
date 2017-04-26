@@ -13,7 +13,7 @@
         .state({
           name: 'game',
           url: '/game',
-          templateUrl: '../templates/game.template.html',
+          templateUrl: 'views/game.template.html',
           controller: 'SceneController',
           controllerAs: 'sceneCtrl'
         })
