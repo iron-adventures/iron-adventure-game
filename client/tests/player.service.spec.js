@@ -44,10 +44,18 @@
           doneCallBack(err);
         });
 
-        // tell the fake server (backend) to release any held up responses
+        // tells the fake server (backend) to release any held up responses
         $httpBackend.flush();
 
       });
+
+      it('should add a player name given a string of text', function() {
+
+        let returnValue = PlayerService.loginPlayer
+
+
+      });
+
 
       });
 
