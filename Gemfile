@@ -1,3 +1,3 @@
 source 'http://rubygems.org'
-ruby '2.4.0p0'
+ruby '2.4.0'
 gem 'sass'
