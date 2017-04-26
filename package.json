@@ -33,7 +33,9 @@
     "mocha": "^3.2.0"
   },
   "scripts": {
-    "test": "grunt karma"
+    "test": "grunt karma",
+    "start": "node .",
+    "postinstall": "grunt"
   },
   "repository": {
     "type": "git",
