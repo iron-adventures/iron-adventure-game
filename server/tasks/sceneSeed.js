@@ -51,6 +51,15 @@ new Scene(
         ]
       }
     ).save().then(function done() {
-      process.exit();
+      new Scene(
+        {
+          sceneNext: ''
+        }
+      ).save().then(function done() {
+        process.exit();
+      });
     });
   });
+
+
+// process.exit();

@@ -4,7 +4,7 @@ const Player = require('../models/Player.model.js');
 new Player(
   {
     playerName: 'dsteed',
-    playerEmail: 'davidS@world.com',
+    playerEmail: 'davidS@dude.com',
     playerScore: 0,
     playerScene: ''
   }).save().then(function done() {

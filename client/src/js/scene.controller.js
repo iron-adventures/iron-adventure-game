@@ -15,7 +15,7 @@
   function SceneController($state, $stateParams, SceneService) {
     let vm = this;
 
-    vm.playerEmail = 'davidS@world.com';  // store the current player's email
+    vm.playerEmail = 'davidS@dude.com';  // store the current player's email
 
     vm.currentScene = {};  // store the scene to be displayed in the View
 
