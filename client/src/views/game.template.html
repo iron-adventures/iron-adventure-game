@@ -1,0 +1,36 @@
+<article>
+  <p>{{sceneCtrl.currentScene.sceneText}}</p>
+  <p>Tap the icon below and select an option in the scene:</p>
+  <a
+    ng-click=
+      'sceneCtrl.toggle = !sceneCtrl.toggle;
+      sceneCtrl.loadScene(
+        "0",
+        "0",
+        sceneCtrl.playerEmail)'
+
+    class='option_icon glyphicon glyphicon-menu-hamburger'>
+  </a>
+</article>
+
+
+<article
+  class='sceneImage'
+  ng-style='{ "background-image":
+  "url(" + sceneCtrl.currentScene.sceneImage + ")" }'>
+  <section
+    class='choiceDisplay'
+    ng-class='{"choiceDisplay": sceneCtrl.toggle}'
+    ng-repeat='sceneChoices in sceneCtrl.currentScene'>
+    <p
+      class='clickText'
+      ng-repeat='sceneChoice in sceneChoices track by $index'
+      ng-click = 'sceneCtrl.loadScene(
+        sceneCtrl.currentScene.sceneId,
+        sceneChoice.choiceText,
+        sceneCtrl.playerEmail)'>
+      <a class = 'clickText' ng-class='sceneChoice.choiceIcon'></a>
+      {{sceneChoice.choiceText}}
+    </p>
+  </section>
+</article>
