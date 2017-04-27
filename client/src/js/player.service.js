@@ -58,8 +58,19 @@
     * @return {void}
     */
     function logout() {
-      playerEmail = null;
-      localStorage.removeItem('email');
+
+      return $http({
+        url: '/api/players/logout',
+        method: 'post',
+        headers: {
+          'Authorization': playerEmail
+        }
+      })
+      .then(function handleResponse(responseObj) {
+        console.info('The response', responseObj);
+        playerEmail = null;
+        localStorage.removeItem('email');
+      });
     }
 
 
