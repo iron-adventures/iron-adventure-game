@@ -24,12 +24,11 @@
      */
     vm.login = function login(playerInfo) {
 
-      PlayerService.loginPlayer(playerInfo)
+      return PlayerService.loginPlayer(playerInfo)
         .then(function handleResponseData(responseData) {
           vm.storedPlayer = responseData;
         })
         .catch(function handleErrors(errResponse) {
-          console.warn(errResponse);
           vm.hasError = true;
         });
 
