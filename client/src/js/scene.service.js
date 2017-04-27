@@ -22,7 +22,7 @@
     function loadScene(inputId, inputText, inputEmail) {
 
       return $http({
-        url: 'http://127.0.0.1:3000/api/scenes/',
+        url: '/api/scenes/',
         method: 'patch',
         header: {
           'Content-Type': 'application/json'

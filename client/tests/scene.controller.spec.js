@@ -24,22 +24,28 @@
             sceneText:
             'You\'ve been stuck on a homework problem for several hours',
             sceneChoices:
-             [ { _id: '58ffe14978feb61989d68e0a',
+             [
+               { _id: '58ffe14978feb61989d68e0a',
                  choiceScore: 5,
                  choiceText:
                  'I own this problem.  Take whatever time is needed.',
-                 choiceIcon: 'glyphicon glyphicon-thumbs-up' },
+                 choiceIcon: 'glyphicon glyphicon-thumbs-up'
+               },
                { _id: '58ffe14978feb61989d68e09',
                  choiceScore: 5,
                  choiceText:
                  'Work on the problem for a final, set period of time.',
-                 choiceIcon: 'glyphicon glyphicon-flash' },
+                 choiceIcon: 'glyphicon glyphicon-flash'
+               },
                { _id: '58ffe14978feb61989d68e08',
                  choiceScore: 10,
                  choiceText:
                  'Ask a fellow student or instructor for assistance.',
-                 choiceIcon: 'glyphicon glyphicon-question-sign' } ] });
-                };
+                 choiceIcon: 'glyphicon glyphicon-question-sign'
+               }
+             ]
+           });
+      };
 
       mockSceneService.loadScene.numTimesCalled = 0;
 
