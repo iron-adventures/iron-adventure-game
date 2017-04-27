@@ -22,6 +22,10 @@
             'playerEmail':'foo@bar.com'
           }
         });
+
+      $httpBackend
+        .whenPOST('/api/players/logout')
+        .respond(Promise.resolve());
     }));
 
     afterEach(function() {
@@ -70,9 +74,30 @@
     describe('getEmail', function() {
 
       it('should return player email when called', function() {
-          localStorage.setItem('email', 'foobar@bar.com');
-          let email = PlayerService.getEmail();
-          expect(email).to.equal('foobar@bar.com');
+        localStorage.setItem('email', 'foobar@bar.com');
+        let email = PlayerService.getEmail();
+        expect(email).to.equal('foobar@bar.com');
+      });
+
+    });
+
+    describe('logout', function() {
+
+      it('should logout a player when called', function(doneCallBack) {
+        localStorage.setItem('email', 'foobar@bar.com');
+        expect(PlayerService.logout).to.be.a('function');
+
+        PlayerService.logout()
+          .then(function handleResponse(res) {
+            console.info(localStorage.getItem('email'));
+            expect(localStorage.getItem('email')).to.be.null;
+            doneCallBack();
+          })
+          .catch(function handleError(err) {
+            doneCallBack(err);
+          });
+
+          $httpBackend.flush();
       });
 
     });
