@@ -83,7 +83,8 @@ module.exports = function configureGrunt(gruntConfig) {
           },
           reporters: ['dots', 'coverage'],
           coverageReporter: {
-            type: 'text-summary'  // format the code coverage page
+            type: 'html',
+            dir: 'coverage/'
           }
         }
       }

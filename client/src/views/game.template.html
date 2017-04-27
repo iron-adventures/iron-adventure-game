@@ -21,10 +21,7 @@
   <section
     class='choiceDisplay'
     ng-class='{"choiceDisplay": sceneCtrl.toggle}'
-    ng-repeat='sceneChoices in sceneCtrl.currentScene'
-
-    >
-    <p> can you see me </p>
+    ng-repeat='sceneChoices in sceneCtrl.currentScene'>
     <p
       class='clickText'
       ng-repeat='sceneChoice in sceneChoices track by $index'

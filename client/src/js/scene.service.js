@@ -6,23 +6,21 @@
   SceneService.$inject = ['$http'];
 
   /**
-   * [Creates a new SceneService]
-   * @param {Function} $http [makes Ajax calls]
+   * Creates a new SceneService
+   * @param {Function} $http Makes Ajax calls
    * @return {Object}        The service's API methods
    */
   function SceneService($http) {
-
     /**
-     * loadScene() advances to the next scene
-     * @param  {String} inputId    current scene
-     * @param  {String} inputText  player choice
-     * @param  {String} inputEmail player email
+     * Function loadScene() advances to the next scene
+     * @param  {String} inputId    Current scene
+     * @param  {String} inputText  Player choice
+     * @param  {String} inputEmail Player email
      * @return {Promise}
      */
     function loadScene(inputId, inputText, inputEmail) {
-
       return $http({
-        url: 'http://127.0.0.1:3000/api/scenes/',
+        url: '/api/scenes/',
         method: 'patch',
         header: {
           'Content-Type': 'application/json'
@@ -33,15 +31,14 @@
           inputEmail: inputEmail
         })
       })
-      .then(function handleResponse(responseObj) {
-        console.log('service responseObj is: ', responseObj);
-        return responseObj.data;
-      });
+        .then(function handleResponse(responseObj) {
+          console.log('service responseObj is: ', responseObj);
+          return responseObj.data;
+        });
     }
 
     return {
       loadScene: loadScene
     };
   }
-
 }());

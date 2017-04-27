@@ -19,8 +19,8 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
   }
 
   // last scene where we will return to the start page
-  let scoreSceneId = '58ffe14978feb61989d68e0b';
-  let startSceneId = '58ffe14978feb61989d68e03';
+  let scoreSceneId;
+  let startSceneId;
 
   // data that will be updated while determining the next Scene
   let matchingScore;
@@ -39,55 +39,55 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
     console.warn("Starting a New Game!");
     // NOTE:  return the player's currentScene and set to returnThisScene
     Player.find({ playerEmail: request.body.inputEmail})
-    .then(function readPlayer(player) {
-      if (!player) {
-        let err = new Error(
-          'That player does not exist, cannot load current scene!');
-        err.status = 404;
-        return next(err);
-      }
-      console.log('the current player\'s playerScene is ', player[0].playerScene);
+      .then(function readPlayer(player) {
+        if (!player) {
+          let err = new Error(
+            'That player does not exist, cannot load current scene!');
+          err.status = 404;
+          return next(err);
+        }
+        console.log('the current player\'s playerScene is ', player[0].playerScene);
 
-      // return the player's current scene
-      returnThisScene = player[0].playerScene;
+        // return the player's current scene
+        returnThisScene = player[0].playerScene;
 
-      // Since we're loading the current scene,
-      // do NOT increment the playerScore
+        // Since we're loading the current scene,
+        // do NOT increment the playerScore
 
-      // So then we will obtain
-      // the scene data for the player's current scene
-      Scene.findById({_id: returnThisScene })
-        .then(function readScene(data) {
-          if (!data) {
-            let err = new Error(
-              'Cannot find the player\'s current scene!');
-            err.status = 404;
-            return next(err);
-          }
-          thisScene = data._id;
+        // So then we will obtain
+        // the scene data for the player's current scene
+        Scene.findById({_id: returnThisScene })
+          .then(function readScene(data) {
+            if (!data) {
+              let err = new Error(
+                'Cannot find the player\'s current scene!');
+              err.status = 404;
+              return next(err);
+            }
+            thisScene = data._id;
 
-          // create the player's current scene data to be returned
-          sceneReturned = {
-            id: data._id,
-            sceneImage: data.sceneImage,
-            sceneText: data.sceneText,
-            sceneChoices: data.sceneChoices
-          };
-          console.log('sceneReturned for current scene loop is', sceneReturned);
-          response.json(sceneReturned);
-        })
-        .catch(function handleIssues(err) {
-          let ourError = new Error ('Unable to search for current Scene');
-          ourError.status = 500;
-          next(err);
-        });
+            // create the player's current scene data to be returned
+            sceneReturned = {
+              id: data._id,
+              sceneImage: data.sceneImage,
+              sceneText: data.sceneText,
+              sceneChoices: data.sceneChoices
+            };
+            console.log('sceneReturned for current scene loop is', sceneReturned);
+            response.json(sceneReturned);
+          })
+          .catch(function handleIssues(err) {
+            let ourError = new Error ('Unable to search for current Scene');
+            ourError.status = 500;
+            next(err);
+          });
 
-    })
-    .catch(function handleIssues(err) {
-      let ourError = new Error ('Unable to find player');
-      ourError.status = 500;
-      next(err);
-    });
+      })
+      .catch(function handleIssues(err) {
+        let ourError = new Error ('Unable to find player');
+        ourError.status = 500;
+        next(err);
+      });
     // NOTE:  the 'else' will be the "Scene.find" below
   } else {
     // find the scene that contains the choiceText that the player selected
