@@ -21,12 +21,19 @@
 
     vm.toggle = true;      // used toggle a CSS class based on a click event
 
+    /**
+     * loadScene() will load the current scene, or the next scene
+     * @param  {String} inputId    current scene ID provided to advance,
+     *                             or 0 if we need to go to the next scene
+     * @param  {String} inputText  player choice
+     * @param  {String} inputEmail player email
+     * @return {Object}            scene data
+     */
     vm.loadScene = function loadScene(inputId, inputText, inputEmail) {
       if (!inputId || inputId.length === 0 || typeof(inputId) !== 'string') {
         console.info('Valid id required to load a scene');
         return;
       }
-      console.info('did we get here?', inputId);
 
       if (!inputText || inputText.length === 0 ||
         typeof(inputText) !== 'string') {

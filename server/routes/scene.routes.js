@@ -76,40 +76,47 @@ function addAScene(request, response, next) {
 
 sceneRouter.post('/', addAScene);
 
-/**
- * [getAScene returns a single Scene by id]
- * @param  {Object}   request  [request Object]
- * @param  {Object}   response [response Object]
- * @param  {Function} next     [advances to next middleware component]
- * @return {Object}            [scene Object]
- */
-sceneRouter.get('/:id', function getAScene(request, response, next) {
-  if (!request.body) {
-    let err = new Error('You must provide a scene');
-    err.status = 400;
-    return next(err);
-  }
-  Scene.findById({ _id: request.params.id})
-  .then(function sendBackScene(data) {
-    if (!data) {
-      let err = new Error('That scene does not exist!');
-      err.status = 404;
-      return next(err);
-    }
-    response.json({
-      id: data._id,
-      sceneImage: data.sceneImage,
-      sceneText: data.sceneText,
-      sceneChoices: data.sceneChoices
-    });
-  })
-  .catch(function handleIssues(err) {
-    let ourError = new Error ('Unable to search for Scene');
-    ourError.status = 500;
-    next(err);
-  });
-});
+// /**
+//  * [getAScene returns a single Scene by id]
+//  * @param  {Object}   request  [request Object]
+//  * @param  {Object}   response [response Object]
+//  * @param  {Function} next     [advances to next middleware component]
+//  * @return {Object}            [scene Object]
+//  */
+// sceneRouter.get('/:id', function getAScene(request, response, next) {
+//   if (!request.body) {
+//     let err = new Error('You must provide a scene');
+//     err.status = 400;
+//     return next(err);
+//   }
+//   Scene.findById({ _id: request.params.id})
+//   .then(function sendBackScene(data) {
+//     if (!data) {
+//       let err = new Error('That scene does not exist!');
+//       err.status = 404;
+//       return next(err);
+//     }
+//     response.json({
+//       id: data._id,
+//       sceneImage: data.sceneImage,
+//       sceneText: data.sceneText,
+//       sceneChoices: data.sceneChoices
+//     });
+//   })
+//   .catch(function handleIssues(err) {
+//     let ourError = new Error ('Unable to search for Scene');
+//     ourError.status = 500;
+//     next(err);
+//   });
+// });
 
+/**
+ * loadScene() returns the current Scene, or next Scene data
+ * @param  {Object}   request  request Object
+ * @param  {Object}   response response Object
+ * @param  {Function} next     advances to next Express middleware
+ * @return {Promise}
+ */
 sceneRouter.patch('/', function loadScene(request, response, next) {
   console.log('The request.body is', request.body);
 
@@ -132,6 +139,16 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
   let sceneReturned;
 
   console.log('inputText is', request.body.inputText);
+
+
+
+  // If inputId is zero, get the current scene for that player.
+  // If inputId is a String, then attempt to advance to the next scene
+  if (request.body.inputText === '0') {
+    // NOTE:  return the player's currentScene
+    // NOTE:  do NOT increment the playerScore
+    // NOTE:  the 'else' will be the "Scene.find" below
+  }
 
   // find the scene that contains the choiceText that the player selected
   Scene.find({sceneChoices: {$elemMatch: {choiceText: request.body.inputText} } })
