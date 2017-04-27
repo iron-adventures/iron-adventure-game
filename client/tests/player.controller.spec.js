@@ -48,11 +48,9 @@
 
           promise
             .then(function() {
-              console.info('Was this successful?');
               doneCallBack();
             })
             .catch(function(err) {
-              console.info('Did this catch?');
               doneCallBack();
             });
 
@@ -91,18 +89,17 @@
             .then(function() {
               doneCallBack();
             })
-            .catch(function(err) {
+            .catch(function() {
               expect(PlayerController.hasError).to.equal(true);
               doneCallBack();
             });
 
           $rootScope.$digest();
         });
+
       });
 
-
     });
-
 
   });
 
