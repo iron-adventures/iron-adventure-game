@@ -31,33 +31,51 @@
     describe('loginPlayer', function() {
 
       it('should work if a valid name and email are provided', function(doneCallBack) {
-        let returnValue = PlayerService.loginPlayer({ playerName: 'foobar', playerEmail: 'pfjfdjkfkgfjdgh'});
-        expect(returnValue.then).to.be.a('function');
-        expect(returnValue.catch).to.be.a('function');
+        let promise = PlayerService.loginPlayer({playerName: 'foobar', playerEmail: 'foo@bar.com'});
+        expect(promise.then).to.be.a('function');
+        expect(promise.catch).to.be.a('function');
 
-        returnValue
-        .then(function() {
-          expect(localStorage.getItem('email')).to.equal('foo@bar.com');
-          doneCallBack();
-        })
-        .catch(function handleError(err) {
-          doneCallBack(err);
-        });
+        promise
+          .then(function() {
+            expect(localStorage.getItem('email')).to.equal('foo@bar.com');
+            doneCallBack();
+          })
+          .catch(function handleError(err) {
+            doneCallBack(err);
+          });
 
         // tells the fake server (backend) to release any held up responses
         $httpBackend.flush();
 
       });
 
-      it('should add a player name given a string of text', function() {
+      it('should fail to add a player given invalid name or email', function(doneCallBack) {
+        let promise = PlayerService.loginPlayer({playerName: true, playerEmail: 'foo@bar.com'});
+        expect(promise.then).to.be.a('function');
+        expect(promise.catch).to.be.a('function');
 
-        let returnValue = PlayerService.loginPlayer;
+        promise
+          .then(function() {
+            doneCallBack();
+          })
+          .catch(function handleError(err) {
+            doneCallBack();
+          });
 
       });
 
 
       });
 
+    describe('getEmail', function() {
+
+      it('should return player email when called', function() {
+          localStorage.setItem('email', 'foobar@bar.com');
+          let email = PlayerService.getEmail();
+          expect(email).to.equal('foobar@bar.com');
+      });
+
+    });
 
   });
 
