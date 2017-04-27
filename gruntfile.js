@@ -110,6 +110,31 @@ module.exports = function configureGrunt(gruntConfig) {
         }
       }
     },
+    karma: {
+      all: {
+        options: {
+          frameworks: ['mocha', 'chai'],
+          browsers: ['Chrome'],
+          singleRun: true,
+          files: [
+            'node_modules/angular/angular.js',
+            'node_modules/angular-mocks/angular-mocks.js',
+            'node_modules/angular-ui-router/release/angular-ui-router.js',
+            'client/src/js/adventure.module.js',
+            'client/src/**/*.js',
+            'client/tests/**/*.spec.js'
+          ],
+          preprocessors: {
+            'client/src/js/**/*.js': ['coverage']
+          },
+          reporters: ['dots', 'coverage'],
+          coverageReporter: {
+            type : 'html',
+            dir : 'coverage/'
+          }
+        }
+      }
+    },
     watch: {
       scripts: {
         files: ['client/src/js/**/*.js', 'client/src/**/*.html', 'client/src/views/**/*.html', 'client/src/sass/**/*.scss', 'client/src/images/*/*'],
