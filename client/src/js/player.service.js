@@ -49,6 +49,7 @@
     * @return {String} The unique email for a player
     */
     function getEmail() {
+      playerEmail = localStorage.getItem('email');
       return playerEmail;
     }
 
