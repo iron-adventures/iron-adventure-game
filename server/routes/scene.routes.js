@@ -140,13 +140,65 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
 
   console.log('inputText is', request.body.inputText);
 
-
-
   // If inputId is zero, get the current scene for that player.
   // If inputId is a String, then attempt to advance to the next scene
   if (request.body.inputText === '0') {
-    // NOTE:  return the player's currentScene
-    // NOTE:  do NOT increment the playerScore
+    // NOTE:  return the player's currentScene and set to returnThisScene
+    Player.find({ playerEmail: request.body.inputEmail})
+    .then(function readPlayer(player) {
+      if (!player) {
+        let err = new Error(
+          'That player does not exist, cannot load current scene!');
+        err.status = 404;
+        return next(err);
+      }
+      console.log('the current player\'s playerScene is ', player[0].playerScene);
+
+      // return the player's current scene
+      returnThisScene = player[0].playerScene;
+
+      // Since we're loading the current scene,
+      // do NOT increment the playerScore
+
+      // So then we will obtain
+      // the scene data for the player's current scene
+      Scene.find({id: returnThisScene })
+        .then(function readScene(data) {
+          if (!data) {
+            let err = new Error(
+              'Cannot find the player\'s current scene!');
+            err.status = 404;
+            return next(err);
+          }
+          console.log('the player current scene is', data);
+          thisScene = data[0]._id;
+
+          // create the player's current scene data to be returned
+          sceneReturned = {
+            id: data[0]._id,
+            sceneImage: data[0].sceneImage,
+            sceneText: data[0].sceneText,
+            sceneChoices: data[0].sceneChoices
+          };
+          console.log('player current scene data will be: ', sceneReturned);
+        })
+        .catch(function handleIssues(err) {
+          let ourError = new Error ('Unable to search for current Scene');
+          ourError.status = 500;
+          next(err);
+        });
+
+    })
+    .catch(function handleIssues(err) {
+      let ourError = new Error ('Unable to find player');
+      ourError.status = 500;
+      next(err);
+    });
+
+
+
+
+
     // NOTE:  the 'else' will be the "Scene.find" below
   }
 
@@ -190,7 +242,7 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
 
       // update the playerScene and playerScore
       Player.find({ playerEmail: request.body.inputEmail})
-      .then(function readPlayerScore(player) {
+      .then(function readPlayer(player) {
         if (!player) {
           let err = new Error(
             'That player does not exist, cannot advance to next scene!');
