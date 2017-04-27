@@ -58,7 +58,7 @@
 
         });
 
-        it('should successfully add a player if given a valid name', function(doneCallBack) {
+        it('should successfully add a player if given a valid name and email', function(doneCallBack) {
           let promise = PlayerController.login({});
 
           promise
@@ -84,7 +84,7 @@
           PlayerController = $controller('PlayerController');
         }));
 
-        it('should fail to add player if given invalid name', function(doneCallBack) {
+        it('should fail to add player if given invalid name or email', function(doneCallBack) {
           let promise = PlayerController.login({});
 
           promise
