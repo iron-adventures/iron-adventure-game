@@ -29,7 +29,6 @@
           vm.storedPlayer = responseData;
         })
         .catch(function handleErrors(errResponse) {
-          console.warn(errResponse);
           vm.hasError = true;
         });
 
