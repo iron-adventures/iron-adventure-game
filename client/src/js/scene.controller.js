@@ -15,7 +15,7 @@
   function SceneController($state, $stateParams, SceneService) {
     let vm = this;
 
-    vm.playerEmail = '';  // store the current player's email
+    vm.playerEmail = 'davidS@dude.com';  // store the current player's email
 
     vm.currentScene = {};  // store the scene to be displayed in the View
 
@@ -60,6 +60,7 @@
      * @return {Object}            Scene data
      */
     vm.loadScene = function loadScene(inputId, inputText, inputEmail) {
+      console.log('input variables to scene.router:', inputId, inputText, inputEmail);
       if (!inputId || inputId.length === 0 || typeof(inputId) !== 'string') {
         console.info('Valid id required to load a scene');
         return;
