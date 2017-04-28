@@ -285,7 +285,7 @@ sceneRouter.post('/', function addScene(request, response, next) {
       sceneNext: request.body.sceneNext,
       sceneImage: request.body.sceneImage,
       sceneText: request.body.sceneText,
-      sceneChoices: request.body.sceneChoice //Storing the sceneChoices as an array
+      sceneChoices: request.body.sceneChoices
     });
     console.log('The scene created', theSceneCreated);
 
