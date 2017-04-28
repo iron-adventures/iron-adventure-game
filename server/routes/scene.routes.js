@@ -84,7 +84,6 @@ sceneRouter.get('/:inputEmail', function getScene(request, response, next) {
       });
 });
 
-
 /**
  * loadScene() returns the current Scene, or next Scene data
  * @param  {Object}   request  request Object
@@ -268,6 +267,38 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
       });
   }
 
+
+});
+
+
+sceneRouter.post('/', function addScene(request, response, next) {
+    console.log('Incoming', request.body);
+
+    if(!request.body) {
+      let err = new Error('You must provide a scene');
+      err.status = 400;
+      next(err);
+      return;
+    }
+
+    let theSceneCreated = new Scene({
+      sceneNext: request.body.sceneNext,
+      sceneImage: request.body.sceneImage,
+      sceneText: request.body.sceneText,
+      sceneChoices: request.body.sceneChoice //Storing the sceneChoices as an array
+    });
+    console.log('The scene created', theSceneCreated);
+
+    theSceneCreated.save()
+      .then(function sendBackTheResponse(data) {
+        response.json({ message: 'Added a scene', theSceneAdded: data });
+      })
+      .catch(function handleIssues(err) {
+        console.error(err);
+        let ourError = new Error('Unable to save new scene');
+        ourError.status = 500;
+        next(ourError);
+      });
 
 });
 
