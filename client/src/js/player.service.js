@@ -20,7 +20,13 @@
     * @return  {Promise}
     */
     function loginPlayer(loginDetails) {
-      if (typeof(loginDetails.playerName) !== 'string' || typeof(loginDetails.playerEmail) !== 'string') {
+      if (!loginDetails) {
+        return Promise.reject('Invalid information');
+      }
+      if(typeof(loginDetails.playerName) !== 'string'){
+        return Promise.reject('Invalid information');
+      }
+      if(typeof(loginDetails.playerEmail) !== 'string'){
         return Promise.reject('Invalid information');
       }
 
