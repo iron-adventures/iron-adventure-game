@@ -60,6 +60,3 @@ new Scene(
       });
     });
   });
-
-
-// process.exit();

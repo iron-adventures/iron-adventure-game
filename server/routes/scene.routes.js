@@ -3,6 +3,89 @@ const Scene = require('../models/Scene.model.js');
 const Player = require('../models/Player.model.js');
 
 /**
+ * Function getScene() retrieves current scene for that player
+ * @param  {Object}   request  Request Object
+ * @param  {Object}   response Response Object
+ * @param  {Function} next     Advances to next Express middleware
+ * @return {Object}            Data for current Scene
+ */
+sceneRouter.get('/:inputEmail', function getScene(request, response, next) {
+  console.log('request.params.inputEmail =',request.params.inputEmail);
+  if (!request.params.inputEmail ||
+      typeof(request.params.inputEmail) !== 'string' ||
+      request.params.inputEmail.length === 0) {
+    let err = new Error('You must provide a player email ');
+    err.status = 400;
+    return next(err);
+  }
+
+  // last scene where we will return to the start page
+  let scoreSceneId;
+  let startSceneId;
+
+  // data that will be updated while determining the next Scene
+  let matchingScore;
+  let thisScene;
+  let returnThisScene;
+
+  // data about the scene we returned
+  let sceneReturned;
+
+  console.log('inputEmail is', request.body.inputEmai);
+
+  Player.find({ playerEmail: request.params.inputEmail})
+    .then(function readPlayer(player) {
+      if (!player) {
+        let err = new Error(
+          'That player does not exist, cannot load current scene!');
+        err.status = 404;
+        return next(err);
+      }
+      console.log('the current player\'s playerScene is ', player[0].playerScene);
+
+      // return the player's current scene
+      returnThisScene = player[0].playerScene;
+
+      // Since we're loading the current scene,
+      // do NOT increment the playerScore
+
+      // So then we will obtain
+      // the scene data for the player's current scene
+      Scene.findById({_id: returnThisScene })
+        .then(function readScene(data) {
+          if (!data) {
+            let err = new Error(
+              'Cannot find the player\'s current scene!');
+            err.status = 404;
+            return next(err);
+          }
+          thisScene = data._id;
+
+          // create the player's current scene data to be returned
+          sceneReturned = {
+            id: data._id,
+            sceneImage: data.sceneImage,
+            sceneText: data.sceneText,
+            sceneChoices: data.sceneChoices
+          };
+          console.log('sceneReturned for current scene loop is', sceneReturned);
+          response.json(sceneReturned);
+        })
+        .catch(function handleIssues(err) {
+          let ourError = new Error ('Unable to search for current Scene');
+          ourError.status = 500;
+          next(err);
+        });
+      })
+      .catch(function handleIssues(err) {
+        let ourError = new Error ('Unable to find player');
+        ourError.status = 500;
+        next(err);
+      });
+});
+
+
+/**
  * loadScene() returns the current Scene, or next Scene data
  * @param  {Object}   request  request Object
  * @param  {Object}   response response Object

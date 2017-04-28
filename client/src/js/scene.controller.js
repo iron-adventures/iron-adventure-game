@@ -15,11 +15,41 @@
   function SceneController($state, $stateParams, SceneService) {
     let vm = this;
 
-    vm.playerEmail;  // store the current player's email
+    vm.playerEmail = '';  // store the current player's email
 
     vm.currentScene = {};  // store the scene to be displayed in the View
 
     vm.toggle = true;      // used toggle a CSS class based on a click event
+
+    /**
+     * Function getScene() returns current scene data for a player
+     * @param  {String} inputEmail Player email address
+     * @return {void}
+     */
+    vm.getScene = function getScene(inputEmail) {
+      if (!inputEmail || inputEmail.length === 0 ||
+        typeof(inputEmail) !== 'string') {
+        console.info('Valid email required to get a scene');
+        return;
+      }
+
+      SceneService.getScene(inputEmail)
+        .then(function handleResponse(responseObj) {
+          vm.currentScene = responseObj;
+        })
+        .catch(function handleError(error) {
+          if (error.status === 401) {
+            vm.hasError = true;
+            vm.errorMessage = 'Scene not found';
+          } else if (error.status === 404) {
+            vm.hasError = true;
+            vm.errorMessage = 'Could not find that scene by the id provided';
+          } else {
+            vm.hasError = true;
+            vm.errorMessage = 'Unknown error from server';
+          }
+        });
+    };
 
     /**
      * Function loadScene() will load the current scene, or the next scene
