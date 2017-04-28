@@ -1,13 +1,10 @@
 <article>
   <p>{{sceneCtrl.currentScene.sceneText}}</p>
-  <p>Tap the icon below and select an option in the scene:</p>
+  <p ng-class='{"choiceDisplay": sceneCtrl.toggle}'>Tap the icon below and select an option in the scene:</p>
   <a
     ng-click=
       'sceneCtrl.toggle = !sceneCtrl.toggle;
-      sceneCtrl.loadScene(
-        "0",
-        "0",
-        sceneCtrl.playerEmail)'
+      sceneCtrl.getScene("davidS@dude.com")'
 
     class='option_icon glyphicon glyphicon-menu-hamburger'>
   </a>
@@ -19,7 +16,6 @@
   ng-style='{ "background-image":
   "url(" + sceneCtrl.currentScene.sceneImage + ")" }'>
   <section
-    class='choiceDisplay'
     ng-class='{"choiceDisplay": sceneCtrl.toggle}'
     ng-repeat='sceneChoices in sceneCtrl.currentScene'>
     <p
