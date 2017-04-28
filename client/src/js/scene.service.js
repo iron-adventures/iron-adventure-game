@@ -27,6 +27,7 @@
       .then(function handleResponse(responseObj) {
         console.log('service responseObj is: ', responseObj);
         return responseObj.data;
+
       });
     }
 
