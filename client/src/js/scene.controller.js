@@ -60,6 +60,7 @@
      * @return {Object}            Scene data
      */
     vm.loadScene = function loadScene(inputId, inputText, inputEmail) {
+      console.log('input variables to scene.router:', inputId, inputText, inputEmail);
       if (!inputId || inputId.length === 0 || typeof(inputId) !== 'string') {
         console.info('Valid id required to load a scene');
         return;

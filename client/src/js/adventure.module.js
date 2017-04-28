@@ -18,6 +18,13 @@
           controllerAs: 'sceneCtrl'
         })
         .state({
+          name: 'end',
+          url: '/end',
+          templateUrl: 'views/end.template.html',
+          controller: 'SceneController',
+          controllerAs: 'sceneCtrl'
+        })
+        .state({
           name: 'start',
           url: '/',
           templateUrl: 'views/start.template.html',
