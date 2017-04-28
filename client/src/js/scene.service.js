@@ -6,51 +6,59 @@
   SceneService.$inject = ['$http'];
 
   /**
-   * [Creates a new SceneService]
-   * @param {Function} $http [makes Ajax calls]
+   * Creates a new SceneService
+   * @param {Function} $http Makes Ajax calls
    * @return {Object}        The service's API methods
    */
   function SceneService($http) {
-
     /**
-     * [getScene gets a scene by id]
-     * @param  {String} id [id string for a scene]
+     * Function getScene() returns current scene for a player
+     * @param  {String} inputEmail Player email
      * @return {Promise}
      */
-    function getScene(id) {
-      if (typeof(id) !== 'string' || id.length === 0) {
-        return Promise.reject('Valid id required to get a scene');
-      }
-
+    function getScene(inputEmail) {
       return $http({
-        url: 'https://localhost:3000/api/scenes/' + id,
-        method: 'get',
-        header: {
-          'Content-Type': 'application/json',
-        }
-      })
-      .then(function handleResponse(responseObj) {
-        return responseObj.data;
-      });
-    }
-
-    function getAllScenes() {
-      return $http({
-        url: 'http://127.0.0.1:3000/api/scenes',
+        url: '/api/scenes/' + inputEmail,
         method: 'get',
         header: {
           'Content-Type': 'application/json'
         }
       })
       .then(function handleResponse(responseObj) {
+        console.log('service responseObj is: ', responseObj);
+        return responseObj.data;
+      });
+    }
+
+    /**
+     * Function loadScene() advances to the next scene
+     * @param  {String} inputId    Current scene
+     * @param  {String} inputText  Player choice
+     * @param  {String} inputEmail Player email
+     * @return {Promise}
+     */
+    function loadScene(inputId, inputText, inputEmail) {
+      return $http({
+        url: '/api/scenes/',
+        method: 'patch',
+        header: {
+          'Content-Type': 'application/json'
+        },
+        data: angular.toJson({
+          inputId: inputId,
+          inputText: inputText,
+          inputEmail: inputEmail
+        })
+      })
+      .then(function handleResponse(responseObj) {
+        console.log('service responseObj is: ', responseObj);
         return responseObj.data;
       });
     }
 
     return {
       getScene: getScene,
-      getAllScenes: getAllScenes
+      loadScene: loadScene
     };
   }
-
 }());
