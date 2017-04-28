@@ -4,13 +4,13 @@
   angular.module('adventure')
     .controller('PlayerController', PlayerController);
 
-  PlayerController.$inject = ['PlayerService'];
+  PlayerController.$inject = ['$state', 'PlayerService'];
 
   /**
    * Handles the player info
    * @return {void}
    */
-  function PlayerController(PlayerService) {
+  function PlayerController($state, PlayerService) {
     let vm = this;
     vm.playerInfo = {};
     vm.hasError = false;
@@ -26,10 +26,11 @@
 
       return PlayerService.loginPlayer(playerInfo)
         .then(function handleResponseData(responseData) {
-          vm.storedPlayer = responseData;
+          $state.go('game');
         })
         .catch(function handleErrors(errResponse) {
           vm.hasError = true;
+
         });
 
     };
