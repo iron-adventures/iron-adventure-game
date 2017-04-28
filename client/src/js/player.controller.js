@@ -15,11 +15,10 @@
     vm.playerInfo = {};
     vm.hasError = false;
     vm.message = null;
-    vm.storedPlayer = null;
 
     /**
-     * Player input (from client side)
-     * @param  {Object}   playerInfo  Object containing the player's info
+     * Logs in the player using name and email
+     * @param  {Object}   playerInfo  Object containing the player name and email
      * @return {Promise}
      */
     vm.login = function login(playerInfo) {
