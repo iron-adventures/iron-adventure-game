@@ -1,0 +1,44 @@
+.endScene {
+  background-image: url('/images/simple-gray-texture.jpg');
+  height: 100vh;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.delay-2 {
+  -webkit-animation-delay: 2s;
+  -moz-animation-delay: 2s;
+}
+
+.delay-4 {
+  -webkit-animation-delay: 4s;
+  -moz-animation-delay: 4s;
+}
+
+.delay-6 {
+-webkit-animation-delay: 6s;
+-moz-animation-delay: 6s;
+}
+
+.delay-8 {
+  -webkit-animation-delay: 8s;
+  -moz-animation-delay: 8s;
+}
+
+.greatScore {
+  color: #00CC00;
+}
+
+.fairScore {
+  color: #CCCC00;
+}
+
+.poorScore {
+  color: #CC0000;
+}
+
+.white {
+  background-color: #FFFFFF;
+}
