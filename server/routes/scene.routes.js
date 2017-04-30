@@ -19,10 +19,6 @@ sceneRouter.get('/:inputEmail', function getScene(request, response, next) {
     return next(err);
   }
 
-  // last scene where we will return to the start page
-  let scoreSceneId;
-  let startSceneId;
-
   // data that will be updated while determining the next Scene
   let matchingScore;
   let thisScene;
@@ -98,7 +94,8 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
   if (!request.body) {
     let err = new Error('You must provide scene and choice info');
     err.status = 400;
-    return next(err);
+    next(err);
+    return;
   }
 
   if (!request.body.inputId || request.body.inputId.length === 0 ||
@@ -126,8 +123,8 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
   }
 
   // last scene where we will return to the start page
-  let endSceneId;
-  let startSceneId;
+  // NOTE: this will need to be manually populated Heroku via seed file
+  let endSceneId = '58ffe14978feb61989d68e0b';
 
   // data that will be updated while determining the next Scene
   let matchingScore;
@@ -147,7 +144,8 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
         let err = new Error(
           'Cannot find scene that matches the player choice!');
         err.status = 404;
-        return next(err);
+        next(err);
+        return;
       }
       console.log('The scene matching inputText is', data);
 
@@ -188,6 +186,7 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
           let ourError = new Error ('Unable to search for current Scene');
           ourError.status = 500;
           next(err);
+          return;
         });
 
       // update the playerScene and playerScore
@@ -218,6 +217,7 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
             let ourError = new Error ('Unable to update player!');
             ourError.status = 500;
             next(err);
+            return;
           }
         });
 
@@ -228,6 +228,7 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
         let ourError = new Error ('Unable to search for Scene');
         ourError.status = 500;
         next(err);
+        return;
       });
     })
     .catch(function handleIssues(err) {
@@ -235,6 +236,7 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
         'Unable to search for Scene that matches the player choice!');
       ourError.status = 500;
       next(err);
+      return;
     });
 });
 
