@@ -126,8 +126,11 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
   }
 
   // last scene where we will return to the start page
-  let endSceneId;
-  let startSceneId;
+  let endSceneId = '58ffe14978feb61989d68e03';
+
+  // Before routing to the end.template.html, we need to
+  // set the player's scene to equal the start scene id
+  let startSceneId = '58ffe14978feb61989d68e03';
 
   // data that will be updated while determining the next Scene
   let matchingScore;
