@@ -27,6 +27,7 @@ function addAPlayer(request, response, next) {
 
   Player.find({playerEmail: request.body.playerEmail})
     .then(function checkIfPlayerIsPresent(player) {
+
       if(player.length === 0) {
         let thePlayerCreated = new Player({
           playerName: request.body.playerName,
@@ -36,7 +37,6 @@ function addAPlayer(request, response, next) {
         });
         thePlayerCreated.save()
           .then(function sendBackTheResponse(data) {
-            console.log('added a player!');
             response.json({ message: 'Added a player', thePlayerAdded: data});
           })
           .catch(function handleIssues(err) {
@@ -46,12 +46,10 @@ function addAPlayer(request, response, next) {
             next(ourError);
           });
       } else {
-        console.log('Player already exists');
         // return the existing player
-        console.log('player exists and the object is:', player);
         response.json(
           { message: 'Sign-in matches existing player:',
-            thePlayerAdded: player });
+            thePlayerAdded: player[0] });
       }
     })
     .catch(function handleErrors(err) {

@@ -42,9 +42,8 @@
         })
       })
       .then(function handleResponse(responseObj) {
-        playerEmail = responseObj.data.thePlayerAdded[0].playerEmail;
+        playerEmail = responseObj.data.thePlayerAdded.playerEmail;
         localStorage.setItem('email', playerEmail);
-        console.log('get here?');
         return(responseObj.data);
       });
 
