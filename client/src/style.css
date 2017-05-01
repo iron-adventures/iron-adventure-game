@@ -60,7 +60,9 @@ a.text-decoration {
   -webkit-animation-duration: 3s;
   -moz-animation-duration: 3s;
   -webkit-animation-direction: alternate;
-  -webkit-animation-direction: alternate; }
+  -webkit-animation-direction: alternate;
+  -moz-animation-direction: alternate;
+  -moz-animation-direction: alternate; }
 
 .greatScore {
   color: #00CC00; }
