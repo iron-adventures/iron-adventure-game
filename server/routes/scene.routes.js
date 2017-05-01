@@ -270,7 +270,13 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
 
 });
 
-
+/**
+ * Adds a scene to the database
+ * @param   {Object}    request   The scene data following scene schema
+ * @param   {Object}    response  The scene to be added
+ * @param   {Function}  next
+ * @return  {Promise}
+ */
 sceneRouter.post('/', function addScene(request, response, next) {
     console.log('Incoming', request.body);
 
