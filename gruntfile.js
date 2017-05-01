@@ -41,6 +41,11 @@ module.exports = function configureGrunt(gruntConfig) {
             src: 'angular-ui-router.js',
             dest: 'build/js/',
             expand: true
+          },
+          { cwd: 'node_modules/animate.css/',
+            src: 'animate.min.css',
+            dest: 'build/css/',
+            expand: true
           }
         ]
       }
@@ -108,31 +113,6 @@ module.exports = function configureGrunt(gruntConfig) {
         files: {
           // destination      source
           'build/js/app.js': 'build/js/app.js'
-        }
-      }
-    },
-    karma: {
-      all: {
-        options: {
-          frameworks: ['mocha', 'chai'],
-          browsers: ['Chrome'],
-          singleRun: true,
-          files: [
-            'node_modules/angular/angular.js',
-            'node_modules/angular-mocks/angular-mocks.js',
-            'node_modules/angular-ui-router/release/angular-ui-router.js',
-            'client/src/js/adventure.module.js',
-            'client/src/**/*.js',
-            'client/tests/**/*.spec.js'
-          ],
-          preprocessors: {
-            'client/src/js/**/*.js': ['coverage']
-          },
-          reporters: ['dots', 'coverage'],
-          coverageReporter: {
-            type : 'html',
-            dir : 'coverage/'
-          }
         }
       }
     },

@@ -6,81 +6,81 @@
     .controller('SceneController', SceneController);
 
   // inject the angular service that handles data calls for scene data
-  SceneController.$inject = ['$state', '$stateParams', 'SceneService'];
+  SceneController.$inject =
+    ['$state', '$stateParams', 'SceneService'];
 
   /**
    * [SceneController creates a new scene Controller]
    * @param {Object} SceneService [Service singleton]
    */
-  function SceneController($state, $stateParams, SceneService) {
+  function SceneController(
+    $state, $stateParams, SceneService) {
     let vm = this;
 
-    vm.currentScene = {};  // store the scene to be displayed in the View
+    // store a copy of the SceneService.currentScene
+    vm.currentScene = SceneService.getCurrentScene();
 
-      vm.getScene = function getScene(id) {
-      // basic validation of argument
-      if (typeof(id) !== 'string' || id.length === 0) {
-        console.error('Valid id required to get a scene');
+    // get the current player's email
+    vm.playerEmail = localStorage.getItem('email');
+
+    /**
+     * Function loadScene() will load the current scene, or the next scene
+     * @param  {String} inputId    Current scene ID provided to advance,
+     *                             or 0 if we need to go to the next scene
+     * @param  {String} inputText  Player choice
+     * @param  {String} inputEmail Player email
+     * @return {Object}            Scene data
+     */
+    vm.loadScene = function loadScene(inputId, inputText, inputEmail) {
+      if (!inputId || inputId.length === 0 || typeof(inputId) !== 'string') {
+        console.info('Valid id required to load a scene');
         return;
       }
-      SceneService.getScene(id)
+
+      SceneService.loadScene(inputId, inputText, inputEmail)
         .then(function handleResponse(responseObj) {
-          vm.currentScene = responseObj;
+          console.log('loadScene on controller responseObj is', responseObj);
+          vm.currentScene = responseObj.data;
         })
         .catch(function handleError(error) {
           if (error.status === 401) {
             vm.hasError = true;
-            vm.errorMessage =
-              'Please log in and try again';
+            vm.errorMessage = 'Scene not found';
           } else if (error.status === 404) {
             vm.hasError = true;
-            vm.errorMessage =
-              'Could not find that guest by the id provided';
+            vm.errorMessage = 'Could not find that scene by the id provided';
           } else {
             vm.hasError = true;
             vm.errorMessage = 'Unknown error from server';
           }
         });
-      };
+    };
 
-      // NOTE; testing for gameplay-branch
-      vm.sceneCounter = 1;  // track current scene to display in template
+    /**
+     * Function getEmail() returns the player email
+     * @return {String} player email
+     */
+    vm.getEmail = function getEmail() {
+      vm.playerEmail = localStorage.getItem('email');
+      return vm.playerEmail;
+    };
 
+    /**
+     * Function getCurrentScene() a) stores the currentScene Object
+     *                            b) returns scene text for current scene
+     * @return {String} Scene text from current scene
+     */
+    vm.getCurrentScene = function getCurrentScene() {
+      vm.currentScene = SceneService.getCurrentScene();
+      return vm.currentScene.sceneText;
+    };
 
-
-      vm.changeScene = function changeScene() {
-        if (vm.sceneCounter === 1) {
-          vm.currentScene = {sceneText: 'Scene one shows here',
-                             sceneChoice: 'option 1'};
-          vm.sceneCounter++; // set to advance to the next scene
-        }
-        else if (vm.sceneCounter === 2) {
-          vm.currentScene = {sceneText: 'Scene two shows here',
-                             sceneChoice: 'option 2'};
-          vm.sceneCounter--; // return to scene one the next time
-        }
-      };
-
-      vm.getAllScenes = function getAllScenes() {
-        SceneService.getAllScenes()
-          .then(function handleResponse(responseObj) {
-            vm.allScenes = responseObj;
-            console.log('vm.allScenes is:', vm.allScenes);
-          })
-          .catch(function handleError(error) {
-            if (error.status === 401) {
-              vm.hasError = true;
-              vm.errorMessage =
-                'Please log in and try again';
-            } else if (error.status === 404) {
-              vm.hasError = true;
-              vm.errorMessage =
-                'Could not find that guest by the id provided';
-            } else {
-              vm.hasError = true;
-              vm.errorMessage = 'Unknown error from server';
-            }
-          });
-      };
+    /**
+     * Function gotoLogin() changes view to start template
+     * @return {void}
+     */
+    vm.gotoStart = function gotoStart() {
+      $state.go('start');
+    };
   }
 }());

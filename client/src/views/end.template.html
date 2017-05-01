@@ -1,4 +1,43 @@
-<article>
-  <p>You scored {{75}}% rating</p>
+<article class='endScene'>
+
+  <section class='animated slideInDown'>
+    <h1 class='text-center'>
+      The Iron Adventure
+    </h1>
+
+    <h2 class='text-center'>You have scored a {{75}}% overall rating!</h2>
+  </section>
+  <h3 class='text-center fadeIn animated delay-2'>
+    In each step in the journey to becoming a developer, you scored:
+  </h3>
+
+  <p class='text-center delay-4 slideInLeft animated greatScore themeColor'>
+    Do the pre-work: {{100}}%
+  </p>
+
+  <p class='text-center delay-4 slideInRight animated greatScore themeColor'>
+    Attendance: {{100}}%
+  </p>
+  <p class='text-center delay-6 slideInLeft animated poorScore themeColor'>
+    Time-efficient effort: {{50}}%
+  </p>
+  <p class='text-center delay-6 slideInRight animated fairScore themeColor'>
+    Stress Management: {{75}}%
+  </p>
+  <p class='text-center delay-8 slideInLeft animated themeColor poorScore'>
+    Ask Questions: {{50}}%
+  </p>
+  <p class='text-center delay-8 slideInRight animated themeColor fairScore'>
+    Socialize! {{75}}%
+  </p>
+
+  <h4 class='text-center delay-10 fadeIn animated themeColor'>
+    Thanks for playing!
+  </h4>
+  <p
+    class='text-center delay-12 fadeIn animated infinite themeColor'
+    ng-click='sceneCtrl.gotoStart()'>
+    <a class='text-decoration black'>Click to return to login</a>
+  </p>
 
 </article>
