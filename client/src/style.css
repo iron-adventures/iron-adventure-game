@@ -43,8 +43,12 @@ p {
   cursor: pointer;
   float: right; }
 
-.journey {
+.ready {
   animation-duration: 2s;
+  animation-name: slidein; }
+
+.bootcamp {
+  animation-duration: 3s;
   animation-name: slidein; }
 
 @keyframes slidein {
@@ -54,9 +58,8 @@ p {
   to {
     margin-left: 0%;
     width: 100%; } }
-.ready {
-  animation-duration: 3s;
-  animation-name: slidein; }
+.bg-warning {
+  font-size: 1em; }
 
 .sceneImage {
   background-size: 100% auto;
