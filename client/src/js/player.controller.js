@@ -22,6 +22,9 @@
      * @return {Promise}
      */
     vm.login = function login(playerInfo) {
+
+      console.log("playerinfo is", playerInfo);
+
       if (!playerInfo) {
         return Promise.reject('Invalid data input');
       }

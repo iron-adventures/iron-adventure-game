@@ -36,6 +36,7 @@ function addAPlayer(request, response, next) {
         });
         thePlayerCreated.save()
           .then(function sendBackTheResponse(data) {
+            console.log('added a player!');
             response.json({ message: 'Added a player', thePlayerAdded: data});
           })
           .catch(function handleIssues(err) {

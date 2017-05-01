@@ -125,14 +125,14 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
   // NOTE: We will need to be manually populate all of the scenes
   // in Heroku, *then* update this variable
   // once the end scene _ID is known
-  let endSceneId = '';
+  let endSceneId = '58ffe14978feb61989d68e0b';
 
   // Before routing to the end.template.html, we need to
   // set the player's scene to equal the start scene id
   // NOTE: We will need to be manually populate all of the scenes
   // in Heroku, *then* update this variable
   // once the start scene _ID is known
-  let startSceneId = '';
+  let startSceneId = '58ffe14978feb61989d68e03';
 
   // data that will be updated while determining the next Scene
   let matchingScore;
