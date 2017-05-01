@@ -7,14 +7,14 @@
 
   // inject the angular service that handles data calls for scene data
   SceneController.$inject =
-    ['$state', '$stateParams', 'SceneService', 'PlayerService'];
+    ['$state', '$stateParams', 'SceneService'];
 
   /**
    * SceneController creates a new scene Controller
    * @param {Object} SceneService Service singleton
    */
   function SceneController(
-    $state, $stateParams, SceneService, PlayerService) {
+    $state, $stateParams, SceneService) {
     let vm = this;
 
     // store a copy of the SceneService.currentScene
@@ -73,9 +73,8 @@
      * @return {String} player email
      */
     vm.getEmail = function getEmail() {
-      let emailReturned = PlayerService.getEmail();
-      console.log('emailReturned is', emailReturned);
-      return emailReturned;
+      vm.playerEmail = localStorage.getItem('email');
+      return vm.playerEmail;
     };
 
     /**

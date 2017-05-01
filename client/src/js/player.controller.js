@@ -4,13 +4,13 @@
   angular.module('adventure')
     .controller('PlayerController', PlayerController);
 
-  PlayerController.$inject = ['$state', 'PlayerService', 'SceneService'];
+  PlayerController.$inject = ['PlayerService', 'SceneService'];
 
   /**
    * Handles the player info
    * @return {void}
    */
-  function PlayerController($state, PlayerService, SceneService) {
+  function PlayerController(PlayerService, SceneService) {
     let vm = this;
     vm.playerInfo = {};
     vm.hasError = false;
