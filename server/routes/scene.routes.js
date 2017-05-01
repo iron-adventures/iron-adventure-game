@@ -125,14 +125,14 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
   // NOTE: We will need to be manually populate all of the scenes
   // in Heroku, *then* update this variable
   // once the end scene _ID is known
-  let endSceneId = '58ffe14978feb61989d68e0b';
+  let endSceneId = '';
 
   // Before routing to the end.template.html, we need to
   // set the player's scene to equal the start scene id
   // NOTE: We will need to be manually populate all of the scenes
   // in Heroku, *then* update this variable
   // once the start scene _ID is known
-  let startSceneId = '58ffe14978feb61989d68e03';
+  let startSceneId = '';
 
   // data that will be updated while determining the next Scene
   let matchingScore;
@@ -191,6 +191,58 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
           sceneReturned.sceneText = data.sceneText;
           sceneReturned.sceneChoices = data.sceneChoices;
           console.log("sceneReturned, newly built, contains:", sceneReturned);
+
+          // update the playerScene and playerScore
+          Player.find({ playerEmail: request.body.inputEmail})
+          .then(function readPlayer(player) {
+            if (!player) {
+              let err = new Error(
+                'That player does not exist, cannot advance to next scene!');
+              err.status = 404;
+              return next(err);
+            }
+
+            console.log('before modification, the player object is: ', player);
+
+            // create the new player Object
+            let updatedPlayer = player[0];
+
+            // Write the new score.
+            // Note that the new score may
+            // be zero if the player is leaving the last scene.
+            updatedPlayer.playerScore += matchingScore;
+
+            // Update the player scene
+            // If the player is on the last scene,
+            // then set their current scene to be the first Scene, since we will be
+            // routing them to the End template (and they won't see the last scene
+            // and will need to go to the first scene when they return to the game)
+            if (returnThisScene === endSceneId) {
+              updatedPlayer.playerScene = startSceneId;
+            } else {
+              updatedPlayer.playerScene = returnThisScene;
+            }
+
+            console.log('updatesPlayer contains: ', updatedPlayer);
+
+            updatedPlayer.save(function saveproperty(err, revisedPlayer) {
+              if (err) {
+                let ourError = new Error ('Unable to update player!');
+                ourError.status = 500;
+                next(err);
+                return;
+              }
+            });
+
+            console.log('sceneReturned will be: ', sceneReturned);
+            response.json(sceneReturned);
+          })
+          .catch(function handleIssues(err) {
+            let ourError = new Error ('Unable to search for Scene');
+            ourError.status = 500;
+            next(err);
+            return;
+          });
         })
         .catch(function handleIssues(err) {
           let ourError = new Error ('Unable to search for current Scene');
@@ -198,58 +250,6 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
           next(err);
           return;
         });
-
-      // update the playerScene and playerScore
-      Player.find({ playerEmail: request.body.inputEmail})
-      .then(function readPlayer(player) {
-        if (!player) {
-          let err = new Error(
-            'That player does not exist, cannot advance to next scene!');
-          err.status = 404;
-          return next(err);
-        }
-
-        console.log('before modification, the player object is: ', player);
-
-        // create the new player Object
-        let updatedPlayer = player[0];
-
-        // Write the new score.
-        // Note that the new score may
-        // be zero if the player is leaving the last scene.
-        updatedPlayer.playerScore += matchingScore;
-
-        // Update the player scene
-        // If the player is on the last scene,
-        // then set their current scene to be the first Scene, since we will be
-        // routing them to the End template (and they won't see the last scene
-        // and will need to go to the first scene when they return to the game)
-        if (returnThisScene === endSceneId) {
-          updatedPlayer.playerScene = startSceneId;
-        } else {
-          updatedPlayer.playerScene = returnThisScene;
-        }
-
-        console.log('updatesPlayer contains: ', updatedPlayer);
-
-        updatedPlayer.save(function saveproperty(err, revisedPlayer) {
-          if (err) {
-            let ourError = new Error ('Unable to update player!');
-            ourError.status = 500;
-            next(err);
-            return;
-          }
-        });
-
-        console.log('sceneReturned will be: ', sceneReturned);
-        response.json(sceneReturned);
-      })
-      .catch(function handleIssues(err) {
-        let ourError = new Error ('Unable to search for Scene');
-        ourError.status = 500;
-        next(err);
-        return;
-      });
     })
     .catch(function handleIssues(err) {
       let ourError = new Error (
