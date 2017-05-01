@@ -10,8 +10,8 @@
     ['$state', '$stateParams', 'SceneService'];
 
   /**
-   * SceneController creates a new scene Controller
-   * @param {Object} SceneService Service singleton
+   * [SceneController creates a new scene Controller]
+   * @param {Object} SceneService [Service singleton]
    */
   function SceneController(
     $state, $stateParams, SceneService) {
@@ -34,18 +34,6 @@
     vm.loadScene = function loadScene(inputId, inputText, inputEmail) {
       if (!inputId || inputId.length === 0 || typeof(inputId) !== 'string') {
         console.info('Valid id required to load a scene');
-        return;
-      }
-
-      if (!inputText || inputText.length === 0 ||
-        typeof(inputText) !== 'string') {
-        console.info('Valid choice text required to load a scene');
-        return;
-      }
-
-      if (!inputEmail || inputEmail.length === 0 ||
-        typeof(inputEmail) !== 'string') {
-        console.info('Valid email required to load a scene');
         return;
       }
 

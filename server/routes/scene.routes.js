@@ -9,11 +9,11 @@ const Player = require('../models/Player.model.js');
  * @param  {Function} next     Advances to next Express middleware
  * @return {Object}            Data for current Scene
  */
-sceneRouter.get('/:inputEmail', function getScene(request, response, next) {
-  console.log('request.params.inputEmail =',request.params.inputEmail);
-  if (!request.params.inputEmail ||
-      typeof(request.params.inputEmail) !== 'string' ||
-      request.params.inputEmail.length === 0) {
+sceneRouter.get('/', function getScene(request, response, next) {
+  console.log('request.query.inputEmail =',request.query.inputEmail);
+  if (!request.query.inputEmail ||
+      typeof(request.query.inputEmail) !== 'string' ||
+      request.query.inputEmail.length === 0) {
     let err = new Error('You must provide a player email ');
     err.status = 400;
     return next(err);
@@ -27,9 +27,9 @@ sceneRouter.get('/:inputEmail', function getScene(request, response, next) {
   // data about the scene we returned
   let sceneReturned;
 
-  console.log('inputEmail is', request.body.inputEmai);
+  console.log('inputEmail is', request.query.inputEmail);
 
-  Player.find({ playerEmail: request.params.inputEmail})
+  Player.find({ playerEmail: request.query.inputEmail})
     .then(function readPlayer(player) {
       if (!player) {
         let err = new Error(
@@ -37,6 +37,7 @@ sceneRouter.get('/:inputEmail', function getScene(request, response, next) {
         err.status = 404;
         return next(err);
       }
+      console.log('the current player\'s', player[0]);
       console.log('the current player\'s playerScene is ', player[0].playerScene);
 
       // return the player's current scene
@@ -68,9 +69,10 @@ sceneRouter.get('/:inputEmail', function getScene(request, response, next) {
           response.json(sceneReturned);
         })
         .catch(function handleIssues(err) {
-          let ourError = new Error ('Unable to search for current Scene');
+          console.error(err);
+          let ourError = new Error ('Unable to search for current Scene' );
           ourError.status = 500;
-          next(err);
+          next(ourError);
         });
       })
       .catch(function handleIssues(err) {
