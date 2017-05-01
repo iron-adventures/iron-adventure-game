@@ -62,6 +62,13 @@
         })
       })
       .then(function handleResponse(responseObj) {
+
+        // route the View to the end template if the player has reached
+        // the last Scene
+        if (responseObj.data.gotoEndScene) {
+          currentScene = responseObj.data;
+          $state.go('end');
+        }
         currentScene = responseObj.data;
         return responseObj;
       });

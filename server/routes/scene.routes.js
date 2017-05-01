@@ -130,7 +130,7 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
 
   // Before routing to the end.template.html, we need to
   // set the player's scene to equal the start scene id
-  // NOTE: We will need to be manually populat all of the scenes
+  // NOTE: We will need to be manually populate all of the scenes
   // in Heroku, *then* update this variable
   // once the start scene _ID is known
   let startSceneId = '58ffe14978feb61989d68e03';
@@ -141,7 +141,7 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
   let returnThisScene;
 
   // data about the scene we returned
-  let sceneReturned;
+  let sceneReturned = {};
 
   console.log('inputText is', request.body.inputText);
 
@@ -169,9 +169,12 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
         }
       });
 
-      // if this scene is the last scene, reset the score to zero
+      // If this scene is the last scene, reset the score to zero
+      // and set boolean that informs SceneService that it should route
+      // the View to the end.template.html
       if (returnThisScene === endSceneId) {
         matchingScore = 0;
+        sceneReturned.gotoEndScene = true;
       }
 
       // Find the next scene and build a return Object from it
@@ -184,12 +187,11 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
             return next(err);
           }
           // return Object with the next scene
-          sceneReturned = {
-            id: data._id,
-            sceneImage: data.sceneImage,
-            sceneText: data.sceneText,
-            sceneChoices: data.sceneChoices
-          };
+          sceneReturned.id = data._id;
+          sceneReturned.sceneImage = data.sceneImage;
+          sceneReturned.sceneText = data.sceneText;
+          sceneReturned.sceneChoices = data.sceneChoices;
+          console.log("sceneReturned, newly built, contains:", sceneReturned);
         })
         .catch(function handleIssues(err) {
           let ourError = new Error ('Unable to search for current Scene');
@@ -213,11 +215,21 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
         // create the new player Object
         let updatedPlayer = player[0];
 
-        // Write the next scene ID and new score.
+        // Write the new score.
         // Note that the new score may
         // be zero if the player is leaving the last scene.
         updatedPlayer.playerScore += matchingScore;
-        updatedPlayer.playerScene = returnThisScene;
+
+        // Update the player scene
+        // If the player is on the last scene,
+        // then set their current scene to be the first Scene, since we will be
+        // routing them to the End template (and they won't see the last scene
+        // and will need to go to the first scene when they return to the game)
+        if (returnThisScene === endSceneId) {
+          updatedPlayer.playerScene = startSceneId;
+        } else {
+          updatedPlayer.playerScene = returnThisScene;
+        }
 
         console.log('updatesPlayer contains: ', updatedPlayer);
 

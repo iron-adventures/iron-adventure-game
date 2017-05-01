@@ -87,5 +87,13 @@
       vm.currentScene = SceneService.getCurrentScene();
       return vm.currentScene.sceneText;
     };
+
+    /**
+     * Function gotoLogin() changes view to start template
+     * @return {void}
+     */
+    vm.gotoStart = function gotoStart() {
+      $state.go('start');
+    };
   }
 }());

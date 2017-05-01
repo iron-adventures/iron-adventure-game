@@ -24,9 +24,12 @@ p {
   display: none;
   color: #84BBEA; }
 
+a.text-decoration {
+  text-decoration-color: #FFFFFF; }
+
 .endScene {
   background-image: url("/images/simple-gray-texture.jpg");
-  height: 100vh; }
+  height: 100%; }
 
 .text-center {
   text-align: center; }
@@ -51,16 +54,25 @@ p {
   -webkit-animation-delay: 10s;
   -moz-animation-delay: 10s; }
 
+.delay-12 {
+  -webkit-animation-delay: 12s;
+  -moz-animation-delay: 102;
+  -webkit-animation-duration: 3s;
+  -moz-animation-duration: 3s; }
+
 .greatScore {
   color: #00CC00; }
 
 .fairScore {
-  color: #CCCC00; }
+  color: #DDCC00; }
 
 .poorScore {
   color: #CC0000; }
 
-.white {
+.themeColor {
   background-color: #FFFFFF; }
+
+.anchorColor {
+  color: #000000; }
 
 /*# sourceMappingURL=style.css.map */
