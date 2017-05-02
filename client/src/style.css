@@ -11,6 +11,9 @@ h2 {
   font-family: Cinzel;
   background-color: #95a5a6; }
 
+.form-control {
+  width: 50%; }
+
 .input-headers {
   font-family: Cinzel; }
 
