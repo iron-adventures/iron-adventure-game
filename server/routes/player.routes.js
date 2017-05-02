@@ -94,7 +94,7 @@ function getFirstScene() {
     console.error(err);
     let ourError = new Error ('Unable to search for first scene');
     ourError.status = 500;
-    next(ourError);
+    throw ourError;
   });
 }
 
