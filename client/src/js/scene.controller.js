@@ -6,20 +6,22 @@
     .controller('SceneController', SceneController);
 
   // inject the angular service that handles data calls for scene data
-  SceneController.$inject = ['$state', '$stateParams', 'SceneService'];
+  SceneController.$inject =
+    ['$state', '$stateParams', 'SceneService'];
 
   /**
-   * SceneController creates a new scene Controller
-   * @param {Object} SceneService Service singleton
+   * [SceneController creates a new scene Controller]
+   * @param {Object} SceneService [Service singleton]
    */
-  function SceneController($state, $stateParams, SceneService) {
+  function SceneController(
+    $state, $stateParams, SceneService) {
     let vm = this;
 
-    vm.playerEmail;  // store the current player's email
+    // store a copy of the SceneService.currentScene
+    vm.currentScene = SceneService.getCurrentScene();
 
-    vm.currentScene = {};  // store the scene to be displayed in the View
-
-    vm.toggle = true;      // used toggle a CSS class based on a click event
+    // get the current player's email
+    vm.playerEmail = localStorage.getItem('email');
 
     /**
      * Function loadScene() will load the current scene, or the next scene
@@ -35,21 +37,10 @@
         return;
       }
 
-      if (!inputText || inputText.length === 0 ||
-        typeof(inputText) !== 'string') {
-        console.info('Valid choice text required to load a scene');
-        return;
-      }
-
-      if (!inputEmail || inputEmail.length === 0 ||
-        typeof(inputEmail) !== 'string') {
-        console.info('Valid email required to load a scene');
-        return;
-      }
-
       SceneService.loadScene(inputId, inputText, inputEmail)
         .then(function handleResponse(responseObj) {
-          vm.currentScene = responseObj;
+          console.log('loadScene on controller responseObj is', responseObj);
+          vm.currentScene = responseObj.data;
         })
         .catch(function handleError(error) {
           if (error.status === 401) {
@@ -63,6 +54,33 @@
             vm.errorMessage = 'Unknown error from server';
           }
         });
+    };
+
+    /**
+     * Function getEmail() returns the player email
+     * @return {String} player email
+     */
+    vm.getEmail = function getEmail() {
+      vm.playerEmail = localStorage.getItem('email');
+      return vm.playerEmail;
+    };
+
+    /**
+     * Function getCurrentScene() a) stores the currentScene Object
+     *                            b) returns scene text for current scene
+     * @return {String} Scene text from current scene
+     */
+    vm.getCurrentScene = function getCurrentScene() {
+      vm.currentScene = SceneService.getCurrentScene();
+      return vm.currentScene.sceneText;
+    };
+
+    /**
+     * Function gotoLogin() changes view to start template
+     * @return {void}
+     */
+    vm.gotoStart = function gotoStart() {
+      $state.go('start');
     };
   }
 }());
