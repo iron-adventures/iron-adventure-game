@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 
 let sceneSchema = mongoose.Schema({
   sceneNext: String,
+  isFirstScene: Boolean,
+  isLastScene: Boolean,
   sceneImage: String,
   sceneText: String,
   sceneChoices: [
     {
-      // choiceId: Number,
       choiceIcon: String,
       choiceText: String,
       choiceScore: Number

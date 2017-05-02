@@ -1,5 +1,6 @@
 const playerRouter = require('express').Router();
 const Player = require('../models/Player.model.js');
+const Scene = require('../models/Scene.model.js');
 
 
 function addAPlayer(request, response, next) {
@@ -25,39 +26,78 @@ function addAPlayer(request, response, next) {
     return;
   }
 
-  Player.find({playerEmail: request.body.playerEmail})
-    .then(function checkIfPlayerIsPresent(player) {
+  getFirstScene()
+    .then(function handleResponse(scene) {
+      console.log('The first scene ID', scene);
+      let getFirstSceneId = scene;
 
-      if(player.length === 0) {
-        let thePlayerCreated = new Player({
-          playerName: request.body.playerName,
-          playerEmail: request.body.playerEmail,
-          playerScore: request.body.playerScore,
-          playerScene: '58ffe14978feb61989d68e03'
+      Player.find({playerEmail: request.body.playerEmail})
+        .then(function checkIfPlayerIsPresent(player) {
+
+          if(player.length === 0) {
+            let thePlayerCreated = new Player({
+              playerName: request.body.playerName,
+              playerEmail: request.body.playerEmail,
+              playerScore: request.body.playerScore,
+              playerScene: getFirstSceneId
+            });
+            console.log('The Player Created', thePlayerCreated);
+            thePlayerCreated.save()
+              .then(function sendBackTheResponse(data) {
+                response.json({ message: 'Added a player', thePlayerAdded: data});
+              })
+              .catch(function handleIssues(err) {
+                console.error(err);
+                let ourError = new Error('Unable to save new player');
+                ourError.status = 500;
+                next(ourError);
+              });
+          } else {
+            // return the existing player
+            response.json(
+              { message: 'Sign-in matches existing player:',
+                thePlayerAdded: player[0] });
+          }
+        })
+        .catch(function handleErrors(err) {
+          let ourError = new Error('Unable to search with that email');
+          ourError.status = err.status;
+          next(err);
         });
-        thePlayerCreated.save()
-          .then(function sendBackTheResponse(data) {
-            response.json({ message: 'Added a player', thePlayerAdded: data});
-          })
-          .catch(function handleIssues(err) {
-            console.error(err);
-            let ourError = new Error('Unable to save new player');
-            ourError.status = 500;
-            next(ourError);
-          });
-      } else {
-        // return the existing player
-        response.json(
-          { message: 'Sign-in matches existing player:',
-            thePlayerAdded: player[0] });
-      }
-    })
+      })
     .catch(function handleErrors(err) {
-      let ourError = new Error('Unable to search with that email');
-      ourError.status = err.status;
-      next(err);
-    });
+        console.error(err);
+        let ourError = new Error ('Unable to find first scene');
+        ourError.status = 500;
+        next(ourError);
+      });
+
 }
+
+/**
+ *
+ * @return {Promise}
+ */
+function getFirstScene() {
+  console.log('Did we get into getFirstScene?');
+  return Scene.find({isFirstScene: true})
+  .then(function readScene(data) {
+    if (!data) {
+      let err = new Error('Cannot find the first scene!');
+      err.status = 404;
+      return next(err);
+    }
+    console.log('The first scene id is ', data[0]._id);
+    return data[0]._id;
+  })
+  .catch(function handleIssues(err) {
+    console.error(err);
+    let ourError = new Error ('Unable to search for first scene');
+    ourError.status = 500;
+    next(ourError);
+  });
+}
+
 
 playerRouter.post('/', addAPlayer);
 
