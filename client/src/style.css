@@ -64,6 +64,10 @@ p {
   display: none;
   color: #84BBEA; }
 
+.clickText {
+  color: white;
+  background-color: #909b9e; }
+
 a.text-decoration {
   text-decoration-color: #FFFFFF; }
 
