@@ -1,4 +1,5 @@
 @import url("//fonts.googleapis.com/css?family=Bungee+Shade:400italic,700italic,400,700|Cinzel:400,700|Libre+Baskerville:400,400i,700");
+@import url("//fonts.googleapis.com/css?family=Bungee+Shade:400italic,700italic,400,700|Cinzel:400,700|Libre+Baskerville:400,400i,700");
 h1 {
   font-family: Libre Baskerville;
   font-size: 3em; }
@@ -36,10 +37,6 @@ p {
 
 .ready {
   animation-duration: 2s;
-  animation-name: slidein; }
-
-.bootcamp {
-  animation-duration: 3s;
   animation-name: slidein; }
 
 @keyframes slidein {
@@ -118,5 +115,9 @@ a.text-decoration {
 
 .anchorColor {
   color: #000000; }
+
+.aboutImage {
+  width: 90%;
+  border-radius: 15px 15px 15px 15px; }
 
 /*# sourceMappingURL=style.css.map */
