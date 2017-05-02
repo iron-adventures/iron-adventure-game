@@ -8,6 +8,7 @@
 
     function routerConfig($stateProvider, $urlRouterProvider) {
       $urlRouterProvider.when('', '/');
+      $urlRouterProvider.otherwise('/not-found');
 
       $stateProvider
         .state({
@@ -30,6 +31,11 @@
           templateUrl: 'views/start.template.html',
           controller: 'PlayerController',
           controllerAs: 'playerCtrl'
+        })
+        .state({
+          name: '404-not-found',
+          url: '/not-found',
+          templateUrl: 'views/404.template.html',
         });
     }
 }());
