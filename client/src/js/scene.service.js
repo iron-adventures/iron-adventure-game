@@ -28,11 +28,12 @@
      */
     function getScene(inputEmail) {
       return $http({
-        url: '/api/scenes/' + inputEmail,
+        url: '/api/scenes/',
         method: 'get',
         header: {
           'Content-Type': 'application/json'
-        }
+        },
+        params: {inputEmail: inputEmail}
       })
       .then(function handleResponse(responseObj) {
         currentScene = responseObj.data;
