@@ -1,4 +1,22 @@
-@import url('//fonts.googleapis.com/css?family=Bungee+Shade:400italic,700italic,400,700|Cinzel:400,700');
+@import url('//fonts.googleapis.com/css?family=Bungee+Shade:400italic,700italic,400,700|Cinzel:400,700|Libre+Baskerville:400,400i,700');
+
+h1 {
+  font-family: Libre Baskerville;
+  font-size: 3em;
+}
+
+h2 {
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  color: rgb(44,62,80);
+  font-family: Cinzel;
+  background-color: (rgb(149,165,166));
+}
+
+.input-headers{
+  font-family: Cinzel;
+}
 
 .start {
   display: flex;
@@ -11,8 +29,41 @@
 
 p {
   font-family: Cinzel;
+  font-size: 1.5em;
 }
 
-.ready{
-  font-family: Cinzel;
+.btn {
+  background-color: rgb(149,165,166);
+  border: none;
+  padding: 1em 2em;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  float:right;
+}
+
+.ready {
+  animation-duration: 2s;
+  animation-name: slidein;
+}
+
+.bootcamp {
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+.bg-warning {
+  font-size: 1em;
 }
