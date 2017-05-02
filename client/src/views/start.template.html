@@ -1,13 +1,15 @@
-<section>
-  <p class='text-center'>The Journey Begins Here</p>
-  <p class='text-center ready'>How Ready Are You?</p>
-</section>
+<aside>
 
+<section>
+  <h1 class='text-center'>Welcome to Iron Adventure</h1>
+  <p class='text-center ready'>How Ready Are You</p>
+  <p class='text-center bootcamp'>For A Coding Bootcamp?</p>
+</section>
 
 <img class='img-responsive center-block startImage' src='/images/hipster-workplace.jpg' alt='Background image for start page'>
 
-<fieldset>
-  <legend>Login</legend>
+<fieldset class='input-form container-fluid'>
+  <h2 class='login-header'>Login</h2>
   <form
     name='loginPlayer'
     ng-submit='loginPlayer.$valid && playerCtrl.login(playerCtrl.playerInfo)'
@@ -18,7 +20,7 @@
       <p class='bg-warning' ng-show='loginPlayer.name.$touched && !loginPlayer.name.$valid'>
         Please enter a name</p>
 
-      <label for='name'>Name</label>
+      <label class='input-headers' for='name'>Name</label>
 
       <input
         type='text'
@@ -33,7 +35,7 @@
     <aside class='form-group'>
       <p class='bg-warning' ng-show='loginPlayer.email.$touched && !loginPlayer.email.$valid'>
         Please enter an email</p>
-      <label for='email'>Email Address</label>
+      <label class='input-headers' for='email'>Email Address</label>
       <input
         type='email'
         ng-model='playerCtrl.playerInfo.playerEmail'
@@ -47,3 +49,5 @@
     <input type='submit' class='btn btn-default' value='Submit'>
   </form>
 </fieldset>
+
+</aside>
