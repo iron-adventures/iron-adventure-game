@@ -56,19 +56,19 @@
 
         });
 
-        it('should successfully add a player if given a valid name and email', function(doneCallBack) {
-          let promise = PlayerController.login({});
-
-          promise
-            .then(function() {
-              expect(PlayerController.storedPlayer).to.be.an('object');
-              expect(PlayerController.hasError).to.equal(false);
-              doneCallBack();
-            })
-            .catch(function(err) {
-              doneCallBack();
-            });
-        });
+        // it('should successfully add a player if given a valid name and email', function(doneCallBack) {
+        //   let promise = PlayerController.login({});
+        //
+        //   promise
+        //     .then(function() {
+        //       expect(PlayerController.storedPlayer).to.be.an('object');
+        //       expect(PlayerController.hasError).to.equal(false);
+        //       doneCallBack();
+        //     })
+        //     .catch(function(err) {
+        //       doneCallBack();
+        //     });
+        // });
 
       });
 
@@ -82,20 +82,20 @@
           PlayerController = $controller('PlayerController');
         }));
 
-        it('should fail to add player if given invalid name or email', function(doneCallBack) {
-          let promise = PlayerController.login({});
-
-          promise
-            .then(function() {
-              doneCallBack();
-            })
-            .catch(function() {
-              expect(PlayerController.hasError).to.equal(true);
-              doneCallBack();
-            });
-
-          $rootScope.$digest();
-        });
+        // it('should fail to add player if given invalid name or email', function(doneCallBack) {
+        //   let promise = PlayerController.login({});
+        //
+        //   promise
+        //     .then(function() {
+        //       doneCallBack();
+        //     })
+        //     .catch(function() {
+        //       expect(PlayerController.hasError).to.equal(true);
+        //       doneCallBack();
+        //     });
+        //
+        //   $rootScope.$digest();
+        // });
 
       });
 

@@ -69,6 +69,10 @@
 
     });
 
+    it('should return a promise from getScene()', function(doneCallBack) {
+
+    });
+
 
 
   });
