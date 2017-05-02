@@ -42,7 +42,6 @@
         })
       })
       .then(function handleResponse(responseObj) {
-        console.log('Response object', responseObj.data);
         playerEmail = responseObj.data.thePlayerAdded.playerEmail;
         localStorage.setItem('email', playerEmail);
         return(responseObj.data);

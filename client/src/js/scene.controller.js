@@ -6,36 +6,41 @@
     .controller('SceneController', SceneController);
 
   // inject the angular service that handles data calls for scene data
-  SceneController.$inject = ['$state', '$stateParams', 'SceneService'];
+  SceneController.$inject =
+    ['$state', '$stateParams', 'SceneService'];
 
   /**
-   * SceneController creates a new scene Controller
-   * @param {Object} SceneService Service singleton
+   * [SceneController creates a new scene Controller]
+   * @param {Object} SceneService [Service singleton]
    */
-  function SceneController($state, $stateParams, SceneService) {
+  function SceneController(
+    $state, $stateParams, SceneService) {
     let vm = this;
 
-    vm.playerEmail = '';  // store the current player's email
+    // store a copy of the SceneService.currentScene
+    vm.currentScene = SceneService.getCurrentScene();
 
-    vm.currentScene = {};  // store the scene to be displayed in the View
-
-    vm.toggle = true;      // used toggle a CSS class based on a click event
+    // get the current player's email
+    vm.playerEmail = localStorage.getItem('email');
 
     /**
-     * Function getScene() returns current scene data for a player
-     * @param  {String} inputEmail Player email address
-     * @return {void}
+     * Function loadScene() will load the current scene, or the next scene
+     * @param  {String} inputId    Current scene ID provided to advance,
+     *                             or 0 if we need to go to the next scene
+     * @param  {String} inputText  Player choice
+     * @param  {String} inputEmail Player email
+     * @return {Object}            Scene data
      */
-    vm.getScene = function getScene(inputEmail) {
-      if (!inputEmail || inputEmail.length === 0 ||
-        typeof(inputEmail) !== 'string') {
-        console.info('Valid email required to get a scene');
+    vm.loadScene = function loadScene(inputId, inputText, inputEmail) {
+      if (!inputId || inputId.length === 0 || typeof(inputId) !== 'string') {
+        console.info('Valid id required to load a scene');
         return;
       }
 
-      SceneService.getScene(inputEmail)
+      SceneService.loadScene(inputId, inputText, inputEmail)
         .then(function handleResponse(responseObj) {
-          vm.currentScene = responseObj;
+          console.log('loadScene on controller responseObj is', responseObj);
+          vm.currentScene = responseObj.data;
         })
         .catch(function handleError(error) {
           if (error.status === 401) {
@@ -52,48 +57,30 @@
     };
 
     /**
-     * Function loadScene() will load the current scene, or the next scene
-     * @param  {String} inputId    Current scene ID provided to advance,
-     *                             or 0 if we need to go to the next scene
-     * @param  {String} inputText  Player choice
-     * @param  {String} inputEmail Player email
-     * @return {Object}            Scene data
+     * Function getEmail() returns the player email
+     * @return {String} player email
      */
-    vm.loadScene = function loadScene(inputId, inputText, inputEmail) {
-      console.log('input variables to scene.router:', inputId, inputText, inputEmail);
-      if (!inputId || inputId.length === 0 || typeof(inputId) !== 'string') {
-        console.info('Valid id required to load a scene');
-        return;
-      }
+    vm.getEmail = function getEmail() {
+      vm.playerEmail = localStorage.getItem('email');
+      return vm.playerEmail;
+    };
 
-      if (!inputText || inputText.length === 0 ||
-        typeof(inputText) !== 'string') {
-        console.info('Valid choice text required to load a scene');
-        return;
-      }
+    /**
+     * Function getCurrentScene() a) stores the currentScene Object
+     *                            b) returns scene text for current scene
+     * @return {String} Scene text from current scene
+     */
+    vm.getCurrentScene = function getCurrentScene() {
+      vm.currentScene = SceneService.getCurrentScene();
+      return vm.currentScene.sceneText;
+    };
 
-      if (!inputEmail || inputEmail.length === 0 ||
-        typeof(inputEmail) !== 'string') {
-        console.info('Valid email required to load a scene');
-        return;
-      }
-
-      SceneService.loadScene(inputId, inputText, inputEmail)
-        .then(function handleResponse(responseObj) {
-          vm.currentScene = responseObj;
-        })
-        .catch(function handleError(error) {
-          if (error.status === 401) {
-            vm.hasError = true;
-            vm.errorMessage = 'Scene not found';
-          } else if (error.status === 404) {
-            vm.hasError = true;
-            vm.errorMessage = 'Could not find that scene by the id provided';
-          } else {
-            vm.hasError = true;
-            vm.errorMessage = 'Unknown error from server';
-          }
-        });
+    /**
+     * Function gotoLogin() changes view to start template
+     * @return {void}
+     */
+    vm.gotoStart = function gotoStart() {
+      $state.go('start');
     };
   }
 }());

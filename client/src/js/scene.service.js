@@ -3,14 +3,24 @@
 
   angular.module('adventure')
     .factory('SceneService', SceneService);
-  SceneService.$inject = ['$http'];
+  SceneService.$inject = ['$http', '$state'];
 
   /**
    * Creates a new SceneService
    * @param {Function} $http Makes Ajax calls
    * @return {Object}        The service's API methods
    */
-  function SceneService($http) {
+  function SceneService($http, $state) {
+    let currentScene = {};
+
+    /**
+     * Function getCurrentScene() returns the current scene
+     * @return {Object} current scene Object
+     */
+    function getCurrentScene() {
+      return currentScene;
+    }
+
     /**
      * Function getScene() returns current scene for a player
      * @param  {String} inputEmail Player email
@@ -18,15 +28,17 @@
      */
     function getScene(inputEmail) {
       return $http({
-        url: '/api/scenes/' + inputEmail,
+        url: '/api/scenes/',
         method: 'get',
         header: {
           'Content-Type': 'application/json'
-        }
+        },
+        params: {inputEmail: inputEmail}
       })
       .then(function handleResponse(responseObj) {
-        console.log('service responseObj is: ', responseObj);
-        return responseObj.data;
+        currentScene = responseObj.data;
+        console.log('SceneService wrote currentScene as', currentScene);
+        $state.go('game');
       });
     }
 
@@ -51,12 +63,20 @@
         })
       })
       .then(function handleResponse(responseObj) {
-        console.log('service responseObj is: ', responseObj);
-        return responseObj.data;
+
+        // route the View to the end template if the player has reached
+        // the last Scene
+        if (responseObj.data.gotoEndScene) {
+          currentScene = responseObj.data;
+          $state.go('end');
+        }
+        currentScene = responseObj.data;
+        return responseObj;
       });
     }
 
     return {
+      getCurrentScene: getCurrentScene,
       getScene: getScene,
       loadScene: loadScene
     };

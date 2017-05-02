@@ -26,12 +26,14 @@ function addAPlayer(request, response, next) {
   }
 
   Player.find({playerEmail: request.body.playerEmail})
-    .then(function checkIfPlayerIsPresent(email) {
-      if(email.length === 0) {
+    .then(function checkIfPlayerIsPresent(player) {
+
+      if(player.length === 0) {
         let thePlayerCreated = new Player({
           playerName: request.body.playerName,
           playerEmail: request.body.playerEmail,
-          playerScore: request.body.playerScore
+          playerScore: request.body.playerScore,
+          playerScene: '58ffe14978feb61989d68e03'
         });
         thePlayerCreated.save()
           .then(function sendBackTheResponse(data) {
@@ -44,7 +46,10 @@ function addAPlayer(request, response, next) {
             next(ourError);
           });
       } else {
-        console.log('Player already exists');
+        // return the existing player
+        response.json(
+          { message: 'Sign-in matches existing player:',
+            thePlayerAdded: player[0] });
       }
     })
     .catch(function handleErrors(err) {
