@@ -275,6 +275,8 @@ sceneRouter.post('/', function addScene(request, response, next) {
 
     let theSceneCreated = new Scene({
       sceneNext: request.body.sceneNext,
+      isFirstScene: request.body.isFirstScene,
+      isLastScene: request.body.isLastScene,
       sceneImage: request.body.sceneImage,
       sceneText: request.body.sceneText,
       sceneChoices: request.body.sceneChoices
