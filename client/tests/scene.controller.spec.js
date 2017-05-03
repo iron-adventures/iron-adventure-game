@@ -131,6 +131,17 @@
         expect(mockSceneService.loadScene.numTimesCalled).to.equal(1);
     });
 
+    it('should run loadScene() and return a valid response', function () {
+      SceneController.loadScene(
+        '58ffe14978feb61989d68e07',
+        'I own this problem.  Take whatever time is needed.',
+        'david@tir.com');
+        // NOTE: need to have valid expect for test for a valid response object
+        expect(mockSceneService.loadScene.numTimesCalled).to.equal(1);
+    });
+
+
+
     it('should return the player email from getEmail()', function() {
       expect(mockSceneService.getEmail()).to.equal('david@tir.com');
     });
