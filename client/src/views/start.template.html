@@ -5,51 +5,28 @@
   <p class='text-center ready'>Begin Your Journey</p>
 </section>
 
-<a ui-sref='about' ng-click='playerCtrl.goToAbout()'>About</a>
-<a ui-sref='start'>Home</a>
+<a ui-sref='about'>About</a>
 
-<img class='img-responsive startImage' src='/images/hipster-workplace.jpg' alt='Background image for start page'>
+<h3>Choose Your Story and Sign In</h3>
 
-<fieldset class='input-form container-fluid'>
-  <h2 class='login-header'>Login</h2>
-  <form
-    name='loginPlayer'
-    ng-submit='loginPlayer.$valid && playerCtrl.login(playerCtrl.playerInfo)'
-    novalidate>
+<section class='img_wrap'>
+<h4 class='img_description'>Coding Bootcamp</h4>
+<a ui-sref='login'><img class='img-responsive center-block startImage' src='/images/hipster-workplace.jpg' alt='Coding bootcamp'></a>
+</section>
 
-    <aside class='form-group'>
+<section class='img_wrap'>
+<h4 class='img_description'>Game of Thrones</h4>
+<img class='img-responsive center-block startImage' src='/images/got.jpg' alt='GOT image'>
+</section>
 
-      <p class='bg-warning' ng-show='loginPlayer.name.$touched && !loginPlayer.name.$valid'>
-        Please enter a name</p>
+<section class='img_wrap'>
+<h4 class='img_description'>WestWorld</h4>
+<img class='img-responsive center-block startImage' src='/images/westworld.jpg' alt='Westworld image'>
+</section>
 
-      <label class='input-headers' for='name'>Name</label>
-
-      <input
-        type='text'
-        ng-model='playerCtrl.playerInfo.playerName'
-        class='form-control'
-        name='name'
-        placeholder='Name'
-        id='name-input'
-        required>
-    </aside>
-
-    <aside class='form-group'>
-      <p class='bg-warning' ng-show='loginPlayer.email.$touched && !loginPlayer.email.$valid'>
-        Please enter an email</p>
-      <label class='input-headers' for='email'>Email Address</label>
-      <input
-        type='email'
-        ng-model='playerCtrl.playerInfo.playerEmail'
-        class='form-control'
-        name='email'
-        placeholder='Email'
-        id='email-input'
-        required>
-    </aside>
-
-    <input type='submit' class='btn btn-default' value='Submit'>
-  </form>
-</fieldset>
+<section class='img_wrap'>
+<h4 class='img_description'>Build Your Own Story</h4>
+<img class='img-responsive center-block startImage' src='/images/ships.jpg' alt='Ship image'>
+</section>
 
 </aside>
