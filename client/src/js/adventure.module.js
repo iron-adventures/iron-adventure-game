@@ -6,6 +6,12 @@
 
     routerConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
+    /**
+     * Creates a routerConfig instance
+     * @param  {Class} $stateProvider      Provides interface to declare states
+     * @param  {Class} $urlRouterProvider  Provides state routing
+     * @return {void}
+     */
     function routerConfig($stateProvider, $urlRouterProvider) {
       $urlRouterProvider.when('', '/');
       $urlRouterProvider.otherwise('/not-found');
@@ -54,6 +60,5 @@
           controller: 'PlayerController',
           controllerAs: 'playerCtrl'
         });
-
     }
 }());
