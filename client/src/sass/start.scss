@@ -2,12 +2,13 @@
 
 .header {
   background-color: rgb(135, 142, 152);
-  padding: 1px;
+  padding: 2em;
 }
 
 h1 {
   font-family: Libre Baskerville;
   font-size: 3em;
+  color: black;
 }
 
 h2 {
@@ -15,16 +16,18 @@ h2 {
   text-align: center;
   font-size: 2em;
   color: white;
-  font-family: Cinzel;
-  background-color: (rgb(149,165,166));
+  font-family: Libre Baskerville;
+  background-color: rgb(149,165,166);
 }
 
 h3 {
   width: 100%;
   text-align: center;
-  color: white;
-  font-family: Cinzel;
-  background-color: rgba(135, 142, 152,0.4);
+  color: rbg(0, 0, 0);
+  font-family: Libre Baskerville;
+  background-color: rgb(135, 142, 152);
+  padding: 0.3em;
+  font-size: 2.5em;
 }
 
 h4 {
@@ -32,12 +35,6 @@ h4 {
   font-size: 1.2em;
   color: white;
   font-weight: 400;
-}
-
-.about {
-  font-family: Cinzel;
-  font-size: 2em;
-  text-decoration: none;
 }
 
 .input-headers{
@@ -63,6 +60,7 @@ h4 {
 p {
   font-family: Cinzel;
   font-size: 1.5em;
+  color: black;
 }
 
 .btn {
@@ -139,4 +137,43 @@ p {
     margin: 1em;
     flex: 0 0 95%;
     }
+}
+
+footer {
+  background-color: rgb(125, 134, 149);
+  color: rgb(10, 10, 10);
+  height: 4em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-left: 0;
+}
+
+.footer-text {
+  font-size: 1em;
+}
+
+.about {
+  font-family: Cinzel;
+  font-size: 1em;
+  text-decoration: none;
+}
+
+
+@media screen and (min-width: 35em) {
+footer {
+    display: flex;
+    justify-content: space-between;
+
+    .footer-text {
+      display: flex;
+      justify-content: center;
+      align-self: center;
+      flex: 0 0 50%;
+      }
+
+    .about {
+    justify-content: flex-end;
+    }
+  }
 }
