@@ -1,5 +1,9 @@
 @import url("//fonts.googleapis.com/css?family=Bungee+Shade:400italic,700italic,400,700|Cinzel:400,700|Libre+Baskerville:400,400i,700");
 @import url("//fonts.googleapis.com/css?family=Bungee+Shade:400italic,700italic,400,700|Cinzel:400,700|Libre+Baskerville:400,400i,700");
+.header {
+  background-color: #878e98;
+  padding: 1px; }
+
 h1 {
   font-family: Libre Baskerville;
   font-size: 3em; }
@@ -17,11 +21,18 @@ h3 {
   text-align: center;
   color: white;
   font-family: Cinzel;
-  background: rgba(29, 106, 154, 0.72); }
+  background-color: rgba(135, 142, 152, 0.4); }
 
-a {
+h4 {
   font-family: Cinzel;
-  font-size: 2em; }
+  font-size: 1.2em;
+  color: white;
+  font-weight: 400; }
+
+.about {
+  font-family: Cinzel;
+  font-size: 2em;
+  text-decoration: none; }
 
 .input-headers {
   font-family: Cinzel; }
@@ -30,7 +41,14 @@ a {
   display: flex; }
 
 .startImage {
-  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 1;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  width: 95%;
   border-radius: 15px 15px 15px 15px; }
 
 p {
@@ -60,18 +78,42 @@ p {
 .bg-warning {
   font-size: 1em; }
 
-h4 {
-  font-family: Cinzel;
-  font-size: 1.2em;
-  color: white;
-  font-weight: 400; }
+.middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%); }
 
 .img_wrap {
   position: relative; }
 
 .img_description {
   text-align: center;
-  background: rgba(29, 106, 154, 0.72); }
+  left: 0;
+  width: 100%;
+  color: white;
+  padding: 10px 20px;
+  background: black;
+  border-radius: 15px 15px 15px 15px;
+  font-size: 3em; }
+
+.img_wrap:hover .startImage {
+  opacity: 0.6; }
+
+.img_wrap:hover .middle {
+  opacity: 1; }
+
+.stories {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; }
+  .stories .img_wrap {
+    box-sizing: border-box;
+    margin: 1em;
+    flex: 0 0 95%; }
 
 .sceneImage {
   background-size: 100% auto;
@@ -171,5 +213,11 @@ a {
 
 .nav {
   font-size: 2em; }
+
+@media screen and (min-width: 35em) {
+  .stories {
+    flex: 4 0 20%; }
+    .stories .img_wrap {
+      flex: 1 0 40%; } }
 
 /*# sourceMappingURL=style.css.map */
