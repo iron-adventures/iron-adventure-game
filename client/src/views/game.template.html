@@ -1,4 +1,4 @@
-<article>
+<article class='sceneText'>
   <p>{{sceneCtrl.currentScene.sceneText}}</p>
 </article>
 
@@ -7,8 +7,8 @@
   <section ng-repeat='sceneChoices in sceneCtrl.currentScene'>
 
     <p
-      class='clickText fadeInDown animated delay-1'
-      ng-repeat='sceneChoice in sceneChoices track by $index'
+      class='clickText'
+      ng-repeat = 'sceneChoice in sceneChoices track by $index'
       ng-click = 'sceneCtrl.loadScene(
         sceneCtrl.currentScene.id,
         sceneChoice.choiceText,
