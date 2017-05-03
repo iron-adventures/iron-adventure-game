@@ -9,7 +9,6 @@ const Scene = require('../models/Scene.model.js');
  * @param {Function} next     advance to next Express middleware
  */
 function addAPlayer(request, response, next) {
-
   if(!request.body || Object.keys(request.body).length === 0) {
     let err = new Error('You must provide a player');
     err.status = 400;
@@ -35,7 +34,6 @@ function addAPlayer(request, response, next) {
     .then(function handleResponse(scene) {
       console.log('The first scene ID', scene);
       let getFirstSceneId = scene;
-
       Player.find({playerEmail: request.body.playerEmail})
         .then(function checkIfPlayerIsPresent(player) {
           if(player.length === 0) {
@@ -59,8 +57,10 @@ function addAPlayer(request, response, next) {
           } else {
             // return the existing player
             response.json(
-              { message: 'Sign-in matches existing player:',
-                thePlayerAdded: player[0] });
+              {
+               message: 'Sign-in matches existing player:',
+               thePlayerAdded: player[0]
+              });
           }
         })
         .catch(function handleErrors(err) {

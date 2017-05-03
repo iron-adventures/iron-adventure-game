@@ -10,7 +10,6 @@ const Player = require('../models/Player.model.js');
  * @return {Object}            Data for current Scene
  */
 sceneRouter.get('/', function getScene(request, response, next) {
-  console.log('request.query.inputEmail =',request.query.inputEmail);
   if (!request.query.inputEmail ||
     typeof(request.query.inputEmail) !== 'string' ||
     request.query.inputEmail.length === 0) {
@@ -27,8 +26,6 @@ sceneRouter.get('/', function getScene(request, response, next) {
   // data about the scene we returned
   let sceneReturned;
 
-  console.log('inputEmail is', request.query.inputEmail);
-
   Player.find({ playerEmail: request.query.inputEmail})
     .then(function readPlayer(player) {
       if (!player) {
@@ -39,9 +36,6 @@ sceneRouter.get('/', function getScene(request, response, next) {
 
       // return the player's current scene
       returnThisScene = player[0].playerScene;
-
-      // Since we're loading the current scene,
-      // do NOT increment the playerScore
 
       // So then we will obtain
       // the scene data for the player's current scene
@@ -79,7 +73,7 @@ sceneRouter.get('/', function getScene(request, response, next) {
 });
 
 /**
- * loadScene() returns the current Scene, or next Scene data
+ * Returns the current Scene, or next Scene data
  * @param  {Object}   request  Request data
  * @param  {Object}   response Response data
  * @param  {Function} next     Advances to next Express middleware
@@ -134,8 +128,6 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
 
   // data about the scene we returned
   let sceneReturned = {};
-
-  console.log('inputText is', request.body.inputText);
 
   // find the scene that contains the choiceText that the player selected
  Scene.find({sceneChoices: {$elemMatch: {choiceText: request.body.inputText} } })
