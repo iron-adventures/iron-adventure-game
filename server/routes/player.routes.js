@@ -2,7 +2,12 @@ const playerRouter = require('express').Router();
 const Player = require('../models/Player.model.js');
 const Scene = require('../models/Scene.model.js');
 
-
+/**
+ * Check if a player should be added to the database
+ * @param {Object}   request  request data
+ * @param {Object}   response response data
+ * @param {Function} next     advance to next Express middleware
+ */
 function addAPlayer(request, response, next) {
 
   if(!request.body || Object.keys(request.body).length === 0) {
@@ -33,7 +38,6 @@ function addAPlayer(request, response, next) {
 
       Player.find({playerEmail: request.body.playerEmail})
         .then(function checkIfPlayerIsPresent(player) {
-
           if(player.length === 0) {
             let thePlayerCreated = new Player({
               playerName: request.body.playerName,
@@ -66,17 +70,17 @@ function addAPlayer(request, response, next) {
         });
       })
     .catch(function handleErrors(err) {
-        console.error(err);
-        let ourError = new Error ('Unable to find first scene');
-        ourError.status = 500;
-        next(ourError);
+      console.error(err);
+      let ourError = new Error ('Unable to find first scene');
+      ourError.status = 500;
+      next(ourError);
       });
-
 }
 
 /**
- *
- * @return {Promise}
+ * Return id of first scene, if it is the first scene
+ * @return {String} If isFirstScene is true, return the scene _id
+ * @return {void}   Or return nothing if the scene is not the first scene.
  */
 function getFirstScene() {
   console.log('Did we get into getFirstScene?');
@@ -87,7 +91,6 @@ function getFirstScene() {
       err.status = 404;
       return next(err);
     }
-    console.log('The first scene id is ', data[0]._id);
     return data[0]._id;
   })
   .catch(function handleIssues(err) {
@@ -97,7 +100,6 @@ function getFirstScene() {
     throw ourError;
   });
 }
-
 
 playerRouter.post('/', addAPlayer);
 
