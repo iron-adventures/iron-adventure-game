@@ -66,8 +66,9 @@
 
         // route the View to the end template if the player has reached
         // the last Scene
-        if (responseObj.data.gotoEndScene) {
+        if (responseObj.data.isLastScene === true) {
           currentScene = responseObj.data;
+          console.log('CURRENT SCENE', currentScene);
           $state.go('end');
         }
         currentScene = responseObj.data;

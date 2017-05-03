@@ -2,11 +2,13 @@
 
 <section>
   <h1 class='text-center'>Welcome to Iron Adventure</h1>
-  <p class='text-center ready'>How Ready Are You</p>
-  <p class='text-center bootcamp'>For A Coding Bootcamp?</p>
+  <p class='text-center ready'>Begin Your Journey</p>
 </section>
 
-<img class='img-responsive center-block startImage' src='/images/hipster-workplace.jpg' alt='Background image for start page'>
+<a ui-sref='about' ng-click='playerCtrl.goToAbout()'>About</a>
+<a ui-sref='start'>Home</a>
+
+<img class='img-responsive startImage' src='/images/hipster-workplace.jpg' alt='Background image for start page'>
 
 <fieldset class='input-form container-fluid'>
   <h2 class='login-header'>Login</h2>

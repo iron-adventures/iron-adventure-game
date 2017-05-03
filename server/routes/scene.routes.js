@@ -169,14 +169,6 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
         }
       });
 
-      // If this scene is the last scene, reset the score to zero
-      // and set boolean that informs SceneService that it should route
-      // the View to the end.template.html
-      if (returnThisScene === endSceneId) {
-        matchingScore = 0;
-        sceneReturned.gotoEndScene = true;
-      }
-
       // Find the next scene and build a return Object from it
       Scene.findById( {_id: returnThisScene })
         .then(function readScene(data) {
@@ -191,6 +183,7 @@ sceneRouter.patch('/', function loadScene(request, response, next) {
           sceneReturned.sceneImage = data.sceneImage;
           sceneReturned.sceneText = data.sceneText;
           sceneReturned.sceneChoices = data.sceneChoices;
+          sceneReturned.isLastScene = data.isLastScene;
           console.log("sceneReturned, newly built, contains:", sceneReturned);
 
           // update the playerScene and playerScore
@@ -282,6 +275,8 @@ sceneRouter.post('/', function addScene(request, response, next) {
 
     let theSceneCreated = new Scene({
       sceneNext: request.body.sceneNext,
+      isFirstScene: request.body.isFirstScene,
+      isLastScene: request.body.isLastScene,
       sceneImage: request.body.sceneImage,
       sceneText: request.body.sceneText,
       sceneChoices: request.body.sceneChoices
