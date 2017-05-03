@@ -7,7 +7,7 @@
   PlayerController.$inject = ['$q', 'PlayerService', 'SceneService'];
 
   /**
-   * Handles the player info
+   * Creates a PlayerController instance
    * @return {void}
    */
   function PlayerController($q, PlayerService, SceneService) {
@@ -17,13 +17,11 @@
     vm.message = null;
 
     /**
-     * Logs in the player using name and email
-     * @param  {Object}   playerInfo  Object containing the player name and email
+     * Signs the player into the application
+     * @param  {Object}  playerInfo  Argument containing player name and email
      * @return {Promise}
      */
     vm.login = function login(playerInfo) {
-
-      console.log("playerinfo is", playerInfo);
 
       if (!playerInfo) {
         return $q.reject('Invalid data input');
@@ -44,7 +42,6 @@
           vm.hasError = true;
           console.log('There was an error in attempting to login:', errResponse);
         });
-
     };
   }
 

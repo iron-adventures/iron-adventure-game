@@ -10,8 +10,8 @@
     ['$state', '$stateParams', 'SceneService'];
 
   /**
-   * [SceneController creates a new scene Controller]
-   * @param {Object} SceneService [Service singleton]
+   * Creates a new scene Controller
+   * @param {Object} SceneService Service singleton
    */
   function SceneController(
     $state, $stateParams, SceneService) {
@@ -24,9 +24,8 @@
     vm.playerEmail = localStorage.getItem('email');
 
     /**
-     * Function loadScene() will load the current scene, or the next scene
-     * @param  {String} inputId    Current scene ID provided to advance,
-     *                             or 0 if we need to go to the next scene
+     * Load the current scene, or the next scene
+     * @param  {String} inputId    Current scene ID
      * @param  {String} inputText  Player choice
      * @param  {String} inputEmail Player email
      * @return {Object}            Scene data
@@ -34,6 +33,18 @@
     vm.loadScene = function loadScene(inputId, inputText, inputEmail) {
       if (!inputId || inputId.length === 0 || typeof(inputId) !== 'string') {
         console.info('Valid id required to load a scene');
+        return;
+      }
+
+      if (!inputText || inputText.length === 0 ||
+        typeof(inputText) !== 'string') {
+        console.info('Valid choice text required to load a scene');
+        return;
+      }
+
+      if (!inputEmail || inputEmail.length === 0 ||
+        typeof(inputEmail) !== 'string') {
+        console.info('Valid email required to load a scene');
         return;
       }
 
