@@ -2,57 +2,31 @@
 
 <section>
   <h1 class='text-center'>Welcome to Iron Adventure</h1>
-  <p class='text-center ready'>How Ready Are You</p>
-  <p class='text-center bootcamp'>For A Coding Bootcamp?</p>
+  <p class='text-center ready'>Begin Your Journey</p>
 </section>
 
-<img class='img-responsive center-block startImage' src='/images/hipster-workplace.jpg' alt='Background image for start page'>
+<a ui-sref='about'>About</a>
 
-<fieldset class='input-form container-fluid'>
-  <h2 class='login-header'>Login</h2>
-  <form
-    class='form-inline'
-    name='loginPlayer'
-    ng-submit='loginPlayer.$valid && playerCtrl.login(playerCtrl.playerInfo)'
-    novalidate>
+<h3>Choose Your Story and Sign In</h3>
 
-    <aside class='form-group'>
+<section class='img_wrap'>
+<h4 class='img_description'>Coding Bootcamp</h4>
+<a ui-sref='login'><img class='img-responsive center-block startImage' src='/images/hipster-workplace.jpg' alt='Coding bootcamp'></a>
+</section>
 
-      <p class='bg-warning' ng-show='loginPlayer.name.$touched && !loginPlayer.name.$valid'>
-        Please enter a name</p>
+<section class='img_wrap'>
+<h4 class='img_description'>Game of Thrones</h4>
+<img class='img-responsive center-block startImage' src='/images/got.jpg' alt='GOT image'>
+</section>
 
-      <label class='sr-only' class='input-headers' for='name'>Name</label>
+<section class='img_wrap'>
+<h4 class='img_description'>WestWorld</h4>
+<img class='img-responsive center-block startImage' src='/images/westworld.jpg' alt='Westworld image'>
+</section>
 
-      <input
-        class='form-control mb-2 mr-sm-2 mb-sm-0'
-        type='text'
-        ng-model='playerCtrl.playerInfo.playerName'
-        class='form-control'
-        name='name'
-        placeholder='Name'
-        id='name-input'
-        required>
-    </aside>
-
-    <aside class='form-group'>
-      <p class='bg-warning' ng-show='loginPlayer.email.$touched && !loginPlayer.email.$valid'>
-        Please enter an email</p>
-
-      <label class='sr-only' class='input-headers' for='email'>Email Address</label>
-
-      <input
-        class='form-control mb-2 mr-sm-2 mb-sm-0'
-        type='email'
-        ng-model='playerCtrl.playerInfo.playerEmail'
-        class='form-control'
-        name='email'
-        placeholder='Email'
-        id='email-input'
-        required>
-    </aside>
-
-    <input type='submit' class='btn btn-default' value='Submit'>
-  </form>
-</fieldset>
+<section class='img_wrap'>
+<h4 class='img_description'>Build Your Own Story</h4>
+<img class='img-responsive center-block startImage' src='/images/ships.jpg' alt='Ship image'>
+</section>
 
 </aside>

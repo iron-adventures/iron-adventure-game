@@ -9,13 +9,22 @@ h2 {
   width: 100%;
   text-align: center;
   font-size: 2em;
-  color: rgb(44,62,80);
+  color: white;
   font-family: Cinzel;
   background-color: (rgb(149,165,166));
 }
 
-.form-control {
-  width: 50%;
+h3 {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-family: Cinzel;
+  background: rgba(29, 106, 154, 0.72);
+}
+
+a {
+  font-family: Cinzel;
+  font-size: 2em;
 }
 
 .input-headers{
@@ -27,7 +36,7 @@ h2 {
 }
 
 .startImage {
-  width: 90%;
+  width: 80%;
   border-radius: 15px 15px 15px 15px;
 }
 
@@ -51,11 +60,6 @@ p {
   animation-name: slidein;
 }
 
-.bootcamp {
-  animation-duration: 3s;
-  animation-name: slidein;
-}
-
 @keyframes slidein {
   from {
     margin-left: 100%;
@@ -71,3 +75,28 @@ p {
 .bg-warning {
   font-size: 1em;
 }
+
+
+h4 {
+  font-family: Cinzel;
+  font-size: 1.2em;
+  color: white;
+  font-weight: 400;
+}
+
+
+.img_wrap {
+  position: relative;
+}
+
+.img_description {
+  text-align: center;
+  // opacity: 0;
+  background: rgba(29, 106, 154, 0.72);
+}
+
+// .img_wrap:hover .img_description {
+//   display: block;
+//   opacity: 1;
+//   text-align: center;
+// }
