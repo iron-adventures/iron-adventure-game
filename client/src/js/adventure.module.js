@@ -46,6 +46,13 @@
           name: 'home',
           url: '/',
           templateUrl: 'views/start.template.html',
+        })
+        .state({
+          name: 'login',
+          url: '/login',
+          templateUrl: 'views/login.template.html',
+          controller: 'PlayerController',
+          controllerAs: 'playerCtrl'
         });
 
     }
