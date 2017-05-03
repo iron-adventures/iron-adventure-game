@@ -122,6 +122,15 @@
       expect(mockSceneService.loadScene.numTimesCalled).to.equal(0);
     });
 
+    it('should run SceneService.loadScene() with valid input', function () {
+      SceneController.loadScene(
+        '58ffe14978feb61989d68e07',
+        'I own this problem.  Take whatever time is needed.',
+        'david@tir.com');
+
+        expect(mockSceneService.loadScene.numTimesCalled).to.equal(1);
+    });
+
     it('should return the player email from getEmail()', function() {
       expect(mockSceneService.getEmail()).to.equal('david@tir.com');
     });

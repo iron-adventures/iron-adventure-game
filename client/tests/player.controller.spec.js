@@ -18,6 +18,20 @@
     beforeEach(inject(function($controller, _$q_, _$rootScope_) {
       $q = _$q_;
       $rootScope = _$rootScope_;
+
+      mockPlayerService.loginPlayer = function loginPlayer(playerOne) {
+        mockPlayerService.loginPlayer.numTimesCalled++;
+        return $q.resolve(
+          {
+            playerName: 'foo',
+            playerEmail: 'foo@bar.com',
+            playerScore: 0,
+            playerScene: '1234566'
+          }
+        );
+
+      };
+
       PlayerController = $controller('PlayerController');
     }));
 
@@ -25,83 +39,55 @@
       expect(PlayerController.playerInfo).to.be.an('object');
     });
 
+    it('should contain a hasError boolean', function() {
+      expect(PlayerController.hasError).to.be.a('boolean');
+    });
+
     it('login should be a function', function() {
       expect(PlayerController.login).to.be.a('function');
     });
 
-    describe('login function', function() {
-
-      describe('successful player creation', function () {
-
-        beforeEach(inject(function($controller) {
-          mockPlayerService.loginPlayer = function loginPlayer(playerOne) {
-            return Promise.resolve({playerName: 'foo', playerEmail: 'foo@bar.com'});
-          };
-
-          PlayerController = $controller('PlayerController');
-        }));
-
-        it('should return a promise', function(doneCallBack) {
-          let promise = PlayerController.login({});
-          expect(promise.then).to.be.a('function');
-          expect(promise.catch).to.be.a('function');
-
-          promise
-            .then(function() {
-              doneCallBack();
-            })
-            .catch(function(err) {
-              doneCallBack();
-            });
-
-        });
-
-        // it('should successfully add a player if given a valid name and email', function(doneCallBack) {
-        //   let promise = PlayerController.login({});
-        //
-        //   promise
-        //     .then(function() {
-        //       expect(PlayerController.storedPlayer).to.be.an('object');
-        //       expect(PlayerController.hasError).to.equal(false);
-        //       doneCallBack();
-        //     })
-        //     .catch(function(err) {
-        //       doneCallBack();
-        //     });
-        // });
-
-      });
-
-      describe('failed player creation', function () {
-
-        beforeEach(inject(function($controller) {
-          mockPlayerService.loginPlayer = function loginPlayer(playerOne) {
-            return $q.reject({message: "You must provide a name", time: Date.now() });
-          };
-
-          PlayerController = $controller('PlayerController');
-        }));
-
-        // it('should fail to add player if given invalid name or email', function(doneCallBack) {
-        //   let promise = PlayerController.login({});
-        //
-        //   promise
-        //     .then(function() {
-        //       doneCallBack();
-        //     })
-        //     .catch(function() {
-        //       expect(PlayerController.hasError).to.equal(true);
-        //       doneCallBack();
-        //     });
-        //
-        //   $rootScope.$digest();
-        // });
-
-      });
-
+    it('should return a promise', function() {
+      let promise = PlayerController.login({});
+      expect(promise.then).to.be.a('function');
+      expect(promise.catch).to.be.a('function');
     });
 
-  });
+    it('should successfully add a player if given a valid name and email', function(doneCallBack) {
+      let promise = PlayerController.login({
+        playerName: 'Jordan',
+        playerEmail: 'jordan@jordan.com'
+      });
 
+      promise
+        .then(function() {
+          doneCallBack();
+        })
+        .catch(function(err) {
+          doneCallBack(err);
+        });
+
+      $rootScope.$digest();
+    });
+
+    it('should fail to login() if given invalid email', function(doneCallBack) {
+      let promise =
+        PlayerController.login({playerName: "Name", playerEmail: 17});
+
+      promise
+        .then(function() {
+          doneCallBack('This promise.resolve was unexpected!');
+        })
+        .catch(function(err) {
+
+          doneCallBack();
+        });
+
+      $rootScope.$digest();
+    });
+
+
+
+  });
 
 }());

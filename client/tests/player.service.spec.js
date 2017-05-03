@@ -53,14 +53,14 @@
       //
       // });
 
-      it('should fail to add a player given invalid name or email', function(doneCallBack) {
+      it('should add a player given a valid name or email', function(doneCallBack) {
         let promise = PlayerService.loginPlayer({playerName: true, playerEmail: 'foo@bar.com'});
         expect(promise.then).to.be.a('function');
         expect(promise.catch).to.be.a('function');
 
         promise
-          .then(function() {
-            doneCallBack();
+          .then(function handleResponse(response) {
+            doneCallBack(response);
           })
           .catch(function handleError(err) {
             doneCallBack();

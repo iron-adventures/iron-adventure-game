@@ -37,7 +37,7 @@
       })
       .then(function handleResponse(responseObj) {
         currentScene = responseObj.data;
-        console.log('SceneService wrote currentScene as', currentScene);
+        console.info('SceneService wrote currentScene as', currentScene);
         $state.go('game');
       });
     }

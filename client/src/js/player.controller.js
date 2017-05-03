@@ -4,13 +4,13 @@
   angular.module('adventure')
     .controller('PlayerController', PlayerController);
 
-  PlayerController.$inject = ['PlayerService', 'SceneService'];
+  PlayerController.$inject = ['$q', 'PlayerService', 'SceneService'];
 
   /**
    * Handles the player info
    * @return {void}
    */
-  function PlayerController(PlayerService, SceneService) {
+  function PlayerController($q, PlayerService, SceneService) {
     let vm = this;
     vm.playerInfo = {};
     vm.hasError = false;
@@ -26,15 +26,15 @@
       console.log("playerinfo is", playerInfo);
 
       if (!playerInfo) {
-        return Promise.reject('Invalid data input');
+        return $q.reject('Invalid data input');
       }
       if (!playerInfo.playerName || playerInfo.playerName.length === 0 ||
         typeof(playerInfo.playerName) !== 'string') {
-        return Promise.reject('Invalid input name');
+        return $q.reject('Invalid input name');
       }
       if (!playerInfo.playerEmail || playerInfo.playerEmail.length === 0 ||
         typeof(playerInfo.playerEmail) !== 'string') {
-        return Promise.reject('Invalid input email');
+        return $q.reject('Invalid input email');
       }
       return PlayerService.loginPlayer(playerInfo)
         .then(function handleResponseData(responseData) {
