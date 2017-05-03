@@ -12,3 +12,33 @@
   display: none;
   color: #84BBEA;
 }
+
+.clickText {
+  color: rgb(255,255,255);
+  background-color: rgba(197, 164, 164,0.4);
+}
+
+.sceneText {
+  text-align: center;
+  background-color: rgba(197, 164, 164,0.4);
+}
+
+.clickText {
+  border-radius: 10px;
+  background-size: 400% 400%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+   animation: gradient 10s ease infinite;
+   font-size: 1.6em;
+   color: #4C0F0F;
+   background-color: rgba(197, 164, 164, 0.8);
+ }
+}
+
+@keyframes gradient {
+  50% {
+    background-position: 100% 0;
+  }
+}
