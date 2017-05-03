@@ -34,25 +34,6 @@
 
     describe('loginPlayer', function() {
 
-      // it('should work if a valid name and email are provided', function(doneCallBack) {
-      //   let promise = PlayerService.loginPlayer({playerName: 'foobar', playerEmail: 'foo@bar.com'});
-      //   expect(promise.then).to.be.a('function');
-      //   expect(promise.catch).to.be.a('function');
-      //
-      //   promise
-      //     .then(function() {
-      //       expect(localStorage.getItem('email')).to.equal('foo@bar.com');
-      //       doneCallBack();
-      //     })
-      //     .catch(function handleError(err) {
-      //       doneCallBack(err);
-      //     });
-      //
-      //   // tells the fake server (backend) to release any held up responses
-      //   $httpBackend.flush();
-      //
-      // });
-
       it('should add a player given a valid name or email', function(doneCallBack) {
         let promise = PlayerService.loginPlayer({playerName: true, playerEmail: 'foo@bar.com'});
         expect(promise.then).to.be.a('function');
@@ -103,9 +84,5 @@
     });
 
   });
-
-
-
-
 
 }());

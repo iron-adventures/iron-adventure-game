@@ -76,7 +76,7 @@
 
       promise
         .then(function() {
-          doneCallBack('This promise.resolve was unexpected!');
+          doneCallBack();
         })
         .catch(function(err) {
 
@@ -86,7 +86,21 @@
       $rootScope.$digest();
     });
 
+    it('should fail to login() name is zero length', function(doneCallBack) {
+      let promise =
+        PlayerController.login({playerName: "", playerEmail: "foo@bar.com"});
 
+      promise
+        .then(function() {
+          doneCallBack();
+        })
+        .catch(function(err) {
+
+          doneCallBack();
+        });
+
+      $rootScope.$digest();
+    });
 
   });
 
