@@ -36,6 +36,24 @@
           name: '404-not-found',
           url: '/not-found',
           templateUrl: 'views/404.template.html',
+        })
+        .state({
+          name: 'about',
+          url: '/about',
+          templateUrl: 'views/about.template.html',
+        })
+        .state({
+          name: 'home',
+          url: '/',
+          templateUrl: 'views/start.template.html',
+        })
+        .state({
+          name: 'login',
+          url: '/login',
+          templateUrl: 'views/login.template.html',
+          controller: 'PlayerController',
+          controllerAs: 'playerCtrl'
         });
+
     }
 }());

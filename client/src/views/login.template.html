@@ -1,0 +1,53 @@
+<section>
+  <h1 class='text-center'>Welcome to Iron Adventure</h1>
+  <p class='text-center ready'>Begin Your Journey</p>
+</section>
+
+<a ui-sref='start'>Home</a>
+
+<fieldset class='input-form container-fluid'>
+  <h2 id='login' class='login-header'>Sign In</h2></a>
+  <form
+    class='form-inline'
+    name='loginPlayer'
+    ng-submit='loginPlayer.$valid && playerCtrl.login(playerCtrl.playerInfo)'
+    novalidate>
+
+    <aside class='form-group'>
+
+      <p class='bg-warning' ng-show='loginPlayer.name.$touched && !loginPlayer.name.$valid'>
+        Please enter a name</p>
+
+      <label class='input-headers' for='name'>Name</label>
+
+      <input
+        class='form-control mb-2 mr-sm-2 mb-sm-0'
+        type='text'
+        ng-model='playerCtrl.playerInfo.playerName'
+        class='form-control'
+        name='name'
+        placeholder='Name'
+        id='name-input'
+        required>
+    </aside>
+
+    <aside class='form-group'>
+      <p class='bg-warning' ng-show='loginPlayer.email.$touched && !loginPlayer.email.$valid'>
+        Please enter an email</p>
+
+      <label class='input-headers' for='email'>Email Address</label>
+
+      <input
+        class='form-control mb-2 mr-sm-2 mb-sm-0'
+        type='email'
+        ng-model='playerCtrl.playerInfo.playerEmail'
+        class='form-control'
+        name='email'
+        placeholder='Email'
+        id='email-input'
+        required>
+    </aside>
+
+    <input type='submit' class='btn btn-default' value='Submit'>
+  </form>
+</fieldset>
