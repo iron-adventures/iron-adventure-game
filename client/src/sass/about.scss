@@ -1,14 +1,29 @@
 @import url('//fonts.googleapis.com/css?family=Bungee+Shade:400italic,700italic,400,700|Cinzel:400,700|Libre+Baskerville:400,400i,700');
 
 .aboutImage {
-  width: 90%;
-  border-radius: 15px 15px 15px 15px;
+  width: 70%;
+  border-radius: 1em 1em 1em 1em;
+  padding-bottom: 2em;
 }
 
 a {
   font-size: 1em;
+  font-family: Cinzel;
 }
 
-.nav {
-  font-size: 2em;
+p {
+  color: rgb(0, 0, 0);
+  padding: 0.05em;
+}
+
+.header {
+  background-color: rgb(135, 142, 152);
+  padding: 2em;
+}
+
+footer {
+  background-color: rgb(125, 134, 149);
+  color: rgb(10, 10, 10);
+  height: 4em;
+  padding-left: 0;
 }
