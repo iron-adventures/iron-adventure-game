@@ -34,27 +34,27 @@
             sceneText:
             'You\'ve been stuck on a homework problem for several hours',
             sceneChoices:
-             [
-               { _id: '58ffe14978feb61989d68e0a',
-                 choiceScore: 5,
-                 choiceText:
-                 'I own this problem.  Take whatever time is needed.',
-                 choiceIcon: 'glyphicon glyphicon-thumbs-up'
-               },
-               { _id: '58ffe14978feb61989d68e09',
-                 choiceScore: 5,
-                 choiceText:
-                 'Work on the problem for a final, set period of time.',
-                 choiceIcon: 'glyphicon glyphicon-flash'
-               },
-               { _id: '58ffe14978feb61989d68e08',
-                 choiceScore: 10,
-                 choiceText:
-                 'Ask a fellow student or instructor for assistance.',
-                 choiceIcon: 'glyphicon glyphicon-question-sign'
-               }
-             ]
-           }
+              [
+                { _id: '58ffe14978feb61989d68e0a',
+                  choiceScore: 5,
+                  choiceText:
+                  'I own this problem.  Take whatever time is needed.',
+                  choiceIcon: 'glyphicon glyphicon-thumbs-up'
+                },
+                { _id: '58ffe14978feb61989d68e09',
+                  choiceScore: 5,
+                  choiceText:
+                  'Work on the problem for a final, set period of time.',
+                  choiceIcon: 'glyphicon glyphicon-flash'
+                },
+                { _id: '58ffe14978feb61989d68e08',
+                  choiceScore: 10,
+                  choiceText:
+                  'Ask a fellow student or instructor for assistance.',
+                  choiceIcon: 'glyphicon glyphicon-question-sign'
+                }
+              ]
+          }
         });
       $httpBackend
         .whenGET('/api/scenes/?inputEmail=david@tir.com')
@@ -65,27 +65,27 @@
             sceneText:
             'You\'ve been stuck on a homework problem for several hours',
             sceneChoices:
-             [
-               { _id: '58ffe14978feb61989d68e0a',
+              [
+                { _id: '58ffe14978feb61989d68e0a',
                  choiceScore: 5,
                  choiceText:
                  'I own this problem.  Take whatever time is needed.',
                  choiceIcon: 'glyphicon glyphicon-thumbs-up'
-               },
-               { _id: '58ffe14978feb61989d68e09',
+                },
+                { _id: '58ffe14978feb61989d68e09',
                  choiceScore: 5,
                  choiceText:
                  'Work on the problem for a final, set period of time.',
                  choiceIcon: 'glyphicon glyphicon-flash'
-               },
-               { _id: '58ffe14978feb61989d68e08',
-                 choiceScore: 10,
-                 choiceText:
-                 'Ask a fellow student or instructor for assistance.',
-                 choiceIcon: 'glyphicon glyphicon-question-sign'
-               }
-             ]
-           }
+                },
+                { _id: '58ffe14978feb61989d68e08',
+                  choiceScore: 10,
+                  choiceText:
+                  'Ask a fellow student or instructor for assistance.',
+                  choiceIcon: 'glyphicon glyphicon-question-sign'
+                }
+              ]
+          }
         });
     }));
 
@@ -95,27 +95,23 @@
         'I own this problem.  Take whatever time is needed.',
         'davidS@dude.com'
       );
-
       expect(returnValue.then).to.be.a('function');
       expect(returnValue.catch).to.be.a('function');
-
       returnValue
-      .then(function handleError(responseObj) {
-        expect(responseObj).to.be.a('Object');
-        doneCallBack();
-      })
-      .catch(function handleError(err) {
-        doneCallBack(err);
-      });
-      $httpBackend.flush();
+        .then(function handleError(responseObj) {
+          expect(responseObj).to.be.a('Object');
+          doneCallBack();
+        })
+        .catch(function handleError(err) {
+          doneCallBack(err);
+        });
+        $httpBackend.flush();
     });
-
 
     it('should attempt to $state.go from getScene()', function(doneCallBack) {
       let returnValue = SceneService.getScene('david@tir.com');
       expect(returnValue.then).to.be.a('function');
       expect(returnValue.catch).to.be.a('function');
-
       returnValue
       .then(function handleResponse() {
         expect(mockState.go.numTimesCalled).to.equal(1);
@@ -125,7 +121,6 @@
         console.info('Did getScene() catch?');
         doneCallBack(err);
       });
-
       $httpBackend.flush();
     });
 
@@ -134,5 +129,4 @@
     });
 
   });
-
 }());

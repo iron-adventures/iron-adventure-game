@@ -23,18 +23,23 @@
           sceneImage: '/images/bedroom-1082262_960_720.jpg',
           sceneText: 'It is the morning of the first day of the coding bootcamp.',
           sceneChoices:
-           [ { _id: '58ffe14978feb61989d68e06',
+          [
+            { _id: '58ffe14978feb61989d68e06',
                choiceScore: 10,
                choiceText: 'Get to the campus early, never been there before.',
-               choiceIcon: 'glyphicon glyphicon-flash' },
-             { _id: '58ffe14978feb61989d68e05',
-               choiceScore: 5,
-               choiceText: 'Sleep in as much as possible, could be a long day.',
-               choiceIcon: 'glyphicon glyphicon-bed' },
-             { _id: '58ffe14978feb61989d68e04',
-               choiceScore: 5,
-               choiceText: 'Let\'s keep our same routine, no sweat.',
-               choiceIcon: 'glyphicon glyphicon-thumbs-down' } ]
+               choiceIcon: 'glyphicon glyphicon-flash'
+            },
+            { _id: '58ffe14978feb61989d68e05',
+              choiceScore: 5,
+              choiceText: 'Sleep in as much as possible, could be a long day.',
+              choiceIcon: 'glyphicon glyphicon-bed'
+            },
+            { _id: '58ffe14978feb61989d68e04',
+              choiceScore: 5,
+              choiceText: 'Let\'s keep our same routine, no sweat.',
+              choiceIcon: 'glyphicon glyphicon-thumbs-down'
+            }
+          ]
         };
       };
 
@@ -46,27 +51,32 @@
             sceneText:
             'You\'ve been stuck on a homework problem for several hours',
             sceneChoices:
-             [ { _id: '58ffe14978feb61989d68e0a',
-                 choiceScore: 5,
-                 choiceText:
-                 'I own this problem.  Take whatever time is needed.',
-                 choiceIcon: 'glyphicon glyphicon-thumbs-up' },
-               { _id: '58ffe14978feb61989d68e09',
-                 choiceScore: 5,
-                 choiceText:
-                 'Work on the problem for a final, set period of time.',
-                 choiceIcon: 'glyphicon glyphicon-flash' },
-               { _id: '58ffe14978feb61989d68e08',
-                 choiceScore: 10,
-                 choiceText:
-                 'Ask a fellow student or instructor for assistance.',
-                 choiceIcon: 'glyphicon glyphicon-question-sign' } ] });
-                };
+              [
+                { _id: '58ffe14978feb61989d68e0a',
+                  choiceScore: 5,
+                  choiceText:
+                  'I own this problem.  Take whatever time is needed.',
+                  choiceIcon: 'glyphicon glyphicon-thumbs-up'
+                },
+                { _id: '58ffe14978feb61989d68e09',
+                  choiceScore: 5,
+                  choiceText:
+                  'Work on the problem for a final, set period of time.',
+                  choiceIcon: 'glyphicon glyphicon-flash'
+                },
+                { _id: '58ffe14978feb61989d68e08',
+                  choiceScore: 10,
+                  choiceText:
+                  'Ask a fellow student or instructor for assistance.',
+                  choiceIcon: 'glyphicon glyphicon-question-sign'
+                }
+              ]
+          });
+      };
 
       mockSceneService.getEmail = function getEmail() {
         mockSceneService.getEmail.numTimesCalled++;
         return 'david@tir.com';
-
       };
 
       mockSceneService.getScene = function getScene(inputEmail) {
@@ -77,21 +87,27 @@
             sceneText:
             'You\'ve been stuck on a homework problem for several hours',
             sceneChoices:
-             [ { _id: '58ffe14978feb61989d68e0a',
+             [
+               { _id: '58ffe14978feb61989d68e0a',
                  choiceScore: 5,
                  choiceText:
                  'I own this problem.  Take whatever time is needed.',
-                 choiceIcon: 'glyphicon glyphicon-thumbs-up' },
+                 choiceIcon: 'glyphicon glyphicon-thumbs-up'
+               },
                { _id: '58ffe14978feb61989d68e09',
                  choiceScore: 5,
                  choiceText:
                  'Work on the problem for a final, set period of time.',
-                 choiceIcon: 'glyphicon glyphicon-flash' },
+                 choiceIcon: 'glyphicon glyphicon-flash'
+               },
                { _id: '58ffe14978feb61989d68e08',
                  choiceScore: 10,
                  choiceText:
                  'Ask a fellow student or instructor for assistance.',
-                 choiceIcon: 'glyphicon glyphicon-question-sign' } ] });
+                 choiceIcon: 'glyphicon glyphicon-question-sign'
+               }
+             ]
+          });
       };
 
       // reset spy variables
@@ -106,19 +122,17 @@
 
     afterEach(inject(function($controller) {
       // clear email from localStorage before the next test
-      // localStorage.removeItem('email');
+      localStorage.removeItem('email');
     }));
 
     it('should fail to loadScene() if input ID is invalid', function () {
       // attempt to pass inputID value of undefined
       let undefinedID;
       let testEmail = 'david@tir.com';
-
       SceneController.loadScene(
         undefinedID,
         'I own this problem.  Take whatever time is needed.',
         testEmail);
-
       expect(mockSceneService.loadScene.numTimesCalled).to.equal(0);
     });
 
@@ -127,7 +141,6 @@
         '58ffe14978feb61989d68e07',
         'I own this problem.  Take whatever time is needed.',
         'david@tir.com');
-
         expect(mockSceneService.loadScene.numTimesCalled).to.equal(1);
     });
 
@@ -140,8 +153,6 @@
         expect(mockSceneService.loadScene.numTimesCalled).to.equal(1);
     });
 
-
-
     it('should return the player email from getEmail()', function() {
       expect(mockSceneService.getEmail()).to.equal('david@tir.com');
     });
@@ -152,5 +163,4 @@
     });
 
   });
-
 }());
