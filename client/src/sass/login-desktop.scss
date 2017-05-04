@@ -1,0 +1,19 @@
+@media screen and (min-width: 35em) {
+  .storyDescription {
+    display: flex;
+  }
+
+  .loginStoryText {
+    // flex: 0 0 25%;
+    // height: 20em;
+    margin-top: .25em;
+    margin-bottom: .5em;
+    margin-left: .5em;
+    margin-right: .5em;
+    vertical-align: middle;
+  }
+
+  .loginStoryImage {
+    margin: 1em;
+  }
+}
