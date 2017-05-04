@@ -1,8 +1,9 @@
 @import url('//fonts.googleapis.com/css?family=Bungee+Shade:400italic,700italic,400,700|Cinzel:400,700|Libre+Baskerville:400,400i,700');
 
 .aboutImage {
-  width: 90%;
+  width: 75%;
   border-radius: 15px 15px 15px 15px;
+  margin-top: 3em;
 }
 
 a {
@@ -10,5 +11,20 @@ a {
 }
 
 .nav {
+  font-size: 1.5em;
+  font-family: Bungee Shade;
+  color: rgb(0, 0, 0);
+}
+
+.title {
+  padding-bottom: 1em;
+}
+
+.built {
+  font-family: Bungee Shade;
   font-size: 2em;
+}
+
+.about-ia {
+  padding-top: 1em;
 }
