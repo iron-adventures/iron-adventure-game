@@ -2,11 +2,6 @@ a.text-decoration {
   text-decoration-color: #FFFFFF;
 }
 
-.endScene {
-  background-image: url('/images/simple-gray-texture.jpg');
-  height: 100%;
-}
-
 .text-center {
   text-align: center;
 }
@@ -51,15 +46,20 @@ a.text-decoration {
   color: #000000;
 }
 
-.end-header {
+.end-h3 {
   padding-bottom: 1em;
   background: none;
   color: black;
+  width: 60%;
+  margin: auto;
 }
 
 .end-thankyou {
   padding-top: 2em;
   padding-left: 2em;
   padding-right: 2em;
-  padding-bottom: .5em;
+}
+
+.end-title {
+  margin-top: auto;
 }
