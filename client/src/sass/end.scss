@@ -47,22 +47,19 @@ a.text-decoration {
   -moz-animation-direction: alternate;
 }
 
-.greatScore {
-  color: #00CC00;
-}
-
-.fairScore {
-  color: #DDCC00;
-}
-
-.poorScore {
-  color: #CC0000;
-}
-
-.themeColor {
-  background-color: #FFFFFF;
-}
-
 .anchorColor {
   color: #000000;
+}
+
+.end-header {
+  padding-bottom: 1em;
+  background: none;
+  color: black;
+}
+
+.end-thankyou {
+  padding-top: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-bottom: .5em;
 }
