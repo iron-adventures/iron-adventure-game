@@ -1,13 +1,21 @@
 @import url('//fonts.googleapis.com/css?family=Bungee+Shade:400italic,700italic,400,700|Cinzel:400,700|Libre+Baskerville:400,400i,700');
 
 .header {
-  background-color: rgb(135, 142, 152);
   padding: 2em;
 }
 
+.backpack {
+  width: 7em;
+  border-radius: 200px;
+  background-color: #DDD;
+  border: 5px solid rgb(95, 95, 95);
+  margin-top: 10px;
+  // filter: brightness(90%);
+}
+
 h1 {
-  font-family: Libre Baskerville;
-  font-size: 3em;
+  font-family: Bungee Shade;
+  font-size: 4em;
   color: black;
 }
 
@@ -16,7 +24,7 @@ h2 {
   text-align: center;
   font-size: 2em;
   color: white;
-  font-family: Libre Baskerville;
+  font-family: Cinzel;
   background-color: rgb(149,165,166);
 }
 
@@ -24,9 +32,9 @@ h3 {
   width: 100%;
   text-align: center;
   color: rbg(0, 0, 0);
-  font-family: Libre Baskerville;
-  background-color: rgb(135, 142, 152);
-  padding: 0.3em;
+  font-family: Cinzel;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   font-size: 2.5em;
 }
 
@@ -76,6 +84,9 @@ p {
 .ready {
   animation-duration: 2s;
   animation-name: slidein;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  font-size: 3em;
 }
 
 @keyframes slidein {
@@ -139,41 +150,20 @@ p {
     }
 }
 
-footer {
-  background-color: rgb(125, 134, 149);
-  color: rgb(10, 10, 10);
-  height: 4em;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  padding-left: 0;
+.choose_wrap {
+  border-top: 1px solid rgb(30, 29, 39);
+  border-bottom: 1px solid rgb(30, 29, 39);
 }
 
-.footer-text {
-  font-size: 1em;
+.choose {
+  animation: pulse 3s infinite;
 }
 
-.about {
-  font-family: Cinzel;
-  font-size: 1em;
-  text-decoration: none;
-}
-
-
-@media screen and (min-width: 35em) {
-footer {
-    display: flex;
-    justify-content: space-between;
-
-    .footer-text {
-      display: flex;
-      justify-content: center;
-      align-self: center;
-      flex: 0 0 50%;
-      }
-
-    .about {
-    justify-content: flex-end;
-    }
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
