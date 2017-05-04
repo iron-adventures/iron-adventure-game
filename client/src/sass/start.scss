@@ -1,13 +1,26 @@
 @import url('//fonts.googleapis.com/css?family=Bungee+Shade:400italic,700italic,400,700|Cinzel:400,700|Libre+Baskerville:400,400i,700');
 
+body {
+  background-color: rgba(187, 191, 197, 0.45);
+}
+
 .header {
-  background-color: rgb(135, 142, 152);
-  padding: 1px;
+  padding: 2em;
+}
+
+.backpack {
+  width: 7em;
+  border-radius: 200px;
+  background-color: #DDD;
+  border: 5px solid rgb(95, 95, 95);
+  margin-top: 25px;
+  filter: brightness(90%);
 }
 
 h1 {
-  font-family: Libre Baskerville;
-  font-size: 3em;
+  font-family: Bungee Shade;
+  font-size: 4em;
+  color: black;
 }
 
 h2 {
@@ -16,15 +29,17 @@ h2 {
   font-size: 2em;
   color: white;
   font-family: Cinzel;
-  background-color: (rgb(149,165,166));
+  background-color: rgb(149,165,166);
 }
 
 h3 {
   width: 100%;
   text-align: center;
-  color: white;
+  color: rbg(0, 0, 0);
   font-family: Cinzel;
-  background-color: rgba(135, 142, 152,0.4);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-size: 2.5em;
 }
 
 h4 {
@@ -32,12 +47,6 @@ h4 {
   font-size: 1.2em;
   color: white;
   font-weight: 400;
-}
-
-.about {
-  font-family: Cinzel;
-  font-size: 2em;
-  text-decoration: none;
 }
 
 .input-headers{
@@ -63,6 +72,7 @@ h4 {
 p {
   font-family: Cinzel;
   font-size: 1.5em;
+  color: black;
 }
 
 .btn {
@@ -78,6 +88,9 @@ p {
 .ready {
   animation-duration: 2s;
   animation-name: slidein;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  font-size: 3em;
 }
 
 @keyframes slidein {
@@ -133,10 +146,29 @@ p {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  padding-top: 2em;
 
   .img_wrap {
     box-sizing: border-box;
     margin: 1em;
     flex: 0 0 95%;
     }
+}
+
+.choose_wrap {
+  border-top: 1px solid rgb(30, 29, 39);
+  border-bottom: 1px solid rgb(30, 29, 39);
+}
+
+.choose {
+  animation: pulse 6s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
