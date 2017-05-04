@@ -1,5 +1,9 @@
 @import url('//fonts.googleapis.com/css?family=Bungee+Shade:400italic,700italic,400,700|Cinzel:400,700|Libre+Baskerville:400,400i,700');
 
+body {
+  background-color: rgba(187, 191, 197, 0.45);
+}
+
 .header {
   padding: 2em;
 }
@@ -9,8 +13,8 @@
   border-radius: 200px;
   background-color: #DDD;
   border: 5px solid rgb(95, 95, 95);
-  margin-top: 10px;
-  // filter: brightness(90%);
+  margin-top: 25px;
+  filter: brightness(90%);
 }
 
 h1 {
@@ -142,6 +146,7 @@ p {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  padding-top: 2em;
 
   .img_wrap {
     box-sizing: border-box;
@@ -156,7 +161,7 @@ p {
 }
 
 .choose {
-  animation: pulse 3s infinite;
+  animation: pulse 6s infinite;
 }
 
 @keyframes pulse {
