@@ -4,19 +4,26 @@
   margin-top: .5em;
   margin-bottom: .5em;
   display: block;
-  height: auto;
   width: 50%;
   height: 50%;
   border-radius: 15px 15px 15px 15px;
 }
 
 .loginStoryText {
-  background-color: rgba(135, 142, 152,0.4);
-  width: 90%;
+  background: none;
   border-radius: 15px 15px 15px 15px;
   text-align: center;
   padding: .5em;
   margin-left: auto;
   margin-right: auto;
   font-size: 2em;
+}
+
+.login-header {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.login-home {
+  margin-left: 1em;
 }
