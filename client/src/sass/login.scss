@@ -21,8 +21,7 @@
 }
 
 .login-header {
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
+  border-radius: 15px 15px 15px 15px;
 }
 
 .login-home {
@@ -40,4 +39,19 @@ footer {
 
 .storyDescription {
   padding-top:2em;
+}
+
+h2 {
+  background-color: rgb(125, 134, 149);
+}
+
+.btn {
+  background-color: rgb(127, 138, 156);
+  border-radius: 15px 15px 15px 15px;
+}
+
+.btn-default:hover{
+color: rgb(236, 243, 255);
+background-color: rgba(44, 68, 88, 0.73);
+border-color: #adadad;
 }
