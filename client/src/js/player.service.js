@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('adventure')
-  .factory('PlayerService', PlayerService);
+    .factory('PlayerService', PlayerService);
 
   PlayerService.$inject = ['$http'];
 
@@ -15,8 +15,8 @@
     let playerEmail = localStorage.getItem('email');
 
     /**
-    * Log in player with the API given user provided info
-    * @param   {Object}    loginDetails   Object containing player name and email
+    * Sign in player with the data API
+    * @param   {Object}  loginDetails  Argument containing player name and email
     * @return  {Promise}
     */
     function loginPlayer(loginDetails) {
@@ -63,7 +63,6 @@
     * @return {void}
     */
     function logout() {
-
       return $http({
         url: '/api/players/logout',
         method: 'post',
@@ -78,14 +77,11 @@
       });
     }
 
-
     return {
       loginPlayer: loginPlayer,
       getEmail: getEmail,
       logout: logout
     };
-
   }
-
 
 }());

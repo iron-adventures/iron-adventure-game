@@ -18,7 +18,6 @@
     beforeEach(inject(function($controller, _$q_, _$rootScope_) {
       $q = _$q_;
       $rootScope = _$rootScope_;
-
       mockPlayerService.loginPlayer = function loginPlayer(playerOne) {
         mockPlayerService.loginPlayer.numTimesCalled++;
         return $q.resolve(
@@ -29,9 +28,7 @@
             playerScene: '1234566'
           }
         );
-
       };
-
       PlayerController = $controller('PlayerController');
     }));
 
@@ -58,7 +55,6 @@
         playerName: 'Jordan',
         playerEmail: 'jordan@jordan.com'
       });
-
       promise
         .then(function() {
           doneCallBack();
@@ -66,42 +62,47 @@
         .catch(function(err) {
           doneCallBack(err);
         });
-
       $rootScope.$digest();
     });
 
     it('should fail to login() if given invalid email', function(doneCallBack) {
       let promise =
         PlayerController.login({playerName: "Name", playerEmail: 17});
-
       promise
         .then(function() {
           doneCallBack();
         })
         .catch(function(err) {
-
           doneCallBack();
         });
-
       $rootScope.$digest();
     });
 
     it('should fail to login() name is zero length', function(doneCallBack) {
       let promise =
         PlayerController.login({playerName: "", playerEmail: "foo@bar.com"});
-
       promise
         .then(function() {
           doneCallBack();
         })
         .catch(function(err) {
-
           doneCallBack();
         });
+      $rootScope.$digest();
+    });
 
+    it('should fail to login() argument is undefined', function(doneCallBack) {
+      let promise =
+        PlayerController.login();
+      promise
+        .then(function() {
+          doneCallBack();
+        })
+        .catch(function(err) {
+          doneCallBack();
+        });
       $rootScope.$digest();
     });
 
   });
-
 }());

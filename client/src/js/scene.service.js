@@ -3,12 +3,13 @@
 
   angular.module('adventure')
     .factory('SceneService', SceneService);
+
   SceneService.$inject = ['$http', '$state'];
 
   /**
    * Creates a new SceneService
-   * @param {Function} $http Makes Ajax calls
-   * @return {Object}        The service's API methods
+   * @param {Function} $http  Makes Ajax calls
+   * @return {Object}         The service's API methods
    */
   function SceneService($http, $state) {
     let currentScene = {};
