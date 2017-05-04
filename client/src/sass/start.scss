@@ -69,12 +69,6 @@ h4 {
   border-radius: 15px 15px 15px 15px;
 }
 
-p {
-  font-family: Cinzel;
-  font-size: 1.5em;
-  color: black;
-}
-
 .btn {
   background-color: rgb(149,165,166);
   border: none;
@@ -90,7 +84,9 @@ p {
   animation-name: slidein;
   padding-bottom: 0.5em;
   padding-top: 0.5em;
+  font-family: Cinzel;
   font-size: 3em;
+  color: rgb(0, 0, 0);
 }
 
 @keyframes slidein {
