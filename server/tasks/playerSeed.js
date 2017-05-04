@@ -3,8 +3,8 @@ const Player = require('../models/Player.model.js');
 
 new Player(
   {
-    playerName: 'dsteed',
-    playerEmail: 'davidS@dude.com',
+    playerName: '',
+    playerEmail: '',
     playerScore: 0,
     playerScene: ''
   }).save().then(function done() {
