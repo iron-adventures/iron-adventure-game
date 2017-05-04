@@ -4,8 +4,8 @@
   margin-top: .5em;
   margin-bottom: .5em;
   display: block;
-  width: 50%;
-  height: 50%;
+  width: 45%;
+  height: 45%;
   border-radius: 15px 15px 15px 15px;
 }
 
@@ -17,6 +17,7 @@
   margin-left: auto;
   margin-right: auto;
   font-size: 2em;
+  font-family: Cinzel;
 }
 
 .login-header {
@@ -26,4 +27,17 @@
 
 .login-home {
   margin-left: 1em;
+}
+
+a {
+  font-family: Cinzel;
+  font-size: 1.5em;
+}
+
+footer {
+  margin-top: 9em;
+}
+
+.storyDescription {
+  padding-top:2em;
 }
