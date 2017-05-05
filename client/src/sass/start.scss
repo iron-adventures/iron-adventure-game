@@ -9,7 +9,7 @@ body {
 }
 
 .backpack {
-  width: 7em;
+  width: 8em;
   border-radius: 200px;
   background-color: #DDD;
   border: 5px solid rgb(95, 95, 95);
@@ -19,15 +19,15 @@ body {
 
 h1 {
   font-family: Bungee Shade;
-  font-size: 4em;
-  color: black;
+  font-size: 5em;
+  color: rbg(0, 0, 0);
 }
 
 h2 {
   width: 100%;
   text-align: center;
   font-size: 2em;
-  color: white;
+  color: rgb(255, 255, 255);
   font-family: Cinzel;
   background-color: rgb(149,165,166);
 }
@@ -45,7 +45,7 @@ h3 {
 h4 {
   font-family: Cinzel;
   font-size: 1.2em;
-  color: white;
+  color: rgb(255, 255, 255);
   font-weight: 400;
 }
 
@@ -69,12 +69,6 @@ h4 {
   border-radius: 15px 15px 15px 15px;
 }
 
-p {
-  font-family: Cinzel;
-  font-size: 1.5em;
-  color: black;
-}
-
 .btn {
   background-color: rgb(149,165,166);
   border: none;
@@ -90,7 +84,9 @@ p {
   animation-name: slidein;
   padding-bottom: 0.5em;
   padding-top: 0.5em;
+  font-family: Cinzel;
   font-size: 3em;
+  color: rgb(0, 0, 0);
 }
 
 @keyframes slidein {
@@ -127,9 +123,9 @@ p {
   text-align: center;
   left: 0;
   width: 100%;
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 10px 20px;
-  background: black;
+  background: rgb(0, 0, 0);
   border-radius: 15px 15px 15px 15px;
   font-size: 3em
 }
@@ -152,12 +148,14 @@ p {
     box-sizing: border-box;
     margin: 1em;
     flex: 0 0 95%;
-    }
+  }
 }
 
 .choose_wrap {
-  border-top: 1px solid rgb(30, 29, 39);
-  border-bottom: 1px solid rgb(30, 29, 39);
+  border-top: 2px solid rgb(30, 29, 39);
+  border-bottom: 2px solid rgb(30, 29, 39);
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 .choose {
@@ -171,4 +169,8 @@ p {
   100% {
     opacity: 1;
   }
+}
+
+p {
+  font-family: Cinzel;
 }

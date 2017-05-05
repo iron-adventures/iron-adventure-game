@@ -49,7 +49,7 @@ a.text-decoration {
 .end-h3 {
   padding-bottom: 1em;
   background: none;
-  color: black;
+  color: rgb(0, 0, 0);
   width: 60%;
   margin: auto;
 }
@@ -60,6 +60,6 @@ a.text-decoration {
   padding-right: 2em;
 }
 
-// .end-title {
-//   margin-top: auto;
-// }
+p {
+  font-size: 2em;
+}
