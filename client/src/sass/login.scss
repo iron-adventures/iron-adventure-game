@@ -1,40 +1,33 @@
 .loginStoryImage {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: .5em;
-  margin-bottom: .5em;
-  display: block;
-  width: 45%;
-  height: 45%;
+  width: 50%;
   border-radius: 15px 15px 15px 15px;
+  margin-bottom: 2em;
 }
 
 .loginStoryText {
   background: none;
   border-radius: 15px 15px 15px 15px;
   text-align: center;
-  padding: .5em;
-  margin-left: auto;
-  margin-right: auto;
+  padding-top: 1em;
+  padding-bottom: 2em;
   font-size: 2em;
   font-family: Cinzel;
 }
 
 .login-header {
   border-radius: 15px 15px 15px 15px;
+  padding-bottom: 0.3em;
+  padding-top: 0.3em;
 }
 
 .login-home {
   margin-left: 1em;
+  color: rbg(255, 255, 255);
 }
 
 a {
   font-family: Cinzel;
   font-size: 1.5em;
-}
-
-footer {
-  margin-top: 9em;
 }
 
 .storyDescription {
@@ -50,8 +43,16 @@ h2 {
   border-radius: 15px 15px 15px 15px;
 }
 
+.btn-default {
+  color: rgb(236, 243, 255);
+}
+
 .btn-default:hover{
-color: rgb(236, 243, 255);
-background-color: rgba(44, 68, 88, 0.73);
-border-color: #adadad;
+  color: rgb(236, 243, 255);
+  background-color: rgba(24, 38, 49, 0.73);
+  border-color: rgb(173, 173, 173);
+}
+
+.input-headers {
+  font-size: 1.5em;
 }
